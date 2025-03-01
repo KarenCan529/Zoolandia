@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400&display=swap');
+
+
+@media(min-width: 1900px){
+    .video-content{
+        width: 100%;
+        height: 696px;
+        border-radius: 20px;
+        background: #18171C;
+        border: 6px solid #8B7757;
+        display: flex; 
+        flex-direction: column; 
+        position: relative;
+        margin-top: 0;
+    }
+    
+    .video-control{
+        width: 100%; 
+        height: 440px;
+        border-top-left-radius: 15px; 
+        border-top-right-radius: 15px;
+        object-fit: cover;
+        margin-bottom: 24px;
+    }
+    
+    .tituloVideoHome {
+        text-align: center;
+    }
+    
+    .tituloSeccionVideo {
+        margin-top: 14px;
+        font-family: "Reem Kufi Fun", sans-serif;
+        color: #18171C;
+        font-size: 40px;
+        font-weight: 600;
+        line-height: normal;
+    }
+    
+    .parrafoSeccionVideo {
+        width: 90%;
+        max-width: 1126px; 
+        margin: 24px auto;
+        font-family: "Reem Kufi Fun", sans-serif; 
+        font-size: 32px;
+        font-weight: 400;
+        color: #61764B;
+        text-align: center;
+    }
+    
+    
+    .tituloVideo {
+        width: 354px;
+        height: 48px;
+        text-align: center;
+        font-family: "Reem Kufi Fun", sans-serif;
+        color: #ffffff;
+        font-size: 32px;
+        font-weight: 400;
+        margin-bottom: 24px;
+    }
+    
+    .parrafoVideo{
+        width: 354px;
+        height: 160;
+        padding: 0px 8px;
+        text-align: center;
+        font-family: "Reem Kufi Fun", sans-serif; 
+        color: #ffffff;
+        font-size: 24px; 
+        font-weight: 400;
+    }
+    
+    .parrafoMobile {
+        display: none; 
+    }
+    
+}
+
+
+@media (max-width: 1900px){
+.video-content {
+    width: 100%;
+    height: 64.44vh;
+    border-radius: 1.85vh;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    background: #18171C;
+    border: 0.56vh solid #8B7757;
+    display: flex; 
+    flex-direction: column; 
+    position: relative;
+    margin-top: 0;
+}
+
+.video-control {
+    width: 100%; 
+    height: 40.74vh;
+    border-top-left-radius: 1.39vh;
+    border-top-right-radius: 1.39vh;
+    object-fit: cover;
+    margin-bottom: 2.22vh;
+}
+
+.tituloVideoHome {
+    text-align: center;
+}
+
+.tituloSeccionVideo {
+    margin-top: 1.3vh;
+    font-family: "Reem Kufi Fun", sans-serif;
+    color: #18171C;
+    font-size: 3.7vh;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.parrafoSeccionVideo {
+    width: 90%;
+    max-width: 104.26vh;
+    margin: 2.22vh auto;
+    font-family: "Reem Kufi Fun", sans-serif; 
+    font-size: 2.96vh;
+    font-weight: 400;
+    color: #61764B;
+    text-align: center;
+}
+
+.tituloVideo {
+    width: 32.78vh;
+    height: 4.44vh;
+    text-align: center;
+    font-family: "Reem Kufi Fun", sans-serif;
+    color: #ffffff;
+    font-size: 2.96vh;
+    font-weight: 400;
+    margin-bottom: 2.22vh;
+}
+
+.parrafoVideo {
+    width: 32.78vh;
+    height: 14.81vh; 
+    padding: 0 0.74vh;
+    text-align: center;
+    font-family: "Reem Kufi Fun", sans-serif; 
+    color: #ffffff;
+    font-size: 2.22vh;
+    font-weight: 400;
+}
+
+.parrafoMobile {
+    display: none; 
+}
+}
+
+@media (max-width: 768px) {
+    .SeparadorSeccion {
+        width: 100%;
+        height: 100%;
+        padding: 5.45vh 2.79%;
+    }
+
+    .parrafoSeccionVideo {
+        display: none;
+    }
+
+    .parrafoMobile {
+        text-align: center;
+        display: block;
+        font-size: 3vh; 
+        color: #61764B; 
+        margin-top: 1.5vh; 
+        margin-bottom: 1.5vh;
+    }
+  
+    .video-control {
+        border-radius: 4px;
+        border: 2px solid #000000;
+        object-fit: cover;
+        width: 100%;
+        height: 50vh;
+        margin: auto;
+        margin-top: 10px;
+    }
+
+    .videosinicio {
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 2vh; 
+    }
+
+    .video-content {
+        height: 70%; 
+        padding: 0 2vw;
+        border-radius: 4px;
+    }
+    .tituloSeccionVideo {
+        font-size: 5.5vw;
+        margin-top: 1.5vh;
+    }
+    
+    .tituloVideo {
+        font-weight: 400; 
+        font-family: 'Shantell Sans', sans-serif;
+        font-size: 8vw; 
+        text-shadow: 
+        1px 1px 0 black,   
+        -1px -1px 0 black, 
+        1px -1px 0 black, 
+        -1px 1px 0 black, 
+        0px 1px 0 black,  
+        0px -1px 0 black,  
+        1px 0px 0 black,  
+        -1px 0px 0 black;
+        margin-top: 2.5vh;
+    }
+
+    .parrafoVideo {
+        width: 100%;
+        font-family: "Reem Kufi Fun", sans-serif; 
+        margin-top: 3.5vh;
+        font-size: 4.5vw; 
+    }
+}

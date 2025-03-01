@@ -1,0 +1,72 @@
+.button-container {
+    display: flex;
+    flex-direction: column; /* Coloca los botones uno debajo del otro */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    height: 80vh;
+  }
+  
+button {
+  display: block;
+  margin: 0 auto; /* Centra horizontalmente */
+}
+
+
+img {
+    /* Estilos para las imágenes (ajústalos según tus necesidades) */
+    max-width: 100%;
+    height: auto;
+    margin: 0 20px; /* Espacio entre las imágenes */
+}
+
+
+
+
+.button-67 {
+ 
+  align-items: center;
+  background: #f5f5fa;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: -10px -10px 30px 0 #fff,10px 10px 30px 0 #1d0dca17;
+  box-sizing: border-box;
+  color: #2a1f62;
+  cursor: pointer;
+  display: flex;
+  font-family: "Cascadia Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+  font-size: 1rem;
+  justify-content: center;
+  line-height: 1.5rem;
+  padding: 15px;
+  position: relative;
+  text-align: left;
+  transition: .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+  width: max-content;
+  word-break: normal;
+  word-spacing: normal;
+}
+
+.button-67:hover {
+  background: #f8f8ff;
+  box-shadow: -15px -15px 30px 0 #fff, 15px 15px 30px 0 #1d0dca17;
+}
+
+@media (min-width: 768px) {
+  .button-67 {
+    padding: 24px;
+  }
+}
+        
+body{
+    margin: 0;
+    padding: 0;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(150deg, #6C3483, #58D68D);
+    height:  100vh;
+}
+
+

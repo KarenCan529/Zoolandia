@@ -1,0 +1,657 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400&family=Raleway:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400&display=swap');
+
+.header {
+  width: auto;  
+  height: 100vh;  
+  padding: 7.4vh 10vw;
+  background-image: url('../imagenes/Donaciones.webp');
+  background-size: cover;
+  background-position: center; 
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+  }
+
+  .header{
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+  }
+
+  .header h1{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    height: 64px;
+    color: #ffffff;
+    font-family: 'Shantell Sans', sans-serif;
+    font-weight: 700;
+    font-size: 48px; 
+  }
+
+  .header h2{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    width: 80%;
+    height: 108px;
+    color: #ffffff;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 40px;
+    font-weight: 600; 
+  }
+
+  .content {
+    justify-items: center;
+    text-align: center;
+    z-index: 2;
+  }
+  
+  .donations-section {
+    width: 100%;
+    height: 564px;
+    background-color: #8B7757; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .donations-content {
+    text-align: center;
+    color: white;
+  }
+  
+  .donations-content h2 {
+    font-family: 'Reem Kufi', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    margin-bottom: 60px;
+}
+  .donations-content p {
+    font-family: 'Reem Kufi', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .donations-section {
+      height: auto; 
+      top: 0;
+    }
+  
+    .donations-content h2 {
+      font-size: 28px;
+    }
+  
+    .donations-content p {
+      font-size: 16px;
+    }
+  }
+
+  
+  @media screen and (max-width: 800px) {
+
+    .header{
+      justify-content: center;
+      align-items: center;
+      text-align: center; 
+    }
+    .donations-section {
+      width: 100%;
+      height: auto;
+      background-color: #8B7757; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .header h1{
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+      text-align: center;
+      width: 100%;
+      height: 129px;
+      color: #ffffff;
+      font-family: 'Shantell Sans', sans-serif;
+      font-weight: 400;
+      font-size: 32px; 
+    }
+
+    .header h2{
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+      text-align: center;
+      width: 100%;
+      height: 108px;
+      color: #ffffff;
+      font-family: 'Reem Kufi', sans-serif;
+      font-size: 24px;
+      font-weight: 400; 
+    }
+    .donations-content h2 {
+      width: 100%;
+      height: 36px;
+      color: #ffffff;
+      font-family: 'Reem Kufi', sans-serif;
+      font-size: 24px;
+      font-weight: 400; 
+      margin-bottom: 24px;
+    }
+  
+    .donations-content p {
+      width: 98%;
+      align-items: center; 
+      text-align: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #ffffff;
+      margin-bottom: 0%;
+    }
+  }
+  .donations-info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: #FEFAE0;
+}
+
+.donations-info .content {
+    align-items: center; 
+    display: flex;
+    gap: 24px; 
+}
+
+.donations-info .text {
+    flex: 1;
+}
+
+.donations-info .text h2 {
+  text-align: left;
+  font-family: 'Reem Kufi', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  color: #18171C;
+  margin-bottom: 30px;
+}
+
+.donations-info .text p {
+  text-align: left;
+  font-family: 'Reem Kufi', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.donations-info .image img {
+    height: 552px; 
+    width: 756px; 
+    border-radius: 60px;
+}
+@media (max-width: 1200px) {
+
+  .donations-info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: #FEFAE0;
+}
+
+    .donations-info .content {
+        gap: 40px; 
+    }
+
+    .donations-info .text h2 {
+        font-size: 20px; 
+    }
+
+    .donations-info .text p {
+        font-size: 16px; 
+    }
+
+    .donations-info .image img {
+        max-height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+  .donations-info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    background-color: #FEFAE0;
+}
+
+.donations-info .content {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 24px;
+}
+
+.donations-info .text {
+    flex: 1;
+    text-align: center; 
+}
+
+.donations-info .text h2 {
+  text-align: center;
+  background-color: transparent;
+  width: 100%;
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #18171C;
+  margin-bottom: 10px;
+}
+
+.donations-info .text p {
+  width: 98%;
+  align-items: center; 
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #18171C;
+}
+
+.donations-info .image img {
+      width: 100%;
+    height: 241px; 
+    border-radius: 60px;
+}
+
+}
+
+
+
+.wildlife-section {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    background-color: #8B7757; 
+    border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .text-container p {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-family: 'Reem Kufi', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #ffffff;
+  }
+  
+  .SeparadorSeccion {
+    position: relative;
+}
+
+.images-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll; /* Habilita el desplazamiento horizontal */
+    scroll-snap-type: x mandatory; /* Alineación automática */
+    -webkit-overflow-scrolling: touch; /* Deslizamiento suave en móviles */
+    padding-bottom: 10px;
+    scrollbar-width: none; /* Oculta scrollbar en Firefox */
+}
+
+.images-container::-webkit-scrollbar {
+    display: none; /* Oculta scrollbar en Chrome/Safari */
+}
+
+.card {
+    flex: 0 0 auto; /* Las tarjetas no se encogen y ocupan su tamaño fijo */
+    width: 456px; /* Tamaño fijo */
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start; /* Alinea cada tarjeta al inicio */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta las imágenes al tamaño fijo */
+    display: block;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .card {
+        width: 90%; /* Las imágenes ocupan un ancho más grande en móviles */
+        height: auto; /* Ajusta la altura automáticamente */
+    }
+
+    .arrow {
+        font-size: 1.5rem;
+    }
+}
+
+  @media (max-width: 768px) {
+
+    .images-container img {
+        width: 100%;
+        height: 241px; 
+    }
+  
+   .wildlife-section .text-container p {
+      width: 98%;
+    align-items: center; 
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #FFFFFF;
+    }
+  }
+
+
+  
+ @media (min-width: 1400px) and (max-width: 1900px) {
+  
+    .text-container p {
+      font-size: 20px; 
+      width: 100%;
+      height: auto;
+    }
+
+    .wildlife-section {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      align-items: center;
+      background-color: #8B7757; 
+      border-radius: 10px;
+      font-family: 'Arial', sans-serif;
+    }
+}
+
+  
+.donation-container {
+    width: 100%;
+    background-color: #FEFAE0;
+    padding: 40px 0; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+  .donation-form {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff9e6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-section {
+    border: 1px solid #d6c7a8;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  legend {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4c3a2e;
+    padding: 0 10px;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 14px;
+    border: 1px solid #d6c7a8;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .card-details {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .card-details select,
+  .card-details input {
+    flex: 1;
+  }
+  
+  button {
+    background-color: #6c845e;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #587449;
+  }
+
+  .botones{
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+.botones .btn-primary {
+  width: 390px;
+  height: 85px;
+    background-color: #FEFAE0; 
+    border-radius: 30px;
+    border: 5px solid #8B7757;
+    color: #18171C;
+    font-family: 'Raleway', sans-serif; 
+    font-weight: 700; 
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.botones .btn-primary:hover{
+    opacity: 1; 
+    border-radius: 30px;
+    color: #FEFAE0;
+    background-color: #8B7757;
+    border: 5px solid#18171C;
+}
+
+/* Nueva sección de apoyo */
+.carousel-wrapper {
+    background-color: transparent;
+    overflow: hidden; 
+    width: 100%;
+    height: 250px;
+    position: relative;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    margin-bottom: 30px;
+}
+  
+  @media (max-width: 768px) {
+    .wildlife-section {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      align-items: center;
+      background-color: #8B7757; 
+      border-radius: 10px;
+      font-family: 'Arial', sans-serif;
+    }
+  
+    legend {
+      font-size: 14px;
+    }
+  
+    input, select {
+      font-size: 12px;
+    }
+  
+    button {
+      font-size: 14px;
+    }
+
+    .text-container p {
+      font-size: 20px; 
+    }
+
+    button {
+      background-color: #6c845e;
+      color: white;
+      padding: 15px; /* Botón más grande */
+      font-size: 18px; /* Mayor tamaño de texto */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+  }
+
+  button:hover {
+      background-color: #587449;
+  }
+
+
+  .botones {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center; 
+    align-items: center; 
+    height: 100%; 
+    margin-top: 15%;
+}
+
+.botones .btn {
+    justify-content: center;
+    text-align: center;
+    width: 80%;
+    height: auto;
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    cursor: pointer;
+    margin: 10px 0px;
+}
+
+.botones .btn {
+    background-color: #FEFAE0; 
+    border-radius: 30px;
+    border: 5px solid #8B7757;
+    color: #18171C;
+}
+
+
+.botones .btn:hover {
+    opacity: 1; 
+    border-radius: 30px;
+    color: #FEFAE0;
+    background-color: #8B7757;
+    border: 5px solid#18171C;
+}
+  }
+
+  @media (min-width: 1900px){
+    
+    .donation-container {
+        width: 100%; /* Aumenta el ancho del contenedor */
+        background-color: #FEFAE0;
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+
+    }
+
+    .donation-form {
+        width: 100%;
+        background-color: #fff9e6;
+        padding: 40px; /* Aumenta el padding para hacerlo más largo */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px; /* Aumenta el espacio entre los elementos */
+    }
+
+    .form-section {
+        border: 1px solid #d6c7a8;
+        padding: 25px; /* Aumenta el padding para hacer las celdas más grandes */
+        border-radius: 8px;
+    }
+
+    legend {
+        font-size: 18px; /* Aumenta el tamaño del texto */
+        font-weight: bold;
+        color: #4c3a2e;
+        padding: 0 10px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 15px; /* Aumenta el tamaño de los campos */
+        margin: 10px 0; /* Mayor espacio entre campos */
+        font-size: 16px; /* Aumenta el tamaño de la fuente */
+        border: 1px solid #d6c7a8;
+        border-radius: 8px; /* Bordes más redondeados */
+        box-sizing: border-box;
+    }
+
+    .card-details {
+        display: flex;
+        gap: 20px; /* Más espacio entre los campos de tarjeta */
+    }
+
+    .card-details select,
+    .card-details input {
+        flex: 1;
+        padding: 15px; /* Mayor padding para hacer los campos más grandes */
+    }
+
+}

@@ -1,0 +1,250 @@
+body {
+    background: #FEFAE0;
+  
+}
+
+.SeccionesAnimalesDestacdos {
+    display: flex;
+    width: auto;
+    height: auto;
+    padding: 7.41vh 10vw;
+    justify-content: space-between; /* Alinea los elementos a los lados */
+    align-items: center;
+    gap: 24px;
+    margin: auto; /* Centra el contenedor en la página */
+}
+
+.LadoIzquierdo {
+    display: flex;
+    flex-direction: column;
+    width: 20.6vw;    
+  height: auto;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 5px solid #8B7757;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
+}
+
+
+
+.Titulo {
+    align-self: stretch;
+    color:  #18171C;
+    text-align: center;
+    
+    /* Sprint2-Desktop/H2-2 */
+    font-family: "Reem Kufi Fun";
+    font-size: 40px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    height: auto;
+}
+
+.Parrafo {
+    align-self: stretch;
+    color: rgba(24, 23, 28, 0.88);
+    text-align: center;
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.BotonCuadro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 66px;
+    background: #8B7757;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.ParrafoBoton {
+    color: #FFFFFF;
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-weight: 400;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.gallery{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-box{
+    width: 11.3vw;     
+    height: 92.6vh;
+    border-radius: 60px;
+    margin-right: 8px;
+    border-radius: 50px;
+    background: url('../imagenes/MonoAullador.webp');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: width 0.5s;
+    flex-wrap: wrap;
+}
+
+.img-box:nth-child(2){
+    background: url('../imagenes/Jaguar.webp');
+    background-size: cover;
+    background-position: center;
+}
+.img-box:nth-child(3){
+    background: url('../imagenes/Momoto.webp');
+    background-size: cover;
+    background-position: center;
+}
+.img-box:nth-child(4){
+    background: url('../imagenes/TapirCentroamericano.webp');
+    background-size: cover;
+    background-position: center;
+}
+.img-box:nth-child(5){
+    background: url('../imagenes/paca.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.img-box:hover{
+    width: 23vw;
+    cursor: pointer;
+}
+
+.SeccionArriba{
+    display: flex;
+    width: auto; 
+    height: 16vh; 
+    padding: 2vh; 
+    justify-content: center;
+    align-items: center;
+    gap: 1vw; 
+    flex-shrink: 0;
+    border-radius: 3vw 3vw 0 0; 
+    background: rgba(24, 23, 28, 0.7);
+    color: #fff;
+    bottom: 0;
+    transition: bottom 0.5s, opacity 0.5s;
+    opacity: 0;
+}
+
+.parrafoSeccionArriba{
+    color: #FFF;
+    text-align: center;
+    font-family: "Reem Kufi Fun";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: stretch;
+    bottom: 0;
+    left: 30px;
+    transition: bottom 0.5s, opacity 0.5s;
+    opacity: 0;
+}
+
+.img-box:hover .SeccionArriba{
+    opacity: 1;
+    bottom: 25px;
+}
+
+.img-box:hover .parrafoSeccionArriba{
+    opacity: 1;
+    bottom: 25px;
+}
+
+.tituloAnimales{
+    color: #FFF;
+    text-align: center;
+    font-family: "Reem Kufi Fun";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 53vh;   /* Proporcional a la altura de la pantalla */
+    margin-left: 0.84vw; /* Proporcional al ancho de la pantalla */
+    transition: bottom 0.5s, opacity 0.5s;
+    opacity: 0;
+}
+
+.break-line {
+    font-family: "Reem Kufi Fun";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    display: block; /* Fuerza que la palabra esté en una nueva línea */
+}
+
+.img-box:hover .tituloAnimales{
+    opacity: 1;
+    bottom: 25px;
+}
+
+.bottonAnimales{
+    display: flex;
+    width: 11.25vw;  /* Proporcional al ancho de la pantalla */
+    height: 5.83vh;   /* Proporcional a la altura de la pantalla */
+    margin: 0 auto;   /* Centra el botón horizontalmente */
+    padding: var(--sds-size-space-300);
+    justify-content: center;
+    align-items: center;
+    gap: var(--sds-size-space-200);
+    flex-shrink: 0;
+    border-radius: var(--sds-size-radius-200);
+    border: var(--sds-size-stroke-border) solid var(--sprint-2-Blanco, #FFF);
+    background: #2C2C2C;
+    border: solid #FFF;
+    margin-top: 16px;
+    cursor: pointer;
+    transition: bottom 0.5s, opacity 0.5s;
+    opacity: 0;
+}
+
+.infoBoton{
+    color: var(--sds-color-text-brand-on-brand);
+    color: #FFF;
+    text-align: center;
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  
+}
+
+.img-box:hover .bottonAnimales{
+    opacity: 1;
+    bottom: 25px;
+}
+.img-box:hover .tituloAnimales{
+    opacity: 1;
+    bottom: 25px;
+}
+
+
+
+a{
+    text-decoration: none;
+}

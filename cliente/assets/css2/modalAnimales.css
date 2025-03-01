@@ -1,0 +1,412 @@
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  
+}
+
+.modalAbierto {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 53.5vw;
+  max-width: 90%;
+  height: auto; 
+  max-height: 90%;
+  background-color: #8B7757;
+  border: 10px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 2vw;
+  color: white;
+  display: flex;
+  gap: 20px;
+  z-index: 1000;
+  display: none;
+  
+}
+
+.modalAbierto2 {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 53.5vw; 
+  max-width: 90%;
+  height: auto; 
+  max-height: 90%;
+  background-color: #61764B;
+  border: 10px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 2vw; 
+  color: white;
+  display: flex;
+  gap: 20px;
+  z-index: 1000;
+  display: none;
+}
+
+.modalAbierto3 {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 53.5vw; 
+  max-width: 90%;
+  height: auto; 
+  max-height: 100%;
+  background-color: #AEE3FB;
+  border: 10px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 2vw; 
+  color: dark;
+  display: flex;
+  gap: 20px;
+  z-index: 1000;
+  display: none;
+  
+}
+.imagenModal {
+  height: 60vh;
+  width: 15vw; 
+  border-radius: 12px;
+  object-fit: cover;
+  
+}
+
+.modal-content {
+  flex: 1;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 40px;
+  justify-content: space-between;
+}
+
+.modal-content h2 {
+  margin: 0;
+  font-size: 2.5vw; /* Tamaño de fuente relativo */
+}
+
+.modal-content p {
+  margin: 5px 0;
+  font-size: 1.5vw; /* Tamaño de fuente relativo */
+  line-height: 1.4;
+  text-align:  space-between;
+  align-items: center; 
+  margin-right: 10px
+}
+
+.modal-content strong {
+  width: 200px; /* Establecemos un ancho fijo para el <strong> para que el espacio no varíe */
+  text-align: left;  /* Alineamos el texto fuerte a la izquierda */
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  color: white;
+  border: none;
+  font-size: 3vw; /* Tamaño de la X relativo */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #ffcccc;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  justify-content: right;
+}
+
+.button-container button {
+  padding: 12px 30px;
+  font-size: 1.5vw;
+  border-radius: 30px;
+  background-color: #fff;
+  color: dark;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+
+.botonModal{
+    width: 15vw;
+   border: 3px solid #8B7757; 
+}
+
+.espacio {
+  flex-grow: 1;        /* Hace que los <span> ocupen el espacio restante */
+  text-align: right;   /* Alinea los valores del span a la derecha */
+}
+
+.quitarLinea{
+  color:dark;
+
+
+}
+
+/* Media Query para pantallas grandes */
+@media(min-width: 1919px) {
+  .modalAbierto {
+    width: 50vw;  /* 50% del ancho de la pantalla en pantallas grandes */
+    height: auto; /* 50% de la altura de la pantalla */
+  }
+
+  .imagenModal {
+  
+      height: 60vh; /* Fijas la altura */
+      width: 15vw; /* Mantienes proporciones */
+      border-radius: 12px;
+  }
+
+  .modal-content h2 {
+    font-size: 2vw; /* Tamaño de fuente más pequeño en pantallas grandes */
+  }
+
+  .modal-content p {
+    font-size: 1.2vw; /* Tamaño de fuente más pequeño en pantallas grandes */
+  }
+
+  .close-button {
+    font-size: 2vw; /* Tamaño más pequeño de la X */
+  }
+
+  .button-container button {
+    font-size: 1.2vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+  }
+
+  .modalAbierto {
+      display: flex;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58vh; /* 53.5% del ancho de la pantalla */
+      max-width: 92%;
+      height: 75.75vh; /* 58% de la altura de la pantalla */
+      max-height: 100%;
+      background-color: #8B7757;
+      border: 5px solid #fff;
+      border-radius: 60px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 2vw; /* Espaciado responsivo */
+      color: white;
+      display: flex;
+      flex-direction: column; /* Coloca los elementos en columna */
+      justify-content: space-between; /* Espacio entre los elementos */
+      gap: 20px;
+      z-index: 1000;
+      display: none;
+  }
+
+  .modalAbierto2 {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 58vh; /* 53.5% del ancho de la pantalla */
+    max-width: 93%;
+    height: 75.75vh; /* 58% de la altura de la pantalla */
+    max-height: 100%;
+    background-color: #61764B;
+    border: 5px solid #fff;
+    border-radius: 60px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2vw; /* Espaciado responsivo */
+    color: white;
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    justify-content: space-between; /* Espacio entre los elementos */
+    gap: 20px;
+    z-index: 1000;
+    display: none;
+  }
+
+  .modalAbierto3 {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 58vh; 
+    max-width: 92%;
+    height: 75.75vh; /* 58% de la altura de la pantalla */
+    max-height: 90%;
+    background-color: #AEE3FB;
+    border: 5px solid #fff;
+    border-radius: 60px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2vw; /* Espaciado responsivo */
+    color: black;
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    justify-content: space-between; /* Espacio entre los elementos */
+    gap: 20px;
+    z-index: 1000;
+    display: none;
+  }
+  /* Estilo para la imagen */
+  .imagenModal {
+      width: 50vw; /* Reduje el ancho de la imagen */
+      height: 40vh; /* Reduje la altura de la imagen */
+      border-radius: 12px;
+      object-fit: contain;
+      margin: 0 auto; 
+      margin-bottom: 0%;/* Centra la imagen */
+  }
+
+  .modalAbierto3 .modal-content h2{
+    color: #18171C;
+  }
+
+  .modalAbierto3 .modal-content strong {
+    justify-items: left;
+    width: 180px;
+    height: auto;
+    color: #18171C;
+    text-align: left;
+    font-family: "Reem Kufi Fun";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 100;
+    margin-left: 0px;
+}
+
+.modalAbierto3 .modal-content span {
+  color: #18171C;
+  text-align: left; 
+  font-family: "Reem Kufi Fun";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+} 
+
+.modalAbierto3 .close-button{
+  position: absolute;
+  top: 0%;
+  right: 4px;
+  background: none;
+  color:#18171C;
+  border: none;
+  font-size: 8vh;
+  cursor: pointer;
+}
+  .modal-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column; 
+      gap: 5px; /* Reduje el espacio entre los elementos */
+      padding: 0 5px;
+      margin-top: 10px;
+  }
+
+  .modal-content h2 {
+    text-align: center;
+      margin: 0;
+      color: #FFF;
+    font-family: "Reem Kufi Fun";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  .modal-content p {
+    display: flex; 
+    justify-content: space-between; 
+    margin: 3px 0; 
+}
+
+
+.modal-content strong {
+    justify-items: left;
+    width: 180px;
+    height: auto;
+    color: #FFF;
+    text-align: left;
+    font-family: "Reem Kufi Fun";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 100;
+    margin-left: 0px;
+}
+
+.modal-content span {
+    color: #FFF;
+    text-align: left; 
+    font-family: "Reem Kufi Fun";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+} 
+
+  .close-button {
+      position: absolute;
+      top: 0%;
+      right: 4px;
+      background: none;
+      color: white;
+      border: none;
+      font-size: 8vh;
+      cursor: pointer;
+  }
+
+  .close-button:hover {
+      color: #ffcccc;
+  }
+
+  .modal-content .button-container {
+    justify-content: center;
+    margin-top: 0%;
+  }
+
+  .button-container a .botonModal {
+    padding: 0%;
+      width: 200px;
+      height: auto;
+      font-size: 3vh;
+      border-radius: 30px;
+      background-color: #fff;
+      color: dark;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 0%;
+  }
+
+  .quitarLinea {
+      color: dark;
+  }
+}

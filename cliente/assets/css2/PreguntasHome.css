@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400&family=Raleway:wght@400&display=swap');
+
+
+.PreguntasFrecuentes{
+  width: 100%;
+  height: 100vh;
+}
+.faq-question {
+  cursor: pointer;
+  background-color: #8B7757;
+  color: white;
+  padding: 3vh;
+  display: flex;
+  border: 1px solid #8B7757;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 400;
+  font-family: "Reem Kufi Fun", sans-serif; 
+  font-weight: normal;
+  transition: background-color 0.6s ease-out, transform 0.6s ease-out;
+  margin-top: 1vh;
+}
+
+.faq-question i {
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.faq-question.active i {
+  color: white;
+}
+
+.faq-item {
+  margin-bottom: 5vh; 
+}
+
+.faq-question:hover {
+  background-color: #716146;
+}
+
+.faq-question.active {
+  background-color: #61764B;
+}
+
+.faq-answer {
+  display: none;
+  font-size: 2.40vh;
+  text-align: center;
+  padding: 15px;
+  background-color: transparent;
+  border: 1px solid #8B7757;
+  margin-top: 0;
+  transition: max-height 3s ease-out, padding 3s ease-out;
+  overflow: hidden;
+  max-height: 0; 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.PreguntasFrecuentes h1{
+  text-align: center;
+  -webkit-text-stroke-width: 1;
+  font-family: "Reem Kufi Fun", sans-serif;
+  color: #18171C;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.PreguntasFrecuentes p{
+  margin-top: 2.22vh;
+  margin-bottom: 10vh;
+  text-align: center;
+  font-family: "Reem Kufi Fun", sans-serif; 
+  font-size: 32px;
+  font-weight: 400;
+  line-height: normal;
+  color: #61764B;
+}
+
+.faq-answer.show {
+  display: block;
+  max-height: 100vh; 
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+
+@media (max-width: 768px) {  
+
+  .SeparadorSeccion {
+    width: 100%;
+    height: 100%;
+    padding: 5.45vh 2.79%;
+}
+
+.PreguntasFrecuentes{
+  margin-bottom: 10vh;
+}
+  .faq-question {
+    padding: 1.5vh;
+      font-size: 2vh;
+      text-align: left;
+      margin-top: 0;
+  }
+
+  .faq-answer {
+      padding: 1.5vh 2vw;
+      font-size: 2vh;
+      text-align: center;
+  }
+
+  .PreguntasFrecuentes h1 {
+      font-size: 3vh;
+  }
+
+  .PreguntasFrecuentes p {
+      font-size: 2.5vh;
+      margin-bottom: 7vh;
+  }
+
+  .faq-item {
+      margin-bottom: 3.5vh; 
+  }
+}
+@media (min-width: 1900px) { 
+
+  .faq-question {
+    cursor: pointer;
+    background-color: #8B7757;
+    color: white;
+    height: 96px;
+    display: flex;
+    border: 1px solid #8B7757;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    font-family: "Reem Kufi Fun", sans-serif; 
+    font-size: 32px;
+    font-weight: 400;
+    line-height: normal;
+    transition: background-color 0.6s ease-out, transform 0.6s ease-out;
+    margin-top: 1vh;
+  }
+
+  .faq-answer {
+    display: none;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: "Reem Kufi Fun", sans-serif; 
+    text-align: center;
+    padding: 15px;
+    background-color: transparent;
+    border: 1px solid #8B7757;
+    margin-top: 0;
+    transition: max-height 3s ease-out, padding 3s ease-out;
+    overflow: hidden;
+    max-height: 0; 
+  }
+
+  .PreguntasFrecuentes{
+    width: 100%;
+    height: 90vh;
+  }
+}

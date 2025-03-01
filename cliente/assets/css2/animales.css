@@ -1,0 +1,792 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400&family=Raleway:wght@400&display=swap');
+
+body {
+    font-family: "Reem Kufi Fun";
+    background: #FEFAE0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;  
+}
+
+.hero {
+    width: auto;  
+    height: 100vh;  
+    padding: 7.4vh 10vw;
+    background-image: url('../imagenes/FondoAnimales.webp');
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.fondo {
+    position: absolute;  
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, rgba(24, 23, 28, 0.59) 30.5%, rgba(24, 23, 28, 0.63) 79%);
+    z-index: 1;
+    padding: 7.41vh 0;
+}
+
+.heroContenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+
+.TituloSeccion {
+    align-self: stretch;
+    color: #FFF;
+    text-align: center;
+    /* Sprint2-Desktop/H1-2 */
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: var(--sprint-2-Blanco, #FFF);
+    font-family: "Shantell Sans";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    z-index: 2;
+}
+
+.parrafoSeccion {
+    color: #FFF;
+    font-family: "Reem Kufi Fun";
+    font-size: 40px;
+    font-weight: 600;
+    line-height: normal;
+    z-index: 2;
+}
+
+
+
+.seccionBusqueda {
+    display: flex;
+    width: auto; 
+    height: auto;  
+    padding: 7.4vh 10vw;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25%; 
+    flex-shrink: 0;
+}
+
+.Buscar {
+    display: flex;
+    width: 39.38vw;
+    height: 6.48vh;  
+    padding: 2.17vh 1.98vw;  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.52vh;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 40px;
+    border: 3px solid var(--sprint-2-AzulNegruzco-2, #18171C);
+    background: var(--sprint-2-Blanco, #FFF);
+}
+
+.dentroBusqueda {
+    display: flex;
+    justify-content: space-between;  
+    align-items: center;  
+    gap: 100px;  
+    align-self: stretch;
+}
+
+.buscarTexto {
+    color: var(--sprint-2-AzulNegruzco-2, #18171C);
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.iconoBusqueda {
+    width: 3.10vw;  
+    height: 5.08vh;
+    flex-shrink: 0;
+    cursor: pointer;
+
+}
+
+.BotonesCategorias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25vw; 
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.botonesDentro {
+    display: flex;
+    padding: var(--sds-size-space-300);
+    justify-content: center;
+    align-items: center;
+    gap: var(--sds-size-space-200);
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1px solid #8B7757; 
+    background: none;
+    width: auto;  
+    height: auto;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease; 
+}
+
+.botonesDentro:hover {
+    background: #8B7757; 
+    color: white; 
+    border-color: #8B7757; 
+    transform: scale(1.05); 
+}
+
+
+.infoBotonDentro {
+    color: var(--sprint-2-AzulNegruzco-2, #18171C);
+    font-family: "Reem Kufi Fun";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.seccionAnimal1 {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25vw;  
+    flex-wrap: wrap;  
+    flex-shrink: 0;
+}
+
+@media(min-width:951px){
+.animalCarta, .animalCarta2, .animalCarta3 {
+    width: 36.625vw;  
+    min-width: 36.625vw;
+    max-width: 36.625vw;
+    margin-top: 80px;
+}
+
+}
+
+.animalCarta {
+    display: flex;
+    padding: 24px;
+    justify-content: center;
+    align-items: center;
+    
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 43px;
+    border: 3px solid #8B7757;
+    background: var(--sprint-2-AzulNegruzco-2, #18171C);
+    overflow: hidden; 
+}
+
+.seccionAnimalInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.seccionAnimalInfoAdentro {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.imgSeccionAnimalCarta {
+    width: 25vw;
+    height: 35.28vh;
+    flex: 1 0 0;
+    border-radius: 69px;
+    object-fit: cover;
+}
+
+.infoTextoCarta {
+    display: flex;
+    width: 26.3vw; 
+    padding: 2.22vh; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+    overflow: hidden; 
+    height: auto;
+}
+
+.ClasificacionCarta {
+    align-self: stretch;
+    color: var(--sprint-2-AuxSecundario-2, #8B7757);
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-weight: 400;
+    line-height: normal;
+    height: auto;
+}
+
+.tituloCarta {
+    align-self: stretch;
+    color: #FFF;
+    font-family: "Reem Kufi Fun";
+    font-size: 40px;
+    font-weight: 600;
+    line-height: normal;
+    height: auto;
+}
+
+.descripcionCarta {
+    align-self: stretch;
+    color: #FFF;
+    font-family: Raleway;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+    height: auto;
+}
+
+.linea {
+    width: 31.875vw;
+    height: 0.09259vh;
+    background: #FFF;
+}
+
+.bottonCarta {
+    display: inline-flex;
+    height: 7.96vh; 
+    padding: 2.22vh 1.25vw; 
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 2px solid var(--sprint-2-AuxSecundario-2, #8B7757); 
+    background: var(--sds-color-background-brand-default);   
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease; 
+}
+
+.bottonCarta:hover {
+    background: var(--sprint-2-AuxSecundario-2, #8B7757); 
+    color: #FEFAE0;
+    border-color: var(--sprint-2-AuxSecundario-2, #8B7757); 
+    transform: scale(1.05);
+}
+
+
+.ContenidoBoton {
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-weight: 400;
+    line-height: normal;
+    color: #FFF;
+}
+
+
+/* COlor verde reptil*/
+
+
+.animalCarta2 {
+    display: flex;
+    padding: 24px;
+    justify-content: center;
+    align-items: center;
+    
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 43px;
+    border: 3px solid #61764B;
+    background: var(--sprint-2-AzulNegruzco-2, #18171C);
+    overflow: hidden;  
+}
+
+.ClasificacionCarta2 {
+    align-self: stretch;
+    color:  #61764B;
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-weight: 400;
+    line-height: normal;
+    height: auto;
+}
+
+.bottonCarta2 {
+    display: inline-flex;
+    height: 7.96vh; 
+    padding: 2.22vh 1.25vw; 
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 2px solid #61764B; 
+    background: var(--sds-color-background-brand-default);   
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.bottonCarta2:hover {
+    background: #61764B; 
+    color: #FEFAE0;
+    border-color: #61764B; 
+    transform: scale(1.05); 
+}
+
+
+/* COlor azul pst*/
+
+
+.animalCarta3 {
+    display: flex;
+    padding: 24px;
+    justify-content: center;
+    align-items: center;
+    
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 43px;
+    border: 3px solid #AEE3FB;
+    background: var(--sprint-2-AzulNegruzco-2, #18171C);
+    overflow: hidden; 
+}
+
+.ClasificacionCarta3 {
+    align-self: stretch;
+    color:  #AEE3FB;
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-weight: 400;
+    line-height: normal;
+    height: auto;
+}
+
+.bottonCarta3 {
+    display: inline-flex;
+    height: 7.96vh; 
+    padding: 2.22vh 1.25vw; 
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 2px solid #AEE3FB;
+    background: var(--sds-color-background-brand-default);   
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease; 
+}
+
+.bottonCarta3:hover {
+    color: #18171C;
+    border-color: #AEE3FB; 
+    transform: scale(1.05); 
+}
+
+.searchbar {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 6.4vhs;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px;
+    border: solid #18171C;
+    width: 39.7vw;
+    
+    align-items: center;
+    
+}
+
+.search_input {
+    color: #18171C;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 450px;
+    caret-color: #18171C;
+    line-height: 40px;
+    padding: 0 10px;
+}
+
+.search_icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    background: white;
+    color: #18171C; 
+    text-decoration: none;
+}
+
+
+/*PARA EL HERO DE ANIMALES*/
+@media (max-width: 950px) {
+    body {
+        background: #FEFAE0;
+        margin: 0;
+        padding: 0;
+        height: 100vh;  
+    }
+    .hero {
+        width: auto;  
+        height: 100vh;  
+       
+        background-image: url('../imagenes/Fondo-img2.webp');
+        background-size: cover;
+        background-position: center; 
+        background-attachment: fixed;  
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }    
+    .fondo {
+        position: absolute;  
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, rgba(24, 23, 28, 0.59) 30.5%, rgba(24, 23, 28, 0.63) 79%);
+        z-index: 1;
+        padding: 7.41vh 0;
+    }
+    .heroContenido {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        text-align: center;
+    }   
+    .TituloSeccion {
+        align-self: stretch;
+        color: #FFF;
+        text-align: center;
+        /* Movil/H1-2-movil */
+        -webkit-text-stroke-width: 1;
+        -webkit-text-stroke-color: var(--sprint-2-Blanco, #FFF);
+        font-family: "Shantell Sans";
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }   
+    .parrafoSeccion {
+        align-self: stretch;
+        color: #FFF;
+        text-align: center;
+        /* Movil/H3-2-movil */
+        font-family: "Reem Kufi Fun";
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }   
+    .searchbar {
+        margin-bottom: auto;
+        margin-top: auto;
+        height: 6.4vhs;
+        background-color: #fff;
+        border-radius: 30px;
+    
+        border: solid #18171C;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+    }  
+    .eliminarpadding{
+        padding: 0;
+    }
+  }
+
+  /*SECCION DE BUSCAR CATEGORIA*/
+
+@media (max-width: 950px) {
+    .seccionBusqueda {
+        display: flex;
+        flex-direction: column; 
+        width: auto; 
+        height: auto;  
+        padding: 5.45vh 2.79%;
+        justify-content: flex-start; 
+        align-items: center;
+        gap: 1.25%;
+    }
+
+    .Buscar {
+        display: flex;
+        width: 100%;
+        padding: 1.5vh 3vw; 
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 40px;
+        border: 3px solid var(--sprint-2-AzulNegruzco-2, #18171C);
+        background: var(--sprint-2-Blanco, #FFF);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+ 
+
+    .dentroBusqueda {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .iconoBusqueda {
+        width: 5.23vw;
+        height: 3.06vh;
+        cursor: pointer;
+    }
+
+    .BotonesCategorias {
+        display: flex;
+        flex-direction: column; 
+        width: 100%;
+        gap: 12px;
+        align-items: stretch;
+        margin-top: 10px; 
+    }
+
+    .botonesDentro {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #8B7757;
+        background: none;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        width: auto;
+    }
+
+    .botonesDentro:hover {
+        background: #8B7757;
+        color: white;
+        border-color: #8B7757;
+        transform: scale(1.05);
+    }
+
+    .infoBotonDentro {
+        color: var(--sprint-2-AzulNegruzco-2, #18171C);
+        font-family: "Reem Kufi Fun";
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+@media (max-width: 950px){
+.seccionAnimal1 {
+    display: flex;
+    flex-direction: column;
+    width: auto; 
+    height: auto; 
+    padding: 0 2.79%;
+    justify-content: flex-start; 
+    align-items: stretch; 
+    gap: 1.25vw;
+    flex-wrap: nowrap; 
+}
+
+/* Estilo de las cartas */
+.animalCarta {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    justify-content: space-between; 
+    align-items: center;  
+    flex: 0 1 auto; 
+    align-self: stretch; 
+    border-radius: 43px;
+    border: 3px solid #8B7757;
+    background: var(--sprint-2-AzulNegruzco-2, #18171C);
+    overflow: hidden; 
+    margin-top: 5.45vh;
+    min-height: 300px; 
+}
+
+
+.seccionAnimalInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex: 1 0 auto; 
+    align-self: stretch;
+}
+
+.seccionAnimalInfoAdentro {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    flex: 1 0 auto;
+    align-self: stretch;
+}
+
+
+.imgSeccionAnimalCarta {
+    width: 76.4vw;
+    height: 29.1vh;
+    flex: 0 1 auto; 
+    border-radius: 69px;
+    object-fit: cover;
+}
+
+
+.infoTextoCarta {
+    display: flex;
+    width: 71.4vw;
+    padding: 3.3vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+
+.ClasificacionCarta {
+    align-self: stretch;
+    color: var(--sprint-2-AuxSecundario-2, #8B7757);
+    font-family: "Reem Kufi Fun";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.tituloCarta {
+    align-self: stretch;
+    color: #FFF;
+    font-family: "Reem Kufi Fun";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.descripcionCarta {
+    align-self: stretch;
+    color: #FFF;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.linea {
+    width: 100%;
+    height: 0.09259vh;
+    background: #FFF;
+}
+
+
+.bottonCarta {
+    display: inline-flex;
+    height: auto;
+    padding: 1.22vh 1.25vw; 
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 2px solid var(--sprint-2-AuxSecundario-2, #8B7757); 
+    background: var(--sds-color-background-brand-default);   
+    width: auto;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease; 
+}
+
+.bottonCarta:hover {
+    background: var(--sprint-2-AuxSecundario-2, #8B7757); 
+    color: #FEFAE0;
+    border-color: var(--sprint-2-AuxSecundario-2, #8B7757); 
+    transform: scale(1.05);
+}
+
+
+.ContenidoBoton {
+    font-family: "Reem Kufi Fun";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #FFF;
+}
+
+
+.animalCarta2 {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    justify-content: space-between; 
+    align-items: center;  
+    flex: 0 1 auto;
+    align-self: stretch; 
+    border-radius: 43px;
+    border: 3px solid #61764B;
+    background: var(--sprint-2-AzulNegruzco-2, #18171C);
+    overflow: hidden; 
+    margin-top: 5.45vh;
+    min-height: 300px; 
+}
+
+
+.animalCarta3 {
+    display: flex;
+    flex-direction: column; 
+    padding: 24px;
+    justify-content: space-between; 
+    align-items: center;  
+    flex: 0 1 auto; 
+    align-self: stretch; 
+    border-radius: 43px;
+    border: 3px solid #AEE3FB;
+    background: var(--sprint-2-AzulNegruzco-2, #18171C);
+    overflow: hidden; 
+    margin-top: 5.45vh;
+    min-height: 300px; 
+}
+
+
+}
+

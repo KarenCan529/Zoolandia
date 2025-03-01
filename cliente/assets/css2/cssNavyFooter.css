@@ -1,0 +1,167 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: rgba(6, 6, 6, 0.7);
+    padding: 2px 5px;
+    position: fixed; 
+    top: 0;
+    width: 100%; 
+    z-index: 1000;
+}
+.logo img {
+    max-width: 90px;
+    height: auto;
+    margin-left: 140%; 
+    margin-top: 2%;
+  }
+  
+.nav-links {
+    list-style: none; 
+    display: flex;
+    gap: 100px; 
+    margin: 0;
+    padding: 0;
+    transform: translateX(-14%);
+}
+  
+.nav-links li {
+    display: inline;
+}
+  
+.nav-links a {
+    color: rgb(255, 255, 255); 
+    text-decoration: none; 
+    font-size: 28px; 
+    font-weight: 500;
+    transition: color 0.3s;
+}
+  
+.nav-links a:hover {
+    color: #12c408;
+}
+@media screen and (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      right: 40px;
+      background-color: rgba(7, 50, 18, 1);
+      width: 50%;
+      height: 1000%;
+      text-align: center;
+      z-index: 1000;
+      padding-top: 60px;
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  
+    .opi {
+      display: flex;
+    }
+  }
+
+.custom-footer {
+    background-color: #8B7757;
+    color: #ffffff;
+    width: 100%;
+}
+
+.footer-logo {
+    width: 200px;
+    height: auto;
+    opacity: .5;
+    margin-left: 120px;
+}
+
+.custom-divider {
+    border-top: 1px solid #ffffff;
+    margin: 2rem 0;
+}
+
+.custom-footer h5 {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.custom-footer p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.Contactos .fas {
+    color: #000000;
+}
+
+.Contactos i {
+    margin-right: 18px;
+    font-size: 1.5rem;
+}
+
+.Horarios {
+    text-align: right;
+}
+
+.Horarios p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.Contactos p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.custom-divider-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.custom-divider {
+    border-top: 2px solid #ffffff;
+    height: 0;
+}
+
+.small-divider {
+    width: 35%;
+}
+
+.large-divider {
+    width: 12%;
+}
+
+.content-divider {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-text {
+    width: 43%;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 30px;
+}
+
+.social-icon i {
+    color: #000000;
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+.social-icon i:hover {
+    color: #ffffff;
+}

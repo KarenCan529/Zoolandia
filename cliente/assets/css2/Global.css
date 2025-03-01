@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.SeparadorSeccion{
+    width: 100%;
+    height: 100%;
+    padding: 7.41vh 10vw;
+}
+
+.EliminarPading{
+   padding: 0;
+}
+
+body{
+    background: #FEFAE0;
+    overflow-x: hidden; 
+    box-sizing: border-box; 
+}
+.botonGlobal {
+    display: flex;
+    width: 41.33vw;
+    height: 11.48vh;
+    padding: 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    border: 5px solid #8B7757;
+    background: #FEFAE0;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.3s ease, transform 0.3s ease; 
+    
+}
+
+.botonGlobal:hover {
+    background: #8B7757; 
+    color: white; 
+    transform: scale(1.05); /
+}
+
+.TextoBotonGlobal {
+    color: #18171C;
+    font-family: "Reem Kufi Fun";
+    font-size: 40px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.botonFinal{
+    display: flex;
+    width: auto;
+    height: 49.91vh;
+    padding: 7.41vh 10vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.boletoshome{
+    width: 100%;
+    color: #fff;
+}
+.boletoshome:hover{
+    width: 100%;
+    color: #18171C;
+    cursor: pointer;
+}
+
+
+@media (max-width: 800px) {
+
+
+    .botonGlobal {
+        display: flex;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 30px;
+        border: 5px solid var(--sprint-2-AuxSecundario-2, #8B7757);
+        background: var(--sprint-2-AuxPrimario-2, #FEFAE0);
+        width: auto;
+        height: auto;
+    }
+    
+    .botonGlobal:hover {
+        background: #8B7757;
+        color: white; 
+        transform: scale(1.05); 
+    }
+    
+    .TextoBotonGlobal {
+        color: var(--sprint-2-AzulNegruzco-2, #18171C);
+        text-align: center;  
+        /* Movil/H3-2-movil */
+        font-family: "Reem Kufi Fun";
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    
+    
+    .botonFinal{
+        display: flex;
+        width: auto;
+        height: 49.91vh;
+        padding: 7.41vh 10vw;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 800px) {
+
+   
+    .SeparadorSeccion{
+        width: 100%;
+        height: 100%;
+        padding: 5.45vh 2.70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+  }

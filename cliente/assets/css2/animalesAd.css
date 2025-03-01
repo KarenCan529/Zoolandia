@@ -1,0 +1,513 @@
+.seccion-movil {
+    display: none;
+}
+/*Seccion Escritorio*/
+@media (min-width: 801px) {
+    .seccion-escritorio {
+        
+        display: block;
+    }
+
+    .seccion-movil {
+        display: none;
+    }
+
+
+
+    .LadoIzquierdo {
+        display: flex;
+        flex-direction: column;
+        width: 100%;  
+        max-width: 20.6vw;  
+        height: auto;  
+        padding: 1.09vh;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        border: 5px solid #8B7757;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin-right: 1.25vw;
+        gap:2.22vh;
+        
+    }
+    
+    .dentroDiv{
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;    
+    }
+    
+    .SeccionADTitulo {
+        color: #18171C;
+        text-align: center;
+        font-family: "Reem Kufi Fun";
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin: 0 0 8px;
+        height: auto;
+        width: 100%; 
+    }
+    
+    .SeccionADParrafo {
+        color: rgba(24, 23, 28, 0.88);
+        text-align: center;
+        font-family: "Reem Kufi Fun";
+        font-size: 1.8rem; 
+        font-weight: 400;
+    }
+    
+    .BotonCuadro {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;  
+        height: 6.11vh;
+        background: #8B7757;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    
+    .ParrafoBoton {
+        color: #FFFFFF;
+        font-family: "Reem Kufi Fun";
+        font-size: 32px;
+        font-weight: 400;
+    }
+    
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    
+    
+    .gallery {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .img-box {
+        width: 11.3vw;
+        height: 92.6vh;
+        border-radius: 60px;
+        margin-right: 8px;
+        background: url('../imagenes/paca.webp');
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        transition: width 0.5s;
+        flex-wrap: wrap;
+    }
+    
+    .img-box:nth-child(2) {
+        background: url('../imagenes/MonoAullador.webp');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .img-box:nth-child(3) {
+        background: url('../imagenes/Jaguar.webp');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .img-box:nth-child(4) {
+        background: url('../imagenes/Momoto.webp');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .img-box:nth-child(5) {
+        background: url('../imagenes/TapirCentroamericano.webp');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .img-box:hover {
+        width: 22vw;
+       
+    }
+    
+    .SeccionArriba {
+        display: flex;
+        width: 100%;
+        height: auto;
+        padding: 1vh;
+        justify-content: center;
+        align-items: center;
+        gap: 1vw;
+        flex-shrink: 0;
+        border-radius: 60px 60px 0 0;
+        background: rgba(24, 23, 28, 0.7);
+        color: #fff;
+    
+        position: absolute;
+        top: 0; 
+        left: 50%; 
+        transform: translateX(-50%); 
+        opacity: 0;
+        transition: opacity 0.5s, transform 0.5s;
+    }
+    
+    .img-box:hover .SeccionArriba {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    
+    .parrafoSeccionArriba {
+        color: #FFF;
+        text-align: center;
+        font-family: "Reem Kufi Fun";
+        font-size: 24px;
+        font-weight: 400;
+        line-height: normal;
+    }
+    
+    .tituloAnimales {
+        color: #FFF;
+        text-align: center;
+        font-family: "Reem Kufi Fun";
+        font-size: 40px;
+        font-weight: 600;
+        margin-top: 65vh;
+        margin-left: 0.84vw;
+        transition: bottom 0.5s, opacity 0.5s;
+        opacity: 0;
+       
+        justify-content: center; /* Centra el texto dentro del contenedor */
+    }
+    
+    .img-box:hover .tituloAnimales {
+        opacity: 1;
+        bottom: 25px;
+    }
+    
+    .break-line {
+        font-family: "Reem Kufi Fun";
+        font-size: 40px;
+        font-weight: 600;
+        display: block;
+    }
+    
+    .bottonAnimales {
+        display: flex;
+        width: 11.25vw;
+        height: 5.83vh;
+        margin: 0 auto;
+        padding: var(--sds-size-space-300);
+        justify-content: center;
+        align-items: center;
+        gap: var(--sds-size-space-200);
+        flex-shrink: 0;
+        border-radius: var(--sds-size-radius-200);
+        border: solid #FFF;
+        background: #2C2C2C;
+        margin-top: 40px;
+        cursor: pointer;
+        transition: bottom 0.5s, opacity 0.5s;
+        opacity: 0;
+        display: flex;
+        justify-content: center; /* Centra el botón horizontalmente */
+    }
+    
+    .img-box:hover .bottonAnimales {
+        opacity: 1;
+        bottom: 25px;
+        cursor: pointer;
+    }
+    
+    .infoBoton {
+        color: #FFF;
+        text-align: center;
+        font-family: "Reem Kufi Fun";
+        font-size: 32px;
+        font-weight: 400;
+    }
+    
+    
+    
+    .img-box:hover .bottonAnimales{
+        opacity: 1;
+        bottom: 25px;
+    }
+    .img-box:hover .tituloAnimales{
+        opacity: 1;
+        bottom: 25px;
+    }
+    
+    
+    a{
+        text-decoration: none;
+    }
+    
+    @media (max-width: 1560px) {
+
+        .tituloAnimales {
+            color: #FFF;
+            text-align: center;
+            font-family: "Reem Kufi Fun";
+            font-size: 2.08vw; 
+            font-weight: 600;
+            margin-top: 63vh;
+            margin-left: 0.84vw;
+            transition: bottom 0.5s, opacity 0.5s;
+            opacity: 0;
+           
+            justify-content: center; 
+        }
+    
+        .break-line {
+            font-family: "Reem Kufi Fun";
+            font-size: 2.08vw; 
+            font-weight: 600;
+            display: block;
+        }
+    
+        .parrafoSeccionArriba {
+            color: #FFF;
+            text-align: center;
+            font-family: "Reem Kufi Fun";
+            font-size:   calc(24 / 1920 * 100vw);
+            font-weight: 400;
+            line-height: normal;
+            padding: 16px;
+        }
+    
+        .infoBoton {
+            color: #FFF;
+            text-align: center;
+            font-family: "Reem Kufi Fun";
+            font-size: 1.67vw;
+            font-weight: 400;
+        }
+    }
+    
+    @media(max-width:1410px){
+        .SeccionADTitulo {
+            color: #18171C;
+            text-align: center;
+            font-family: "Reem Kufi Fun";
+            font-size: 2.08vw;
+            font-weight: 600;
+            margin: 0 0 8px;
+            height: auto;
+            width: 100%; 
+        }
+        
+    }
+    
+    @media(max-width:1260px){
+      
+        .SeccionADParrafo {
+            color: rgba(24, 23, 28, 0.88);
+            text-align: center;
+            font-family: "Reem Kufi Fun";
+            font-size: 1.67vw;
+            font-weight: 400;
+        }
+    
+        .ParrafoBoton {
+            color: #FFFFFF;
+            font-family: "Reem Kufi Fun";
+            font-size: 1.67vw;
+            font-weight: 400;
+        }
+    
+        
+    }
+   
+}
+
+/*Seccion Movil*/
+@media (max-width: 800px) {
+    .seccion-escritorio {
+        display: none;
+    }
+
+    .seccion-movil {
+        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    
+    }
+
+
+    .SeccionArribaAd {
+        padding: 1.85vw;  
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.17vh;
+        width: 100%;
+        height: auto;
+        border-radius: 30px;
+        border: 2px solid var(--sprint-2-AuxSecundario-2, #8B7757);
+        margin-bottom: 3.27vh;
+    }
+    
+    .dentroDiv{
+        justify-content: center;
+        align-items: center;
+       
+    }
+    
+    .SeccionADTitulo {
+        align-self: stretch;
+        color: var(--sprint-2-AzulNegruzco-2, #18171C);
+        text-align: center;
+        /* Movil/H2-2-movil */
+        font-family: "Reem Kufi Fun";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal; 
+        margin: 0;
+    }
+    
+    .SeccionADParrafo {
+        align-self: stretch;
+        color: var(--sprint-2-AzulNegruzco-2, #18171C);
+        text-align: center;
+        /* Movil/H3-2-movil */
+        font-family: "Reem Kufi Fun";
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0;
+    }
+    
+    .BotonCuadro {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto; 
+        height: auto;
+        background: #8B7757;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    
+    .ParrafoBoton {
+    color: #FFF;
+    /* Movil/H4-2-movil */
+    font-family: "Reem Kufi Fun";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    }
+    
+    .img-box {
+        width: 63.95vw;
+        height: 66.5vh;
+        border-radius: 60px;
+        background: url('../imagenes/MonoAullador.webp');
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        flex-direction: column; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 16px; 
+       
+    }
+    
+    .tituloAnimales {
+        margin-top: 0;
+        color: #FFF;
+        text-align: center;
+        font-family: "Reem Kufi Fun";
+        font-size: 22px;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 10.88vh; /* Baja el título */
+        margin-bottom: 16.33vh; 
+        position: relative;
+        z-index: 10;
+    }
+    
+    .bottonAnimales {
+        display: flex;
+        width: auto;
+        height:5.03vh;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        border: solid #FFF;
+        background: rgba(44, 44, 44, 0);
+        cursor: pointer;
+        transition: bottom 0.5s, opacity 0.5s;
+        width: 28.84vw;
+        position: relative;
+        z-index: 10;
+      
+
+    }
+    
+    .infoBoton {
+        color: #FFF;
+        font-family: "Reem Kufi Fun";
+        font-size: 16px;
+        font-weight: 400;
+    }
+    
+    .botonesDivFlechas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2.79vw; 
+        margin-bottom: 16px; 
+        position: relative;
+        z-index: 10;
+    }
+    
+    .botonFlechaIzquierda,
+    .botonFlechaDerecha {
+        width: 9.3vw;
+        height: 5.44vh;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+    }
+
+    a{
+        text-decoration: none;
+       cursor: pointer;
+    }
+    
+    .break-line {
+        font-family: "Reem Kufi Fun";
+        color: #FFF;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 400;
+        display: block;
+    }
+
+    .FondoAD{
+        flex-shrink: 0;
+        border-radius: 5px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(24, 23, 28, 0.50) 28.4%);
+        border-radius: 60px;
+        position: relative;
+       
+    }
+
+    #nombreAnimal2 {
+        display: inline; /* Asegura que el texto del span se muestre en línea */
+        font-size: 1.2em; /* Ajusta el tamaño del texto */
+        color: white; /* Asegúrate de que el texto sea visible */
+    }
+    
+}

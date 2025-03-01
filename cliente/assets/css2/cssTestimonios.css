@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400&family=Raleway:wght@400&display=swap');
+
+
+@media (min-width : 1900px){
+   .testimonios {
+        display: flex;
+        gap: 24px;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        justify-content: flex-start;
+        position: relative;
+    }
+    
+    .testimonios {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        padding: 20px;
+        overflow: hidden;
+    }
+    
+    .testimonio {
+        flex: 0 0 calc((100% - 48px) / 3);
+        max-width: 496px;
+        height: auto;
+        background-color: #AEE3FB;
+        border-radius: 30px;
+        padding: 30px;
+        text-align: center;
+        display: none;
+        margin-top: 60px;
+    }
+.testimonio.mostrar {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testi_logo {
+    position: relative;
+    left: 10.20vh;
+    width: 200px;
+    height: 208px;
+    border-radius: 50%;
+    background-color: #FEFAE0;
+    margin-top: -125px; 
+}
+
+.testimonio img {
+    position: relative;
+    top: 15px;
+    width: 172px;
+    height: 180px; 
+    border-radius: 50%;
+    object-fit: cover; 
+}
+
+
+.tituloTesti {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tituloTesti h2 {
+    background-color: transparent;
+    width: 612px;
+    height: 51px;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.tituloTesti h3 {
+    background-color: transparent;
+    width: 612px;
+    height: 35px;
+    font-size: 32px;
+    font-weight: 400;
+    opacity: 1;
+    color: #61764B;
+    margin-bottom: 110px;
+}
+
+.testimonio h3 {
+    color: #18171C;
+    font-weight: 400;
+    font-size: 32px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.testimonio h4 {
+    color: #18171C;
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: 24pxpx;
+    opacity: 70%;
+}
+
+.testimonio p {
+    background-color: transparent;
+    width: 390px;
+    height: 111px;
+    font-family: 'Raleway';
+    font-weight: 400;
+    font-size: 18px;
+    color: #18171C;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+    margin: 40px auto; 
+    display: flex; 
+    justify-content: center; 
+
+}
+
+.testimonio .estrellas {
+    font-size: 30px;
+    color: #F6EB11;
+    display: inline-block;
+    margin-top: 0;
+    text-align: center;
+    text-shadow: 0px 0px 5px rgba(50, 50, 50, 50);
+    vertical-align: middle;
+}
+
+.indicadores {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.indicador {
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    margin: 0 10px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.indicador.activo {
+    background-color: #61764B;
+}
+
+}
+
+@media (max-width: 1900px)
+{
+    .testimonios {
+        display: flex;
+        gap: 24px;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        justify-content: flex-start;
+        position: relative;
+    }
+    
+    .testimonios {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        padding: 20px;
+        overflow: hidden;
+    }
+    
+    .testimonio {
+        flex: 0 0 calc((100% - 48px) / 3);
+        max-width: 496px;
+        height: auto;
+        background-color: #AEE3FB;
+        border-radius: 30px;
+        padding: 30px;
+        text-align: center;
+        display: none;
+    }
+    
+    .testimonio.mostrar {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .testi_logo {
+        position: relative;
+        left: 28%;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #FEFAE0;
+        margin-top: -65px;  /* Ajusta el logo hacia arriba usando margen */
+    }
+    
+    .testimonio img {
+        position: relative;
+        top: 15px; /* Ajusta la imagen hacia arriba sin cortarla */
+        width: 120px;
+        height: 120px;  /* Asegúrate de que tenga altura proporcional */
+        border-radius: 50%;
+        object-fit: cover; /* Mantiene la imagen dentro de los límites del contenedor */
+    }
+    
+    
+    .tituloTesti {
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .tituloTesti h2 {
+        font-size: 40px;
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .tituloTesti h3 {
+        font-size: 32px;
+        font-weight: 600;
+        opacity: 0.7;
+        color: #61764B;
+        margin-top: 24px;
+        margin-bottom: 60px;
+    }
+    
+    .testimonio h3 {
+        font-weight: 400;
+        font-size: 32px;
+        margin: 10px 0;
+    }
+    
+    .testimonio h4 {
+        font-weight: 400;
+        font-size: 24px;
+        margin: 10px 0;
+        opacity: 70%;
+    }
+    
+    .testimonio p {
+        font-family: 'Raleway';
+        font-weight: 400;
+        font-size: 18px;
+        color: #18171C;
+        margin-bottom: 24px;
+    }
+    
+    .testimonio .estrellas {
+        font-size: 30px;
+        color: #F6EB11;
+        display: inline-block;
+        margin-top: 0;
+        text-align: center;
+        text-shadow: 0px 0px 5px rgba(50, 50, 50, 50);
+        vertical-align: middle;
+    }
+    
+    .indicadores {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    
+    .indicador {
+        display: inline-block;
+        width: 45px;
+        height: 45px;
+        margin: 0 10px;
+        background-color: #D9D9D9;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .indicador.activo {
+        background-color: #61764B;
+    }
+
+}
+@media (max-width: 768px) {
+    .testimonios {
+        display: flex;
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        scroll-snap-type: x mandatory;
+        gap: 0; 
+    }
+
+    .testi_logo {
+        left: 28%;
+        width: 140px;
+        height: 140px;
+        margin-top: -60px; 
+    }
+
+    .testimonio img {
+        width: 120px;
+        height: 120px;
+        top: 10px; 
+    }
+
+    .testimonio {
+        flex: 0 0 100%;
+        width: 100%; 
+        height: 60vh;
+        scroll-snap-align: center;
+        justify-content: center;
+    }
+
+    .indicadores {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .indicador {
+        width: 20px;
+        height: 20px;
+        background-color: #D9D9D9;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .indicador.activo {
+        background-color: #61764B; 
+    }
+
+.tituloTesti {
+    margin-bottom: 5.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tituloTesti h2 {
+    font-size: 5.5vw;
+    font-weight: 600;
+    margin: 0;
+}
+
+.tituloTesti h3 {
+    font-size: 3vh;
+    font-weight: 600;
+    opacity: 0.7;
+    color: #61764B;
+    margin-top: 1.5vh; 
+    margin-bottom: 1.5vh;
+}
+
+.testimonio h3 {
+    font-weight: 400;
+    font-size: 2.78vh;
+    margin: 10px 0;
+}
+
+.testimonio h4 {
+    font-weight: 400;
+    font-size: 2.5vh;
+    margin: 10px 0;
+    opacity: 70%;
+}
+
+.testimonio p {
+    font-family: 'Raleway';
+    font-weight: 400;
+    font-size: 2.18vh;
+    color: #18171C;
+    margin-bottom: 24px;
+}
+
+.testimonio .estrellas {
+    font-size: 5vh;
+    color: #F6EB11;
+    display: inline-block;
+    margin-top: 0;
+    text-align: center;
+    text-shadow: 0px 0px 5px rgba(50, 50, 50, 50);
+    vertical-align: middle;
+}
+
+}

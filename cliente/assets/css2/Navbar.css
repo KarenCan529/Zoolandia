@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400&family=Raleway:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400&display=swap');
+
+@media (min-width:1900px) {
+    a {
+        text-decoration: none;
+        font-family: "Reem Kufi Fun";
+    }
+    
+    .container {
+        width: 1570px;
+        margin: 0 auto;
+    }
+    
+    nav {
+        position: fixed; 
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: top 2s ease-out;}
+    
+    .navbar-hidden {
+        transform: translateY(-120%); 
+    }
+    
+    
+    nav .navbar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(6, 6, 6, 0.9);
+        border-radius: 200px;
+        padding: 0px 5px;
+    }
+    
+    nav .navbar .nav-btn {
+        display: none;
+        border: none;
+        outline: none;
+        background: transparent;
+        cursor: pointer;
+    }
+    
+    nav .navbar .nav-btn::before {
+        content: '\f0c9';
+        font-family: 'Font Awesome 5 Free'; 
+        font-weight: 900; 
+        font-size: 28px;
+        color: #ffffff;
+    }
+    
+    nav .navbar .nav-btn.active::before {
+        content: '\f00d';
+    }
+    
+    nav .navbar .logo {
+        display: block;
+        font-size: 24px;
+        font-weight: 900;
+        color: #ffffff;
+    }
+    
+    nav .navbar .main-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    nav .navbar .main-menu li {
+        margin-top: 10px;
+        text-align: center;
+        display: block;
+        padding: 0 2cap;
+        list-style: none;
+    }
+    
+    
+    
+    nav .navbar .main-menu li a {
+      margin-right: 20px;
+        display: block;
+        font-size: 30px;
+        color: #FEFAE0;
+        transition: .3s;
+        text-decoration: none; 
+    }
+    
+    .navbar img {
+        width: 100px;
+        height: 90px;
+    }
+    
+    nav .navbar .main-menu li a:hover {
+        color: #427709;
+    }
+    
+    
+    .main-menu .btn-mobile {
+        display: none;
+    }
+    
+    
+    .zoolandia-text {
+        text-align: center;
+        display: none;
+        font-size: 30px; 
+        color: #FEFAE0; 
+    }
+    }
+  
+  
+  @media(max-width:1900px) {
+  a {
+      text-decoration: none;
+      font-family: "Reem Kufi Fun";
+  }
+  
+  .container {
+      width: 1170px;
+      margin: 0 auto;
+  }
+  
+  nav {
+      position: fixed; 
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: top 2s ease-out;}
+  
+  .navbar-hidden {
+      transform: translateY(-120%); 
+  }
+  
+  
+  nav .navbar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(6, 6, 6, 0.9);
+      border-radius: 200px;
+      padding: 0px 5px;
+  }
+  
+  nav .navbar .nav-btn {
+      display: none;
+      border: none;
+      outline: none;
+      background: transparent;
+      cursor: pointer;
+  }
+  
+  nav .navbar .nav-btn::before {
+      content: '\f0c9';
+      font-family: 'Font Awesome 5 Free'; 
+      font-weight: 900; 
+      font-size: 26px;
+      color: #ffffff;
+  }
+  
+  nav .navbar .nav-btn.active::before {
+      content: '\f00d';
+  }
+  
+  nav .navbar .logo {
+      display: block;
+      font-size: 34px;
+      font-weight: 900;
+      color: #ffffff;
+  }
+  
+  nav .navbar .main-menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  
+  nav .navbar .main-menu li {
+      margin-top: 10px;
+      text-align: center;
+      display: block;
+      padding: 0 40px;
+      list-style: none;
+  }
+  
+  
+  
+  nav .navbar .main-menu li a {
+      display: block;
+      font-size: 22px;
+      color: #FEFAE0;
+      transition: .3s;
+      text-decoration: none; 
+  }
+  
+  .navbar img {
+      width: 80px;
+      height: 70px;
+  }
+  
+  nav .navbar .main-menu li a:hover {
+      color: #427709;
+  }
+  
+  
+  .main-menu .btn-mobile {
+      display: none;
+  }
+  
+  
+  .zoolandia-text {
+      text-align: center;
+      display: none;
+      font-size: 30px; 
+      color: #FEFAE0; 
+  }
+
+  .main-menu li a.active {
+    width: 100%;
+    border-radius: 20px;
+    background-color: #61764B; 
+    color: white;           
+    pointer-events: none;     
+    cursor: default;       
+}
+  }
+
+@media (max-width:1200px) {
+    
+
+    .container{
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .navbar .btn{
+        display: none;
+    }
+    .zoolandia-text {
+        text-align: center;
+        display: inline-block; 
+    }
+    .main-menu .btn-mobile{
+        display: block;
+        margin-top: 20px;
+    }
+    nav .navbar{
+        border-radius: 20px;
+        transition: .3s;
+    }
+    nav .navbar.active{
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    nav .navbar .main-menu{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding: 20px 20px 40px;
+        border-radius: 20px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        flex-direction: column;
+        background: #2b2b2b;
+        transition: .3s;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transform-origin: top;
+    }
+
+    nav .navbar .main-menu li a {
+        display: block;
+        font-size: 22px;
+        color: #FEFAE0;
+        transition: .3s;
+        text-decoration: none; 
+    }
+
+    .btn-mobile {
+        touch-action: manipulation;
+    }
+    
+    nav .navbar .main-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+
+    nav .navbar .main-menu li {
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav .navbar .main-menu li a:hover {
+        color: #ffffff;
+    }
+    
+
+    nav .navbar .main-menu li:hover {
+        color: #fff; 
+    }
+
+    
+    nav .navbar .main-menu li{
+        padding: 15px;
+    }
+    nav .navbar .main-menu.active{
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    nav .navbar .nav-btn{
+        display: block;
+    }
+}

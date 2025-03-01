@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400&family=Raleway:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400&display=swap');
+
+.SeparadorSeccion {
+  font-family: 'Reem Kufi fun', sans-serif;
+  background-color: #FEFAE0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.form-container {
+  background-color: transparent;
+  padding: 40px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.marco {
+  border: 2px solid #d6c7a8;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+legend {
+  font-size: 40px;
+  font-weight: 600px;
+  color: #18171C;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.input-group input, select {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 0px;
+  font-size: 16px;
+  outline: none;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.form-check-input {
+  transform: scale(1.4);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.form-check-label {
+  font-size: 24px;
+  font-weight: normal;
+  color: #18171C;
+  line-height: 20px;
+  vertical-align: bottom;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+
+label {
+  font-size: 24px;
+  font-weight: normal;
+  color: #18171C;
+  margin-bottom: 0px;
+  display: block;
+}
+
+.col-md-8 {
+  font-size: 24px;
+  font-weight: normal;
+  color: #18171C;
+}
+
+.total-container{
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.input-group input:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+  background-color: #fff;
+}
+
+.section-separator {
+  margin: 30px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.button-container button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.button-container button.back {
+  background-color: #ff6f61;
+  color: #fff;
+}
+
+.button-container button.next {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.button-container button:hover {
+  opacity: 0.9;
+}
+
+.button-container button:active {
+  transform: scale(0.98);
+}
+
+.steps-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.step {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  margin: 0 15px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.step::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: background-color 0.3s ease;
+}
+
+.step.active {
+  background-color: #4CAF50;
+  transform: scale(1.1);
+}
+
+.step.completed {
+  background-color: #007bff;
+}
+
+.step.active::after, .step.completed::after {
+  background-color: #4CAF50;
+}
+
+@media screen and (max-width: 768px) {
+  .SeparadorSeccion {
+    padding: 40px 12px;
+  }
+  
+  .form-container {
+    padding: 10px;
+    width: 100%;
+  }
+  
+  legend {
+    font-size: 24px;
+    font-weight: 600px;
+    color: #18171C;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .mb-4 {
+    margin-bottom: 0 !important;
+  }
+
+  .input-group input,
+  .input-group select {
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .form-container {
+    background-color: #FEFAE0;
+  }
+
+  label {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .form-check-label {
+    font-size: 22px;
+    margin-left: 5px;
+    margin-bottom: 0;
+  }
+
+  .form-check-input {
+    margin-right: 5px;
+  }
+
+  .row.align-items-center.mb-3 {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  #rutaPregunta .col-md-8 {
+    text-align: left;
+    font-size: 22px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+  }
+
+  .col-md-8 {
+    font-size: 22px;
+    font-weight: normal;
+    color: #18171C;
+    text-align: center;
+  }
+
+  .total-container {
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .button-container button {
+    font-size: 16px;
+    padding: 10px 24px;
+    text-align: center;
+    width: auto;
+  }
+}

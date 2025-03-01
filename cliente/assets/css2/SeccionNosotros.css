@@ -1,0 +1,610 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400&family=Raleway:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
+
+.SeparadorSeccion{
+    width: 100%;
+    height: 100%;
+    padding: 7.41vh 10vw;
+    
+}
+.donar .titulo-dona {
+    font-family: "Shantell Sans", sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/* Estilo para el subtítulo */
+.donar .sub-dona {
+    width: 1152px;
+    height: 180px;
+    font-family: 'Reem Kufi', sans-serif; /* Estilo de la fuente */
+    font-weight: 600; /* Semi-Bold */
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+}
+
+/* Fondo de la imagen con overlay oscuro solo en el header */
+.bg-image {
+    background-image: url('../imagenes/FondoNosotros.webp');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
+.bg-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.50); /* Overlay oscuro */
+    z-index: 0; /* Colocamos el overlay debajo del contenido */
+}
+
+.donar {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    color: #FEFAE0;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1; /* Asegura que el texto esté sobre el overlay */
+}
+
+
+/* Navbar */
+
+/* Contenido del header centrado y blanco */
+header .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white !important;
+    z-index: 2;
+    width: 90%;
+    max-width: 1200px;
+}
+/* About Us Section */
+.about-us-section {
+    width:100% ;
+    margin-bottom: 40px;
+    background-color: #FEFAE0;
+    color: #333;
+}
+
+.about-us-section .container{
+padding: 0%;
+}
+.about-us-section h2 {
+    font-family: 'Reem Kufi', sans-serif; /* Estilo de la fuente */
+    font-weight: 600; /* Semi-Bold */
+    font-size: 40px;
+    color: #18171C;
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.about-us-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #FEFAE0;
+}
+
+.about-us-text {
+    flex: 1;
+    font-family: 'Raleway', sans-serif; /* Estilo de la fuente */
+    font-weight: 400; /* Regular */
+    font-size: 18px; 
+    color: #18171C;
+    margin-right: 20px;
+}
+
+.about-us-text p {
+    margin-bottom: 20px;
+}
+
+.about-us-img {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 470px; 
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.about-us-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.about-us-img img.active {
+    opacity: 1;
+}
+
+
+.donar {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    color: #FEFAE0;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+.titulo-dona, .sub-dona {
+    margin: 0; 
+}
+
+.cta:hover {
+    background-color: #8B5E3C;
+    transform: translateY(-3px);
+}
+
+/* Nuevo estilo para la Misión y Visión */
+.mission-vision-section {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    border-radius: 5%;
+    margin-bottom: 40px;
+}
+
+.mission-vision-content p{
+    font-family: 'Raleway', sans-serif; /* Estilo de la fuente */
+    font-weight: 400; /* Regular */
+    font-size: 18px; 
+    color: #18171C;
+}
+.mission-vision-section h3 {
+    font-family: 'Reem Kufi', sans-serif; /* Estilo de la fuente */
+    font-weight: 400; /* Semi-Bold */
+    font-size: 32px;
+    color: #18171C;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.mission-vision-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.mission-vision-content div {
+    background-color: #FEFAE0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.container-Ayudar{
+    justify-items: center;
+}
+
+.container-Ayudar h2 {
+    text-align: center;
+    font-family: 'Reem Kufi', sans-serif; /* Estilo de la fuente */
+    font-weight: 400; /* Semi-Bold */
+    font-size: 32px;
+    color: #18171C;
+    margin-bottom: 15px;
+}
+
+.container-Ayudar p {
+    width: 85%;
+    height: auto;
+    font-family: 'Raleway', sans-serif; /* Estilo de la fuente */
+    font-weight: 400; /* Regular */
+    font-size: 18px; 
+    text-align: center;
+    color: #18171C;
+}
+
+.seccion .botones {
+    display: flex; 
+    justify-content: center;
+    gap: 16px; 
+    margin-top: 20px; 
+    margin-bottom: 40px;
+}
+
+.seccion .botones button {
+    width: 390px;
+    height: 85px;
+    font-family: 'Raleway', sans-serif; 
+    font-weight: 700; 
+    font-size: 40px;
+    cursor: pointer;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.seccion .botones .btn-primary {
+    background-color: #FEFAE0; 
+    border-radius: 30px;
+    border: 5px solid #61764B;
+    color: #18171C;
+}
+
+.seccion .botones .btn-secondary {
+    background-color: #FEFAE0; 
+    border-radius: 30px;
+    border: 5px solid #8B7757;
+    color: #18171C;
+}
+
+.seccion .botones .btn-primary:hover, 
+.seccion .botones .btn-secondary:hover {
+    opacity: 1; 
+    border-radius: 30px;
+    color: #FEFAE0;
+    background-color: #8B7757;
+    border: 5px solid#18171C;
+}
+
+/* Nueva sección de apoyo */
+/* Estilo general */
+.info-cards-section {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; 
+}
+
+.container2 .card img{
+    border-radius:20px;
+}
+
+.container2 .card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05); 
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro translúcido */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    opacity: 0; /* Oculta inicialmente */
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.overlay h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.overlay p {
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+
+    .about-us-section .container{
+        padding: 0%;
+        }
+
+        .bg-image {
+            background-image: url('../imagenes/FondoNosotros.webp');
+            background-size: cover;
+            background-position: calc(50% - -25%) center; 
+            min-height: 100vh;
+            position: relative;
+            width: 100%;
+        }
+
+        .about-us-section {
+            width:100% ;
+            height: auto;
+            margin-bottom: 0px;
+            background-color: #FEFAE0;
+            color: #333;
+        }
+        .about-us-img {
+            margin-bottom: 40px;
+        }
+
+    .about-us-content {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        align-items: center; 
+        margin-bottom: 0%;
+    }
+
+    .donar .titulo-dona {
+        width: 95%;
+        font-family: 'Shantell Sans', sans-serif;
+        font-weight: 400; 
+        font-size: 32px; 
+        line-height: 1.5; 
+        color: #ffffffff;
+        text-align: center; 
+        text-shadow: 
+        1px 1px 0 rgb(255, 255, 255),   
+        -1px -1px 0 rgb(255, 255, 255), 
+        1px -1px 0 rgb(255, 255, 255), 
+        -1px 1px 0 rgb(255, 255, 255), 
+        0px 1px 0 rgb(255, 253, 253),  
+        0px -1px 0 rgb(255, 255, 255),  
+        1px 0px 0 rgb(255, 255, 255),  
+        -1px 0px 0 rgb(255, 255, 255);
+        margin-top: 2.5vh;
+    }
+
+    .donar .sub-dona {
+        width: 90%;
+        font-family: 'Reem Kufi', sans-serif;
+        font-size: 24px;
+        font-weight: 400;   
+        line-height: 1.5; 
+        color: #ffffff;
+        margin-bottom: 24px;
+        text-align: center; 
+    }
+
+    .donar {
+        text-align: center;
+    }
+
+    .about-us-section h2 {
+        font-family: 'Reem Kufi Fun', sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 1.5; 
+        color: #8B7757;
+        margin-bottom: 24px;
+    }
+
+    .about-us-text{
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #18171C;
+        margin-right: 0%;
+    }
+
+    .mission-vision-section {
+        padding: 50px 20px;
+        background-color: #f9f9f9;
+        border-radius: 5%;
+        margin-bottom: 40px;
+    }
+    
+    .mission-vision-content p{
+        font-family: 'Raleway', sans-serif; /* Estilo de la fuente */
+        font-weight: 400; /* Regular */
+        font-size: 14px; 
+        color: #18171C;
+    }
+    .mission-vision-section h3 {
+        font-family: 'Reem Kufi', sans-serif; /* Estilo de la fuente */
+        font-weight: 400; /* Semi-Bold */
+        font-size: 32px;
+        color: #18171C;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .mission-vision-content {
+        display: flex;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .mission-vision-section {
+        padding: 20px 2px; 
+        background-color: #f9f9f9; 
+    }
+    
+    .mission-vision-section .container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px; 
+        align-items: flex-start; 
+    }
+    
+    .mission-vision-section h3 {
+        font-family: 'Reem Kufi', sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        text-align: center; 
+        width: 100%;
+        margin: 0;
+    }
+    
+    .mission-vision-content {
+        display: flex;
+        flex-direction: column; 
+        gap: 32px; 
+    }
+    
+    .mission-vision-content div {
+        display: flex;
+        flex-direction: column; 
+        gap: 12px; 
+    }
+    
+    .mission-vision-content h4 {
+        text-align: center;
+        color: #18171C;
+        font-family: 'Reem Kufi', sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        margin: 0; 
+    }
+    
+    .mission-vision-content p {
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #18171C;
+    }
+
+    .container-Ayudar{
+        padding-left: 2.50vh;
+        padding-right: 2.50vh;
+        margin-bottom: 40px;
+    }
+    
+    .container-Ayudar h2 {
+        font-family: 'Reem Kufi Fun', sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 1.5; 
+        color: #18171C;
+        margin-bottom: 15px;
+    }
+    
+    .container-Ayudar p {
+        background-color: transparent;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #18171C;
+    }
+
+    .botones {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center; 
+        align-items: center; 
+        height: 100%; 
+        margin-top: 15%;
+    }
+    
+    .container-Ayudar .botones .btn {
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 10%;
+        font-family: 'Reem Kufi Fun', sans-serif;
+        font-weight: 400;
+        font-size: 22px;
+        cursor: pointer;
+        margin: 10px 0px;
+    }
+    
+    .container-Ayudar .botones .btn-primary {
+        background-color: #FEFAE0; 
+        border-radius: 30px;
+        border: 5px solid #61764B;
+        color: #18171C;
+    }
+    
+    .container-Ayudar .botones .btn-secondary {
+        background-color: #FEFAE0; 
+        border-radius: 30px;
+        border: 5px solid #8B7757;
+        color: #18171C;
+    }
+    
+   .container-Ayudar .botones .btn-primary:hover, 
+   .container-Ayudar .botones .btn-secondary:hover {
+        opacity: 1; 
+        border-radius: 30px;
+        color: #FEFAE0;
+        background-color: #8B7757;
+        border: 5px solid#18171C;
+    }
+    
+    .cta {
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .container2 {
+        display: flex; 
+        overflow-x: auto;
+        gap: 15px;
+        scroll-snap-type: x mandatory; 
+        padding-bottom: 10px; 
+    }
+
+    .container2 .card {
+        flex: 0 0 80%; 
+        scroll-snap-align: center;
+    }
+
+    .card img {
+        width: 100%; 
+    }
+
+    .info-cards-section {
+        padding: 10px; 
+    }
+
+    .card:hover {
+        transform: scale(1); 
+    }
+}

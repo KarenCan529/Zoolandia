@@ -1,0 +1,319 @@
+.SeccionNosotros {
+    background: #8B7757;
+    width: 100%;
+    padding: 3.704vh 2.083vw;
+    border-radius: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.LogoSeccionNosotros {
+    width: 31.3vw;
+    height: 48.7vh;
+    min-width: 200px;
+    min-height: 150px;
+    max-width: 100%;
+    margin-left: 24px;
+}
+
+.seccionArriba {
+    align-items: center;
+}
+
+.informacionAcercaDe {
+    display: flex;
+    width: 41.9vw;
+    height: auto;
+    padding: 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.titulo {
+    align-self: stretch;
+    color: #FFF;
+    text-align: right;
+
+    /* Sprint2-Desktop/H2-2 */
+    -webkit-text-stroke-width: 1;
+    font-family: "Reem Kufi Fun";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.parrafo {
+    align-self: stretch;
+    color: #FFF;
+    text-align: right;
+
+    /* H3 */
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: auto;
+}
+
+.seccionAbajo {
+    margin-top: 24px;
+    border: 4px #FFF solid;
+    border-radius: 20px;
+    width: auto;
+    padding: 0;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.Patrocinadores {
+    color: var(--sprint-2-Blanco, #FFF);
+    /* Sprint2-Desktop/H3-2 */
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 24px;
+}
+
+.Colaboradores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: nowrap; /* No permite que se acomoden en filas */
+    width: auto;
+    margin: 0;
+}
+
+.colab1, .colab2, .colab3, .colab4 {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    padding: 0;
+}
+
+.imagenesEntre {
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 1020px) {
+    .SeccionNosotros {
+        background: #8B7757;
+        width: 100%;
+        padding: 3.704vh 2.083vw;
+        border-radius: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .LogoSeccionNosotros {
+        width: 80%;
+        height: 48.7vh;
+        min-width: 200px;
+        min-height: 150px;
+        max-width: 100%;
+        margin-left: 24px;
+        
+    }
+
+    .Colaboradores {
+        flex-wrap: wrap; /* Permite que los elementos se acomoden en una nueva fila */
+        justify-content: center;
+        text-align: center;
+        align-items: center; /* Asegura que los elementos estén centrados */
+    }
+
+    .Patrocinadores {
+        color: var(--sprint-2-Blanco, #FFF);
+        /* Sprint2-Desktop/H3-2 */
+        font-family: "Reem Kufi Fun";
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+      
+        display: flex; /* Asegura que el contenedor sea flexible */
+        
+        margin: 0;
+    }
+
+    .seccionArriba {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        display: flex; /* Asegura que el contenedor sea flexible */
+        align-items: center; /* Centra los elementos dentro de seccionArriba */
+    }
+    .informacionAcercaDe {
+        display: flex;
+        width: 100%;
+        height: auto;
+        padding: 24px;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        justify-content: center; 
+    }
+    .titulo {
+        align-self: stretch;
+        color: #FFF;
+        text-align: center;
+        /* Sprint2-Desktop/H2-2 */
+        -webkit-text-stroke-width: 1;
+        font-family: "Reem Kufi Fun";
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+    .parrafo {
+        align-self: stretch;
+        color: #FFF;
+        text-align: center;
+        /* H3 */
+        font-family: "Reem Kufi Fun";
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        width: auto;
+    }
+    .centrarElementos {
+        justify-content: center;
+        text-align: center;
+        display: flex;
+    }  
+}
+
+
+@media (max-width: 700px) {
+    .SeccionNosotros {
+        background: #8B7757;
+        width: 100%;
+        border-radius: 60px;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center;
+        height: 100%;
+    }
+    
+    .LogoSeccionNosotros {
+        width: 43.8vw; 
+        height: 22.5vh;
+        margin-left: 24px;
+    }
+    
+    .seccionArriba {
+        align-items: center;
+    }
+    
+    .informacionAcercaDe {
+        display: flex;
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 3.27vh;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+    
+    .titulo {
+        align-self: stretch;
+        color: #FFF;
+        text-align: center;
+        -webkit-text-stroke-width: 1;
+        -webkit-text-stroke-color: var(--sprint-2-Blanco, #FFF);
+        font-family: "Reem Kufi Fun";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 24px;
+    }
+    
+    .parrafo {
+        align-self: stretch;
+        color: #FFF;
+        text-align: center;
+        font-family: "Reem Kufi Fun";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    .seccionAbajo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;  
+        align-items: center;      
+        gap: 5.58vw;
+        padding: 1.1vw;
+        width: 35.3vw;
+        height: auto; 
+        border-radius: 20px;
+        border: 1px solid var(--sprint-2-Blanco, #FFF);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        
+    }
+    
+    .Patrocinadores {
+        color: var(--sprint-2-Blanco, #FFF);
+        text-align: center;
+        font-family: "Reem Kufi Fun";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 100%;
+        margin: 0;
+        padding: 8px;
+    }
+    
+    .Colaboradores {
+        display: flex; 
+        justify-content: center;
+        text-align: center;
+        align-items: center; 
+        width: auto;  
+        gap: 5vw;  
+        margin-top: 10px; 
+        flex-wrap: wrap;
+    }
+    
+    .colab1, .colab2, .colab3, .colab4 {
+        width: 11vw;  
+        height: auto;  
+        object-fit: contain;
+        padding: 0;
+    }
+    
+    .centrarElementos {
+        justify-content: center;
+        text-align: center;
+        display: flex;
+    }
+    .imagenesEntre {
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap;
+        width: auto;
+    }
+}

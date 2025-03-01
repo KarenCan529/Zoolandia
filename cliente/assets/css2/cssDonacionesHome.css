@@ -1,0 +1,249 @@
+
+.fondoDonacion {
+    display: flex;          
+    align-items: center;    
+    overflow: hidden;       
+    width: 100%;             
+    height: 100%;           
+    position: relative; 
+}
+
+.ImagenLeon, .ImagenAve {
+    width: 50%;            
+    height: 100%;           
+    object-fit: cover;       
+    margin: 0;             
+    padding: 0;           
+}
+
+.difuminacion {
+    position: absolute;      
+    top: 0;
+    left: 0;
+    width: 100%;             
+    height: 100%;            
+    z-index: 1;              
+}
+
+.eclipse1, .eclipse2 {
+    position: absolute;
+    top: 50%;                
+    left: 50%;               
+    transform: translate(-50%, -50%); 
+}
+
+.eclipse1 {
+    width: 31.2vw;         
+    height: 125.65vh;      
+    background-color: #499A4C; 
+    filter: blur(100px);   
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.eclipse2 {
+    width: 31.2vw;  
+    height: 125.65vh;    
+    background-color: #18171C; 
+    filter: blur(200px);    
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.separadorDonaciones {
+    width: 100%;
+    height: 100%;
+    padding: 7.41vh 0 7.41vh 0;
+    margin: 0;
+}
+
+.eliminarPYM {
+    padding: 0 !important;   
+    margin: 0;  
+}
+.texDonacion {
+    width: 35.31vw;    
+    height: auto; 
+    position: absolute; 
+    z-index: 3;        
+    top: 50%;        
+    left: 50%;          
+    transform: translate(-50%, -50%); 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    gap: 12.67vh;
+    padding: auto;
+}
+
+.tituloDonacionesHome {
+    background-color: transparent;
+    width: 437px;
+    height: 137px;
+    color: var(--sprint-2-Secundario-2, #AEE3FB);
+    text-align: center;
+    -webkit-text-stroke-color: #18171C;
+    font-family: "Reem Kufi Fun";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    text-shadow: 
+    2px 2px 0 #18171C,   
+    -2px -2px 0 #18171C, 
+    2px -2px 0 #18171C, 
+    -2px 2px 0 #18171C, 
+    0px 2px 0 #18171C,  
+    0px -2px 0 #18171C,  
+    2px 0px 0 #18171C,  
+    -2px 0px 0 #18171C;
+    margin-top: 20px; 
+}
+
+.parrafoDonacionesHome { 
+    width: 437px;
+    height: 100px;
+    flex-shrink: 0;
+    color: #FEFAE0;
+    text-align: center;
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    text-shadow: 
+    2px 2px 0 #18171C,   
+    -2px -2px 0 #18171C, 
+    2px -2px 0 #18171C, 
+    -2px 2px 0 #18171C, 
+    0px 2px 0 #18171C,  
+    0px -2px 0 #18171C,  
+    2px 0px 0 #18171C,  
+    -2px 0px 0 #18171C;
+    
+}
+
+.botonDonacion{
+    width: 15.57vw; 
+    height: 8vh;
+    flex-shrink: 0;
+    border-radius: 49px;
+    background: #FEFAE0;
+}
+
+.textoBotonDonacion{
+    color: var(--sprint-2-AzulNegruzco-2, #18171C);
+    text-align: center;
+    /* Sprint2-Desktop/H3-2 */
+    font-family: "Reem Kufi Fun";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    stroke-width: 2px;
+   
+}
+
+.Donacion-Home-mobile {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .Donacion-Home-mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .Donacion-Home {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .texDonacion {
+        width: 35.31vw;    
+        height: auto; 
+        position: absolute; 
+        z-index: 3;        
+        top: 50%;        
+        left: 50%;          
+        transform: translate(-50%, -50%); 
+        display: flex;
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        text-align: center; 
+        gap: 5.67vh;
+        padding: auto;
+    }
+    .fondoDonacion {
+        position: relative;
+        width: 100%;
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .ImagenAve {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+    
+    .texDonacion {
+        position: absolute;
+        top: 25vh;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        color: #ffffff;
+        text-align: center; 
+    }
+    
+    .tituloDonacionesHome {
+        width: 250%;
+        font-size: 3vh; 
+        transform: translateY(4vh);
+    }
+    
+    .parrafoDonacionesHome {
+        width: 250%;
+        font-size: 2vh;
+        margin-bottom: 10px;
+    }
+    
+    .botonDonacion {
+        width: 100%;
+        height: 5vh;
+        display: inline-block;
+        background-color: #FEFAE0;
+        font-weight: bold;
+        border: none;
+        border-radius: 25px;
+        padding:0;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        transform: translateY(-4vh);
+    }
+
+    .botonDonacion .textoBotonDonacion{
+        color: #18171C;
+        font-size: 2vh;
+    }
+
+    
+    .botonDonacion:hover {
+        background-color: #AEE3FB;
+        color: #18171C;
+    }
+    
+}
+
+
