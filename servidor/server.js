@@ -12,6 +12,7 @@ app.use(cors());
 
 app.use('/api/animales', require('./routes/animales'));
 app.use('/api/donaciones', require('./routes/donaciones'));
+app.use('/api/compras', require('./routes/compras'));
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
