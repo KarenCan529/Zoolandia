@@ -104,7 +104,6 @@ class Zoolandia extends CI_Controller {
     }
 
 
-
     public function procesar_donacion() {
         if ($this->input->server('REQUEST_METHOD') === 'POST') {
             // Recuperar los datos del formulario
@@ -114,27 +113,32 @@ class Zoolandia extends CI_Controller {
             $correo = $this->input->post('correo');
             $monto = $this->input->post('monto');
     
-            // Preparar los datos para la base de datos
+            // Preparar los datos para mandar al servidor
             $datos_donacion = array(
                 'nombre_donante' => $nombre,
                 'apellido_paterno_donante' => $apellido_paterno,
                 'apellido_materno_donante' => $apellido_materno,
                 'correo_donante' => $correo,
-                'fecha_donacion' => date('Y-m-d H:i:s'),
-                'monto_donacion' => $monto
+                'monto_donacion' => $monto,
+                'fecha_donacion' => date('Y-m-d H:i:s') // Fecha actual en formato MySQL
             );
     
-            // Llamar al modelo para guardar los datos
+            // Llamar al modelo para enviar los datos al servidor
             $resultado = $this->Donacion_model->guardar_donacion($datos_donacion);
     
-            if ($resultado) {
+            // Verificar si la operación fue exitosa
+            if ($resultado === true) {
+                // Si fue exitosa, mostrar mensaje de éxito y redirigir
                 $this->session->set_flashdata('success', '¡Gracias por tu donación!');
                 redirect('Zoolandia/agradecimientoDonaciones');
             } else {
-                $this->session->set_flashdata('error', 'Hubo un problema al procesar tu donación. Intenta nuevamente.');
+                // Si hubo un error, mostrar mensaje de error y redirigir
+                $error = $resultado['error'] ?? 'Hubo un problema al procesar tu donación. Intenta nuevamente.';
+                $this->session->set_flashdata('error', $error);
                 redirect('Zoolandia/paginaDonaciones');
             }
         } else {
+            // Si el método no es POST, mostrar mensaje de error y redirigir
             $this->session->set_flashdata('error', 'Método no permitido.');
             redirect('Zoolandia/paginaDonaciones');
         }
