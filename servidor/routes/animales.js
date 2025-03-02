@@ -8,4 +8,4 @@ router.post('/', animalController.createAnimal);
 router.put('/:id', animalController.updateAnimal);
 router.delete('/:id', animalController.deleteAnimal);
 
-module.exports = routaser;
+module.exports = router;
