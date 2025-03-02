@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors()); 
 
 app.use('/api/animales', require('./routes/animales'));
+app.use('/api/donaciones', require('./routes/donaciones'));
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
