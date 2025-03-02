@@ -1,4 +1,4 @@
-const connection = require('');
+const connection = require('../config/db');
 
 
 exports.getAnimales = (req, res) => {
