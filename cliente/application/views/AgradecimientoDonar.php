@@ -5,45 +5,43 @@ require APPPATH . 'libraries/phpmailer/src/Exception.php';
 
 require APPPATH . 'libraries/fpdf/fpdf.php';
 
-$this->load->database();
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-$query_last_donacion = "SELECT MAX(id_donacion) AS last_donacion_id FROM donacion";
-$result_last_donacion = $this->db->query($query_last_donacion);
-$row_last_donacion = $result_last_donacion->row_array();
-$id_donacion = $row_last_donacion['last_donacion_id'];
-
-$sql ="
-SELECT 
-    id_donacion,
-    nombre_donante,
-    apellido_paterno_donante,
-    apellido_materno_donante,
-    correo_donante,
-    fecha_donacion,
-    monto_donacion
-FROM donacion WHERE id_donacion = $id_donacion;
-";
-
-$query = $this->db->query($sql);
-
-if ($query->num_rows() > 0) {
-    $row = $query->row_array();
-
-    $id_donacion = $row['id_donacion'];
-    $nombre = $row['nombre_donante'];
-    $apellido_paterno = $row['apellido_paterno_donante'];
-    $apellido_materno = $row['apellido_materno_donante'];
-    $correo = $row['correo_donante'];
-    $fecha_donacion = $row['fecha_donacion'];
-    $monto = $row['monto_donacion'];
-} else {
-    echo "No se encontraron datos para esta donación.";
-    exit;
+// URL de la API
+$api_url = "http://localhost:3000/api/donaciones/ultima";
+// Inicializar cURL
+$curl = curl_init($api_url);
+// Configurar opciones de cURL
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+// Ejecutar la solicitud y obtener la respuesta
+$response = curl_exec($curl);
+// Verificar si hubo un error en la solicitud
+if ($response === FALSE) {
+    // Manejar el error
+    echo "Error: No se pudo conectar al servidor.";
+    exit; // Detener la ejecución del script
 }
+// Decodificar la respuesta JSON
+$data = json_decode($response, true);
+// Cerrar la sesión de cURL
+curl_close($curl);
+// Verificar si la respuesta contiene los datos esperados
+if (isset($data['id_donacion'])) {
+    // Asignar los datos a las variables PHP
+    $id_donacion = $data['id_donacion'];
+    $nombre = $data['nombre_donante'];
+    $apellido_paterno = $data['apellido_paterno_donante'];
+    $apellido_materno = $data['apellido_materno_donante'];
+    $correo = $data['correo_donante'];
+    $fecha_donacion = $data['fecha_donacion'];
+    $monto = $data['monto_donacion'];
+} else {
+    // Manejar el caso en que no se encuentren datos
+    echo "Error: " . ($data['message'] ?? 'Error desconocido');
+}
+
 
 $mm = 0.264583;
 
