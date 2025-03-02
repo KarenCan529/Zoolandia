@@ -99,6 +99,20 @@ $route['interfazAdministrativo/baseClasificacion']              = 'Zoolandia/bas
 $route['interfazAdministrativo/baseEstado']              = 'Zoolandia/baseEstado';
 $route['interfazAdministrativo/baseDonaciones']              = 'Zoolandia/baseDonaciones';
 
+//Nuevas rutas
+$route['interfazAdministrativo/EliminarAdministrador/(:num)'] =  'Zoolandia/EliminarAdministrador/$1';
+$route['interfazAdministrativo/actualizarAdministrador'] = 'Zoolandia/actualizarAdministrador';
+$route['interfazAdministrativo/actualizarPaquete']  = 'Zoolandia/actualizarPaquete';
+
+$route['interfazAdministrativo/actualizarGuia']  = 'Zoolandia/actualizarGuia';
+$route['interfazAdministrativo/EliminarGuia/(:num)'] =  'Zoolandia/EliminarGuia/$1';
+$route['interfazAdministrativo/FormularioGuia']= 'Zoolandia/FormularioGuia';
+
+$route['interfazAdministrativo/actualizarRuta'] = 'Zoolandia/actualizarRuta';
+
+$route['interfazAdministrativo/actualizarAnimal']  = 'Zoolandia/actualizarAnimal';
+$route['interfazAdministrativo/EliminarAnimal/(:num)'] =  'Zoolandia/EliminarAnimal/$1';
+
 
 
 
