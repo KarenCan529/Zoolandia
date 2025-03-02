@@ -1,8 +1,13 @@
 const connection = require('../config/db');
 
-
+// Obtener todos los animales con su clasificación
 exports.getAnimales = (req, res) => {
-    connection.query('SELECT * FROM animal', (err, results) => {
+    const query = `
+        SELECT a.*, c.nombre_clasificacion 
+        FROM animal a
+        JOIN clasificacion c ON a.id_clasificacion = c.id_clasificacion`;
+    
+    connection.query(query, (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -10,9 +15,16 @@ exports.getAnimales = (req, res) => {
     });
 };
 
+// Obtener un animal por ID con su clasificación
 exports.getAnimalById = (req, res) => {
     const { id } = req.params;
-    connection.query('SELECT * FROM animal WHERE id_animal = ?', [id], (err, results) => {
+    const query = `
+        SELECT a.*, c.nombre_clasificacion 
+        FROM animal a
+        JOIN clasificacion c ON a.id_clasificacion = c.id_clasificacion
+        WHERE a.id_animal = ?`;
+    
+    connection.query(query, [id], (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -23,9 +35,12 @@ exports.getAnimalById = (req, res) => {
     });
 };
 
+// Crear un nuevo animal
 exports.createAnimal = (req, res) => {
     const { nombre_animal, nombre_comun_animal, nombre_cientifico_animal, familia_orden_animal, habitat_animal, alimentacion_animal, esperanza_vida_animal, id_estado, id_clasificacion, descripcion_animal, imagen_animal } = req.body;
-    const query = 'INSERT INTO animal (nombre_animal, nombre_comun_animal, nombre_cientifico_animal, familia_orden_animal, habitat_animal, alimentacion_animal, esperanza_vida_animal, id_estado, id_clasificacion, descripcion_animal, imagen_animal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const query = `
+        INSERT INTO animal (nombre_animal, nombre_comun_animal, nombre_cientifico_animal, familia_orden_animal, habitat_animal, alimentacion_animal, esperanza_vida_animal, id_estado, id_clasificacion, descripcion_animal, imagen_animal) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     
     connection.query(query, [nombre_animal, nombre_comun_animal, nombre_cientifico_animal, familia_orden_animal, habitat_animal, alimentacion_animal, esperanza_vida_animal, id_estado, id_clasificacion, descripcion_animal, imagen_animal], (err, result) => {
         if (err) {
@@ -35,11 +50,14 @@ exports.createAnimal = (req, res) => {
     });
 };
 
-
+// Actualizar un animal
 exports.updateAnimal = (req, res) => {
     const { id } = req.params;
     const { nombre_animal, nombre_comun_animal, nombre_cientifico_animal, familia_orden_animal, habitat_animal, alimentacion_animal, esperanza_vida_animal, id_estado, id_clasificacion, descripcion_animal, imagen_animal } = req.body;
-    const query = 'UPDATE animal SET nombre_animal=?, nombre_comun_animal=?, nombre_cientifico_animal=?, familia_orden_animal=?, habitat_animal=?, alimentacion_animal=?, esperanza_vida_animal=?, id_estado=?, id_clasificacion=?, descripcion_animal=?, imagen_animal=? WHERE id_animal=?';
+    const query = `
+        UPDATE animal 
+        SET nombre_animal=?, nombre_comun_animal=?, nombre_cientifico_animal=?, familia_orden_animal=?, habitat_animal=?, alimentacion_animal=?, esperanza_vida_animal=?, id_estado=?, id_clasificacion=?, descripcion_animal=?, imagen_animal=?
+        WHERE id_animal=?`;
     
     connection.query(query, [nombre_animal, nombre_comun_animal, nombre_cientifico_animal, familia_orden_animal, habitat_animal, alimentacion_animal, esperanza_vida_animal, id_estado, id_clasificacion, descripcion_animal, imagen_animal, id], (err) => {
         if (err) {
@@ -49,6 +67,7 @@ exports.updateAnimal = (req, res) => {
     });
 };
 
+// Eliminar un animal
 exports.deleteAnimal = (req, res) => {
     const { id } = req.params;
     connection.query('DELETE FROM animal WHERE id_animal = ?', [id], (err) => {
