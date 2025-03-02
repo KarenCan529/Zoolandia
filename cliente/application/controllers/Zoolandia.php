@@ -553,4 +553,165 @@ class Zoolandia extends CI_Controller {
         // Cargar vista con datos
         $this->load->view('admin/BaseDonaciones', $datos);
     }
+
+//------------------------------------------------------------------------------
+    //nuevo
+    public function actualizarAdministrador() {
+        $id_administrador = $this->input->post('id_administrador');
+        $data = array(
+            'nombre_administrador' => $this->input->post('nombre_administrador'),
+            'apellido_paterno_administrador' => $this->input->post('apellido_paterno_administrador'),
+            'apellido_materno_administrador' => $this->input->post('apellido_materno_administrador'),
+            'correo_administrador' => $this->input->post('correo_administrador'),
+            'password_administrador' => $this->input->post('password_administrador')
+        );
+    
+        $this->db->where('id_administrador', $id_administrador);
+        if($this->db->update('administrador', $data)) {
+            echo 'success';
+        } else {
+            echo 'error';
+        }
+    }
+
+    public function EliminarAdministrador($id_administrador) {
+        $this->load->model('AnimalForm');
+    
+        if ($this->AnimalForm->EliminarAdministrador($id_administrador)) {
+            $this->session->set_flashdata('msg', 'Administrador eliminado correctamente.');
+        } else {
+            $this->session->set_flashdata('msg', 'Error al eliminar el Administrador.');
+        }
+        redirect(base_url('interfazAdministrativo/baseAdministradores'));
+    }
+
+    public function actualizarPaquete() {
+        $id_administrador = $this->input->post('id_paquete');
+        $data = array(
+            'nombre_paquete' => $this->input->post('nombre_paquete'),
+            'precio_adulto' => $this->input->post('precio_adulto'),
+            'precio_nino' => $this->input->post('precio_nino')
+        );
+    
+        $this->db->where('id_paquete', $id_administrador);
+        if($this->db->update('paquete', $data)) {
+            echo 'success';
+        } else {
+            echo 'error';
+        }
+    }
+
+    public function actualizarGuia() {
+        $id_guia = $this->input->post('id_guia');
+        $data = array(
+            'nombre_guia' => $this->input->post('nombre_guia'),
+            'disponibilidad_guia' => $this->input->post('disponibilidad_guia')
+        );
+    
+        $this->db->where('id_guia', $id_guia);
+        if($this->db->update('guia', $data)) {
+            echo 'success';
+        } else {
+            echo 'error';
+        }
+    }
+    
+    public function EliminarGuia($id_guia) {
+        $this->load->model('AnimalForm');
+    
+        if ($this->AnimalForm->EliminarGuia($id_guia)) {
+            $this->session->set_flashdata('msg', 'Guia eliminado correctamente.');
+        } else {
+            $this->session->set_flashdata('msg', 'Error al eliminar el guia.');
+        }
+        redirect(base_url('interfazAdministrativo/baseGuias'));
+    }
+
+    public function FormularioGuia() {
+
+
+        if (!$this->session->userdata('logged_in')) {
+   
+            $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
+            redirect('loginAdmin');
+            return;
+        }
+        $this->load->model('AnimalForm');
+        
+        if ($this->input->server('REQUEST_METHOD') === 'POST') {
+          
+            $data = array(
+                'nombre_guia' => $this->input->post('nombre_guia', true),
+                'disponibilidad_guia' => $this->input->post('disponibilidad_guia', true)
+            );
+        
+          
+            if ($this->AnimalForm->insertarGuia($data)) {
+                $this->session->set_flashdata('success', 'Guia registrado con éxito.');
+            } else {
+                $this->session->set_flashdata('error', 'Error al registrar al Guia.');
+            }
+    
+            redirect('interfazAdministrativo/baseGuias');
+        }
+    
+        $this->load->view('admin/FormularioGuia');
+    }
+
+    public function actualizarRuta() {
+        $id_ruta = $this->input->post('id_ruta');
+        $nombre_ruta = $this->input->post('nombre_ruta');
+        $descripcion_ruta = $this->input->post('descripcion_ruta');
+
+        $this->db->where('id_ruta', $id_ruta);
+        $this->db->update('ruta', [
+            'nombre_ruta' => $nombre_ruta,
+            'descripcion_ruta' => $descripcion_ruta
+        ]);
+
+        echo "Ruta actualizada correctamente";
+    }
+
+    public function actualizarAnimal() {
+        $id_animal = $this->input->post('id_animal');
+        if (empty($id_animal)) {
+            echo json_encode(array('status' => 'error', 'message' => 'id_animal is required'));
+            return;
+        }
+        $data = array(
+            'nombre_animal' => $this->input->post('nombre_animal'),
+            'nombre_comun_animal' => $this->input->post('nombre_comun_animal'),
+            'nombre_cientifico_animal' => $this->input->post('nombre_cientifico_animal'),
+            'id_clasificacion' => $this->input->post('id_clasificacion'),
+            'id_estado' => $this->input->post('id_estado'),
+            'habitat_animal' => $this->input->post('habitat_animal'),
+            'descripcion_animal' => $this->input->post('descripcion_animal'),
+            'familia_orden_animal' => $this->input->post('familia_orden_animal'),
+            'alimentacion_animal' => $this->input->post('alimentacion_animal'),
+            'esperanza_vida_animal' => $this->input->post('esperanza_vida_animal'),
+            'imagen_animal' => $this->input->post('imagen_animal')
+        );
+    
+        $this->db->where('id_animal', $id_animal);
+        
+        if ($this->db->update('animal', $data)) {
+            echo json_encode(array('status' => 'success', 'message' => 'Datos actualizados correctamente'));
+        } else {
+            $error = $this->db->error();
+            echo json_encode(array('status' => 'error', 'message' => $error['message']));
+        }
+    }
+
+    public function EliminarAnimal($id_animal) {
+        $this->load->model('AnimalForm');
+    
+        if ($this->AnimalForm->eliminarAnimal($id_animal)) {
+            $this->session->set_flashdata('msg', 'Animal eliminado correctamente.');
+        } else {
+            $this->session->set_flashdata('msg', 'Error al eliminar el animal.');
+        }
+        redirect(base_url('interfazAdministrativo/baseAnimales'));
+    }
+
+
 }
