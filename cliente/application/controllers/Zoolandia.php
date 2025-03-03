@@ -592,6 +592,7 @@ class Zoolandia extends CI_Controller {
         }
         redirect(base_url('interfazAdministrativo/baseAdministradores'));
     }
+    
 
     public function actualizarPaquete() {
         $id_administrador = $this->input->post('id_paquete');
