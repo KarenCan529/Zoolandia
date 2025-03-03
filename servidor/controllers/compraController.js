@@ -148,3 +148,130 @@ exports.createBoleto = (req, res) => {
         res.status(201).json({ message: 'Boleto creado', id_boleto: result.insertId });
     });
 };
+
+//---------------------------------------------------------------------Lo nuevo
+// Obtener todos los paquetes
+exports.getPaquetes = (req, res) => {
+    const query = `SELECT * FROM Paquete`;
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+};
+
+// Actualizar un paquete
+exports.updatePaquete = (req, res) => {
+    const { id_paquete } = req.params;
+    const { nombre_paquete, precio_adulto, precio_nino } = req.body;
+
+    const query = `
+        UPDATE Paquete 
+        SET nombre_paquete = ?, precio_adulto = ?, precio_nino = ?
+        WHERE id_paquete = ?
+    `;
+
+    connection.query(query, [nombre_paquete, precio_adulto, precio_nino, id_paquete], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json({ message: 'Paquete actualizado', id_paquete: id_paquete });
+    });
+};
+//------guia:
+// Obtener todos los guías
+exports.getGuias = (req, res) => {
+    const query = `SELECT * FROM Guia`;
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+};
+
+// Crear un nuevo guía
+exports.createGuia = (req, res) => {
+    const { nombre_guia, disponibilidad_guia } = req.body;
+
+    const query = `
+        INSERT INTO Guia (nombre_guia, disponibilidad_guia)
+        VALUES (?, ?)
+    `;
+
+    connection.query(query, [nombre_guia, disponibilidad_guia], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(201).json({ message: 'Guía creado', id_guia: result.insertId });
+    });
+};
+
+// Actualizar un guía
+exports.updateGuia = (req, res) => {
+    const { id_guia } = req.params;
+    const { nombre_guia, disponibilidad_guia } = req.body;
+
+    const query = `
+        UPDATE Guia 
+        SET nombre_guia = ?, disponibilidad_guia = ?
+        WHERE id_guia = ?
+    `;
+
+    connection.query(query, [nombre_guia, disponibilidad_guia, id_guia], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json({ message: 'Guía actualizado', id_guia: id_guia });
+    });
+};
+
+// Eliminar un guía
+exports.deleteGuia = (req, res) => {
+    const { id_guia } = req.params;
+
+    const query = `DELETE FROM Guia WHERE id_guia = ?`;
+
+    connection.query(query, [id_guia], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json({ message: 'Guía eliminado', id_guia: id_guia });
+    });
+};
+
+
+//-----ruta:
+// Obtener todas las rutas
+exports.getRutas = (req, res) => {
+    const query = `SELECT * FROM Ruta`;
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+};
+
+// Actualizar una ruta
+exports.updateRuta = (req, res) => {
+    const { id_ruta } = req.params;
+    const { nombre_ruta, descripcion_ruta } = req.body;
+
+    const query = `
+        UPDATE Ruta 
+        SET nombre_ruta = ?, descripcion_ruta = ?
+        WHERE id_ruta = ?
+    `;
+
+    connection.query(query, [nombre_ruta, descripcion_ruta, id_ruta], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json({ message: 'Ruta actualizada', id_ruta: id_ruta });
+    });
+};

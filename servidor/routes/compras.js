@@ -15,4 +15,20 @@ router.post('/boletos', compraController.createBoleto);
 router.get('/agradecimientos', compraController.getAgradecimientos);
 
 
+// Rutas para Paquete
+router.get('/paquetes', compraController.getPaquetes);  
+router.put('/paquetes/:id_paquete', compraController.updatePaquete);  
+
+// Rutas para Guía
+router.get('/guias', compraController.getGuias);  
+router.post('/guias', compraController.createGuia); 
+router.put('/guias/:id_guia', compraController.updateGuia); 
+router.delete('/guias/:id_guia', compraController.deleteGuia);  
+
+// Rutas para Ruta
+router.get('/rutas', compraController.getRutas);  
+router.put('/rutas/:id_ruta', compraController.updateRuta); 
+
+
+
 module.exports = router;
