@@ -13,6 +13,7 @@ app.use(cors());
 app.use('/api/animales', require('./routes/animales'));
 app.use('/api/donaciones', require('./routes/donaciones'));
 app.use('/api/compras', require('./routes/compras'));
+app.use('/api/reportes', require('./routes/reportes')); // Nueva ruta para reportes
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
