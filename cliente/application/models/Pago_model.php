@@ -1,9 +1,27 @@
 <?php
 class Pago_model extends CI_Model {
 
+    private $api_url = "http://localhost:3000/api/compras";
     public function __construct() {
         parent::__construct();
-        $this->load->database();
+    }
+
+    // Método privado para reutilizar la lógica de cURL
+    private function enviarDatosAPI($endpoint, $datos) {
+        $curl = curl_init($this->api_url . $endpoint); // Inicializar cURL con la URL completa
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($datos));
+
+        $response = curl_exec($curl); // Ejecutar la solicitud
+        if ($response === FALSE) {
+            curl_close($curl);
+            return ['error' => 'No se pudo conectar al servidor'];
+        }
+
+        curl_close($curl);
+        return json_decode($response, true); // Decodificar la respuesta JSON
     }
 
     public function procesarPago($correo, $nombre, $apellidoPaterno, $apellidoMaterno, $fecha_compra, $fecha, $horario, $paqueteSeleccionado, $rutaGuiada, $ruta, $adultos, $ninos, $bebes) {
@@ -46,54 +64,46 @@ class Pago_model extends CI_Model {
                 break;
         }
 
-        // Recuperar el ID del último boleto insertado
-        $this->db->select_max('id_boleto', 'last_boleto_id');
-        $query_last_boleto = $this->db->get('boleto');
-        $row_last_boleto = $query_last_boleto->row();
-        $id_a_ingresar = $row_last_boleto->last_boleto_id + 1;
-
-        // Insertar en la tabla Reserva
-        $data_reserva = array(
-            'id_reserva' => $id_a_ingresar,
+        // Crear la reserva
+        $data_reserva = [
             'fecha_reserva' => $fecha,
             'hora_reserva' => $horario,
             'id_paquete' => $paqueteValor,
             'incluye_tour' => $rutaGuiadaBoolean,
             'id_ruta' => $rutaGuiadaBoolean ? $ruta : NULL
-        );
-
-        if (!$this->db->insert('reserva', $data_reserva)) {
-            return false;
+        ];
+        $response_reserva = $this->enviarDatosAPI('/reservas', $data_reserva);
+        if (isset($response_reserva['error'])) {
+            return ['error' => 'Error al crear la reserva: ' . $response_reserva['error']];
         }
 
-        // Insertar en la tabla Compra
-        $data_compra = array(
-            'id_compra' => $id_a_ingresar,
+        // Crear la compra
+        $data_compra = [
             'correo_comprador' => $correo,
             'nombre_comprador' => $nombre,
             'apellido_paterno_comprador' => $apellidoPaterno,
             'apellido_materno_comprador' => $apellidoMaterno,
             'fecha_compra' => $fecha_compra
-        );
-
-        if (!$this->db->insert('compra', $data_compra)) {
-            return false;
+        ];
+        $response_compra = $this->enviarDatosAPI('/', $data_compra);
+        if (isset($response_compra['error'])) {
+            return ['error' => 'Error al crear la compra: ' . $response_compra['error']];
         }
 
-        // Insertar en la tabla Boleto
-        $data_boleto = array(
-            'id_boleto' => $id_a_ingresar,
-            'id_compra' => $id_a_ingresar,
+        // Crear el boleto
+        $data_boleto = [
+            'id_compra' => $response_compra['id_compra'], // ID de la compra creada
             'boletos_adulto' => $adultos,
             'boletos_nino' => $ninos,
             'boletos_nino_menor_3' => $bebes,
-            'id_reserva' => $id_a_ingresar
-        );
-
-        if (!$this->db->insert('boleto', $data_boleto)) {
-            return false;
+            'id_reserva' => $response_reserva['id_reserva'] // ID de la reserva creada
+        ];
+        $response_boleto = $this->enviarDatosAPI('/boletos', $data_boleto);
+        if (isset($response_boleto['error'])) {
+            return ['error' => 'Error al crear el boleto: ' . $response_boleto['error']];
         }
 
         return true; // Todo ha ido bien
+    
     }
 }
