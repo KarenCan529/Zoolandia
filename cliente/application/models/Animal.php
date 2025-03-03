@@ -10,6 +10,12 @@ class Animal extends CI_Model {
 
         // Configurar cURL para que devuelva la respuesta como un string
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        
+        //DEJAR LISTO PARA IMPLEMETAR JWT
+        // curl_setopt($curl, CURLOPT_HTTPHEADER, [
+        //     'Content-Type: application/json',
+        //     'Authorization: Bearer ' // El token se agregará en el futuro
+        // ]);
 
         // Ejecutar la solicitud y guardar la respuesta
         $response = curl_exec($curl);
@@ -39,6 +45,13 @@ class Animal extends CI_Model {
 
         // Configurar cURL para que devuelva la respuesta como un string
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        
+        //Cabezera lista para implementar token
+        //curl_setopt($curl, CURLOPT_HTTPHEADER, [
+        //     'Content-Type: application/json',
+        //     'Authorization: Bearer ' // El token se agregará en el futuro
+        // ]);
+
 
         // Ejecutar la solicitud y guardar la respuesta
         $response = curl_exec($curl);
