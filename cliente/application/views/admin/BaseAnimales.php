@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Base de administradores</title>
-    <link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.min.css ') ?> ">
+    <title>Base de Animales</title>
+    <link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.min.css') ?>">
     <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?= base_url('assets/css2/sideBar.css') ?>">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <style>
@@ -225,6 +226,17 @@
 }
 
 
+.mi-boton-eliminar  {
+    background-color:rgb(206, 67, 29);
+    color: white;
+    margin-top:25px;
+    padding: 10px 9px;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
 </style>
 <main class="d-flex flex-nowrap">
 
@@ -301,35 +313,41 @@
                           <th scope="col">Alimentación</th>
                           <th scope="col">Esperazana de vida</th>
                           <th scope="col">Ruta imágen</th>
+                          <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (!empty($animal)) { ?>
                             <?php foreach ($animal as $fila) { ?>
                                 <tr>
-                                  <th scope="row"><?php echo $fila['id_animal']; ?></th>
-                                  <td><?php echo $fila['nombre_animal']; ?></td>
-                                  <td><?php echo $fila['nombre_comun_animal']; ?></td>
-                                  <td><?php echo $fila['nombre_cientifico_animal']; ?></td>
-                                  <td><?php echo $fila['id_clasificacion']; ?></td>
-                                  <td><?php echo $fila['id_estado']; ?></td>
-                                  <td><?php echo $fila['habitat_animal']; ?></td>
-                                  <td><?php echo $fila['descripcion_animal']; ?></td>
-                                  <td><?php echo $fila['familia_orden_animal']; ?></td>
-                                  <td><?php echo $fila['alimentacion_animal']; ?></td>
-                                  <td><?php echo $fila['esperanza_vida_animal']; ?></td>
-                                  <td><?php echo $fila['imagen_animal']; ?></td>
+                                <th scope="row"><?php echo $fila['id_animal']; ?></th>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="nombre_animal"><?php echo $fila['nombre_animal']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="nombre_comun_animal"><?php echo $fila['nombre_comun_animal']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="nombre_cientifico_animal"><?php echo $fila['nombre_cientifico_animal']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="id_clasificacion"><?php echo $fila['id_clasificacion']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="id_estado"><?php echo $fila['id_estado']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="habitat_animal"><?php echo $fila['habitat_animal']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="descripcion_animal"><?php echo $fila['descripcion_animal']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="familia_orden_animal"><?php echo $fila['familia_orden_animal']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="alimentacion_animal"><?php echo $fila['alimentacion_animal']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="esperanza_vida_animal"><?php echo $fila['esperanza_vida_animal']; ?></td>
+                                <td contenteditable="false" class="editable" data-id="<?= $fila['id_animal']; ?>" data-field="imagen_animal"><?php echo $fila['imagen_animal']; ?></td>
+                                <td>
+                                        <button class="btn btn-primary edit-btn" data-id="<?= $fila['id_animal']; ?>">Editar</button>
+                                        <button class="btn btn-success save-btn" data-id="<?= $fila['id_animal']; ?>" style="display: none;">Guardar</button>
+                                        <a class="mi-boton-eliminar" href="<?= base_url('interfazAdministrativo/EliminarAnimal/'. $fila['id_animal']) ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este guia?')">Eliminar</a>
+                                </td>
                                 </tr>
                             <?php } ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="6" style="text-align: center;">No hay animales registrados.</td>
+                                <td colspan="4" style="text-align: center;">No hay guías disponibles</td>
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
              
-                <button class="btn w-100 botonMandar" onclick="window.location.href='<?= base_url('interfazAdministrativo/FormularioAdministradores') ?>';">
+                <button class="btn w-100 botonMandar" onclick="window.location.href='<?= base_url('interfazAdministrativo/FormularioAnimales') ?>';">
                     Añadir nuevo animal
                 </button>
 
@@ -407,7 +425,52 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // Función para abrir y cerrar el sidebar
+    $(document).ready(function () {
+        $('.edit-btn').click(function() {
+            var row = $(this).closest('tr');
+            row.find('td.editable').attr('contenteditable', 'true').addClass('editando');
+            $(this).hide();
+            row.find('.save-btn').show();
+        });
+
+        $('.save-btn').click(function() {
+            var id_animal = $(this).data('id');
+            var row = $(this).closest('tr');
+
+            var data = {
+                id_animal: id_animal,               // ID del animal
+                nombre_animal: row.find('[data-field="nombre_animal"]').text(),        // Nombre del animal
+                nombre_comun_animal: row.find('[data-field="nombre_comun_animal"]').text(),  // Nombre común del animal
+                nombre_cientifico_animal: row.find('[data-field="nombre_cientifico_animal"]').text(),  // Nombre científico
+                familia_orden_animal: row.find('[data-field="familia_orden_animal"]').text(), // Familia/Orden del animal
+                habitat_animal: row.find('[data-field="habitat_animal"]').text(),      // Hábitat del animal
+                alimentacion_animal: row.find('[data-field="alimentacion_animal"]').text(),
+                esperanza_vida_animal: row.find('[data-field="esperanza_vida_animal"]').text(),
+                id_estado: row.find('[data-field="id_estado"]').text(),     
+                id_clasificacion: row.find('[data-field="id_clasificacion"]').text(),           // ID de estado
+                descripcion_animal: row.find('[data-field="descripcion_animal"]').text(), // Descripción del animal
+                imagen_animal: row.find('[data-field="imagen_animal"]').text()
+            };
+
+            $.ajax({
+                url: '<?= base_url('interfazAdministrativo/actualizarAnimal') ?>',
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                    alert('Datos actualizados correctamente');
+
+                    // Bloquear la edición y restablecer botones
+                    row.find('td.editable').attr('contenteditable', 'false').removeClass('editando');
+                    row.find('.save-btn').hide();
+                    row.find('.edit-btn').show();
+                },
+                error: function() {
+                    alert('Error al actualizar los datos');
+                }
+            });
+        });
+    });
+
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar');
         var content = document.getElementById('content');
