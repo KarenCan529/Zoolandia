@@ -12,6 +12,9 @@ class Zoolandia extends CI_Controller {
        $this->load->library('session');
        $this->load->model('Pago_model');
        $this->load->model('Donacion_model');
+       $this->load->model('Reporte_model');//cargamos
+       $this->load->model('AdministradorModel');
+
     }
 
 
@@ -24,10 +27,9 @@ class Zoolandia extends CI_Controller {
 
 	}
 
-    public function animales()
+    public function animales()//APIIIIIIIIIIIIIII-ANIMALS FRONT
     {
         $this->load->model('Animal'); // Cargamos el modelo
-        
         // Verificamos si la solicitud es AJAX
         if ($this->input->is_ajax_request()) {
             $id = $this->input->post('id');  // Obtenemos el id del animal
@@ -62,7 +64,7 @@ class Zoolandia extends CI_Controller {
 
 
 
-    public function procesar_pago() {
+    public function procesar_pago() {//-----------------------------APIIII-PAGOSSSSSSSSSSSSSSS-FRONT
         // Asegurarse de que el formulario fue enviado por POST
         if ($this->input->server('REQUEST_METHOD') === 'POST') {
             // Recuperar los datos del formulario
@@ -104,6 +106,7 @@ class Zoolandia extends CI_Controller {
     }
 
 
+    //Cambios aplicados 1/3/25---------------------------------------------------------------------api-Front
     public function procesar_donacion() {
         if ($this->input->server('REQUEST_METHOD') === 'POST') {
             // Recuperar los datos del formulario
@@ -143,9 +146,7 @@ class Zoolandia extends CI_Controller {
             redirect('Zoolandia/paginaDonaciones');
         }
     }
-    
-
-        
+ 
 
     public function mapa(){
         $this->load->view('mapa');
@@ -218,7 +219,7 @@ class Zoolandia extends CI_Controller {
     }
     
 
-    public function FormularioAdministradores() {
+    public function FormularioAdministradores() {//-------------------------------------apiiiiiiiiiiiiiiiiiiiiiiiiiiii-postADMIN
         // Verificar si el usuario ha iniciado sesión
         if (!$this->session->userdata('logged_in')) {
             // Si no ha iniciado sesión, redirigir al formulario de inicio de sesión
@@ -228,7 +229,7 @@ class Zoolandia extends CI_Controller {
         }
     
         // Si está autenticado, procede con la carga del formulario
-        $this->load->model('AdministradorModel');
+        //$this->load->model('AdministradorModel');
         if ($this->input->server('REQUEST_METHOD') === 'POST') {
             // Capturar datos del formulario
             $data = array(
@@ -240,7 +241,7 @@ class Zoolandia extends CI_Controller {
             );
     
             // Insertar datos con el modelo
-            if ($this->AdministradorModel->insertarAdministrador($data)) {
+            if ($this->AdministradorModel->insert_administrador($data)) {
                 $this->session->set_flashdata('success', 'Administrador registrado con éxito.');
             } else {
                 $this->session->set_flashdata('error', 'Error al registrar al administrador.');
@@ -249,35 +250,36 @@ class Zoolandia extends CI_Controller {
             // Redirigir para evitar doble envío
             redirect('interfazAdministrativo/FormularioAdministradores');
         }
-    
         // Cargar vista del formulario
         $this->load->view('admin/FormularioAdministradores');
     }
     
 
-    public function baseAdministradores() {
-
-        if (!$this->session->userdata('logged_in')) {
-   
-            $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
-            redirect('loginAdmin');
-            return;
-        }
-
-        $this->load->database();
-
-        $query = "SELECT id_administrador, nombre_administrador, apellido_paterno_administrador, apellido_materno_administrador, correo_administrador, password_administrador FROM administrador";
-        $resultado = $this->db->query($query);
-
-        if ($resultado) {
-            $datos['administradores'] = $resultado->result_array();
-        } else {
-            $datos['error'] = "Error en la consulta: " . $this->db->error();
-        }
-
-        // Cargar vista con datos
-        $this->load->view('admin/baseAdministradores', $datos);
+    public function baseAdministradores() {//----------------------------------------------apiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii-GET ADMIN
+        // Verificar si el usuario está logueado
+    if (!$this->session->userdata('logged_in')) {
+        // Si no está logueado, redirigir a la página de login
+        $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
+        redirect('loginAdmin');
+        return;
     }
+    // Obtener los administradores desde el modelo
+    $resultado = $this->AdministradorModel->get_administradores();
+
+    // Comprobar si el resultado contiene datos
+    if ($resultado) {
+        // Si hay datos, pasarlos a la vista
+        $datos['administradores'] = $resultado;
+    } else {
+        // Si no se pudieron obtener datos, mostrar un error
+        $datos['error'] = "No se encontraron administradores";
+    }
+    // Cargar la vista con los datos
+    $this->load->view('admin/baseAdministradores', $datos);
+    }
+
+
+
 
     public function baseBoletos() {
         if (!$this->session->userdata('logged_in')) {
@@ -554,9 +556,9 @@ class Zoolandia extends CI_Controller {
         $this->load->view('admin/BaseDonaciones', $datos);
     }
 
-//------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------
     //nuevo
-    public function actualizarAdministrador() {
+    public function actualizarAdministrador() {//apiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii- PUT-ADMIN
         $id_administrador = $this->input->post('id_administrador');
         $data = array(
             'nombre_administrador' => $this->input->post('nombre_administrador'),
@@ -566,24 +568,31 @@ class Zoolandia extends CI_Controller {
             'password_administrador' => $this->input->post('password_administrador')
         );
     
-        $this->db->where('id_administrador', $id_administrador);
-        if($this->db->update('administrador', $data)) {
-            echo 'success';
-        } else {
-            echo 'error';
-        }
+        // Verifica si los datos no están llegando vacíos
+    if (empty(array_filter($data))) {
+        echo "Error: No se proporcionaron datos válidos";
+        return;
+    }
+    // Llamar al modelo para actualizar el administrador a través de la API
+    $resultado = $this->AdministradorModel->update_administrador($id_administrador, $data);
+    if (isset($resultado['error'])) {
+        echo 'Error: ' . $resultado['error'];
+    } else {
+        echo 'Administrador actualizado correctamente';
+    }
     }
 
-    public function EliminarAdministrador($id_administrador) {
-        $this->load->model('AnimalForm');
+
+    public function EliminarAdministrador($id_administrador) {//APIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII- DELETE- ADMIN
     
-        if ($this->AnimalForm->EliminarAdministrador($id_administrador)) {
+        if ($this->AdministradorModel->EliminarAdministrador($id_administrador)) {
             $this->session->set_flashdata('msg', 'Administrador eliminado correctamente.');
         } else {
             $this->session->set_flashdata('msg', 'Error al eliminar el Administrador.');
         }
         redirect(base_url('interfazAdministrativo/baseAdministradores'));
     }
+    
 
     public function actualizarPaquete() {
         $id_administrador = $this->input->post('id_paquete');
@@ -713,5 +722,11 @@ class Zoolandia extends CI_Controller {
         redirect(base_url('interfazAdministrativo/baseAnimales'));
     }
 
-
+   
 }
+
+
+
+
+
+?>
