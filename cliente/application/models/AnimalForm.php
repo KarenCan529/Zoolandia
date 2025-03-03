@@ -11,6 +11,7 @@ class AnimalForm extends CI_Model {
             return false;
         }
     }
+    
 
     public function insertarGuia($data) {
         if ($this->db->insert('guia', $data)) {
@@ -24,15 +25,10 @@ class AnimalForm extends CI_Model {
     public function eliminarGuia($id_guia) {
         $this->db->where('id_guia', $id_guia);
         return $this->db->delete('guia'); 
-    }  
-    
+    }
+
     public function eliminarAnimal($id_animal) {
         $this->db->where('id_animal', $id_animal);
         return $this->db->delete('animal'); 
-    } 
-
-    public function eliminarAdministrador($id_administrador) {
-        $this->db->where('id_administrador', $id_administrador);
-        return $this->db->delete('administrador'); 
-    } 
+    }
 }
