@@ -4,9 +4,7 @@ require APPPATH . 'libraries/phpmailer/src/SMTP.php';
 require APPPATH . 'libraries/phpmailer/src/Exception.php';
 
 require APPPATH . 'libraries/fpdf/fpdf.php';
-
-$this->load->database();
-
+//$this->load->database();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -17,7 +15,7 @@ $pdf_boleto = new FPDF('L', 'mm', array(80, 200));
 $pdf_boleto->AddPage();
 $pdf_boleto->SetFont('Arial', 'B', 10);
 $pdf_boleto->SetCreator('ZOOLANDIA');
-$pdf_boleto->Image('C:/xampp/htdocs/Zoolandia/application/models/Conexion/boleto.png', 0, 0, 200, 80);
+$pdf_boleto->Image('C:/xampp/htdocs/Zoolandia/cliente/application/models/Conexion/boleto.png', 0, 0, 200, 80);
 $pdf_boleto->SetFont('Times', '', 12);
 
 function setText($pdf, $texto, $longitud, $x, $y) {
@@ -25,51 +23,24 @@ function setText($pdf, $texto, $longitud, $x, $y) {
     $pdf->MultiCell($longitud, 3, mb_convert_encoding($texto, 'ISO-8859-1', 'UTF-8'), 0, 'C');
 }
 
-$query_last_boleto = "SELECT MAX(id_boleto) AS last_boleto_id FROM boleto";
-$result_last_boleto = $this->db->query($query_last_boleto);
-$row_last_boleto = $result_last_boleto->row_array();
-$id_a_ingresar = $row_last_boleto['last_boleto_id'];
-
-
-$sql = "
-   SELECT 
-    b.id_boleto, 
-    b.boletos_adulto, 
-    b.boletos_nino, 
-    b.boletos_nino_menor_3, 
-    r.fecha_reserva, 
-    r.hora_reserva, 
-    p.nombre_paquete, 
-    r.incluye_tour,   -- Aquí se está tomando de la tabla Reserva, no Paquete
-    rt.nombre_ruta,
-    c.nombre_comprador, 
-    c.apellido_paterno_comprador, 
-    c.apellido_materno_comprador,
-    c.fecha_compra,  -- Fecha de la compra
-    c.correo_comprador,  -- Correo del comprador
-    p.precio_adulto,  -- Precio del boleto adulto
-    p.precio_nino,  -- Precio del boleto niño
-    b.boleto_total_adulto,  -- Total del costo de los boletos adultos
-    b.boleto_total_nino,  -- Total del costo de los boletos niños
-    b.boleto_total_general  -- Total general de los boletos
-FROM 
-    boleto b
-JOIN reserva r ON b.id_reserva = r.id_reserva
-JOIN paquete p ON r.id_paquete = p.id_paquete
-LEFT JOIN Ruta rt ON r.id_ruta = rt.id_ruta
-JOIN compra c ON b.id_compra = c.id_compra
-WHERE b.id_boleto = $id_a_ingresar;
-";
-
-
-$resultado = $this->db->query($sql);
-$datos = $resultado->row_array();  
-
-if ($datos) {
-    echo $datos['id_boleto'];  
-} else {
-    echo 'No se encontraron datos';
+// --------------------------------- Obtener datos desde la API ---------------------------------
+// Inicializar cURL
+$curl = curl_init();
+// Obtener los datos de agradecimiento desde la API
+curl_setopt($curl, CURLOPT_URL, "http://localhost:3000/api/compras/agradecimientos");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$response_agradecimiento = curl_exec($curl);
+if ($response_agradecimiento === FALSE) {
+    die('Error al obtener los datos de agradecimiento: ' . curl_error($curl));
 }
+$datos = json_decode($response_agradecimiento, true);
+if (!$datos) {
+    die('No se encontraron datos');
+}
+// Cerrar la conexión cURL
+curl_close($curl);  
+
+// --------------------------------- Procesar datos ---------------------------------
 
 if ($datos['fecha_reserva'] && $datos['hora_reserva']) {
     if ($datos['hora_reserva'] != '00:00:00') {
@@ -94,7 +65,7 @@ $apellido_paterno_comprador = $datos['apellido_paterno_comprador'];
 $apellido_materno_comprador = $datos['apellido_materno_comprador'];
 $total_num_boletos = $boletos_adulto + $boletos_nino + $boletos_nino_menor_3;
 
-
+// Lógica que no debe cambiar
 $total_ruta_guiada = 100;
 if ($paquete == "VIP") {
     $total_ruta_guiada = 0;
@@ -120,7 +91,7 @@ setText($pdf_boleto, "Niños: " . $boletos_nino, 0, 42, 49.5);
 setText($pdf_boleto, "Menores: " . $boletos_nino_menor_3, 0, 80, 49.5);
 setText($pdf_boleto, $fecha_visita, 0, 29, 56);
 
-$pdf_boletoOutput = 'C:/xampp/htdocs/Zoolandia/assets/archivos_temporales/boleto_' . $datos['id_boleto'] . '.pdf';
+$pdf_boletoOutput = 'C:/xampp/htdocs/Zoolandia/cliente/assets/archivos_temporales/boleto_' . $datos['id_boleto'] . '.pdf';
 $pdf_boleto->Output('F', $pdf_boletoOutput);
 
 
@@ -128,7 +99,7 @@ $mm = 0.264583;
 $pdf_factura = new FPDF('P', 'mm', array((1545 * $mm), (2000 * $mm)));  
 $pdf_factura->AddPage();
 $pdf_factura->SetCreator('ZOOLANDIA');
-$pdf_factura->Image('C:/xampp/htdocs/Zoolandia/application/models/Conexion/Factura.png', 0, 0, (1545 * $mm), (2000 * $mm)); 
+$pdf_factura->Image('C:/xampp/htdocs/Zoolandia/cliente/application/models/Conexion/Factura.png', 0, 0, (1545 * $mm), (2000 * $mm)); 
 $pdf_factura->SetFont('Times', '', 20);
 
 function setText_s($pdf, $texto, $longitud, $x, $y) {
@@ -213,7 +184,7 @@ setText_c($pdf_factura, "" . '$560', (197*$mm), (1061*$mm), (1285*$mm));
 setText_c($pdf_factura, "" . 'Sí: Ruta de reptiles y aves', (300*$mm), (294*$mm), (1184*$mm));*/
 
 
-$pdf_facturaOutput = 'C:/xampp/htdocs/Zoolandia/assets/archivos_temporales/factura_'.'.pdf';
+$pdf_facturaOutput = 'C:/xampp/htdocs/Zoolandia/cliente/assets/archivos_temporales/factura_'.'.pdf';
 $pdf_factura->Output('F', $pdf_facturaOutput);
 
 // --------------------------------- Enviar Correo ---------------------------------
