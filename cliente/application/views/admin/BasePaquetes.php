@@ -79,7 +79,6 @@
                           <th scope="col">Nombre del paquete</th>
                           <th scope="col">Precio adulto</th>
                           <th scope="col">Precio niño</th>
-                          <th scope="col">Incluye tour</th>
                           <th scope="col">Acciones</th>
                         </tr>
                     </thead>
