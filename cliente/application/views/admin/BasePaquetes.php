@@ -91,7 +91,6 @@
                                     <td contenteditable="false" class="editable" data-id="<?= $fila['id_paquete']; ?>" data-field="nombre_paquete"><?php echo $fila['nombre_paquete']; ?></td>
                                     <td contenteditable="false" class="editable" data-id="<?= $fila['id_paquete']; ?>" data-field="precio_adulto"><?php echo $fila['precio_adulto']; ?></td>
                                     <td contenteditable="false" class="editable" data-id="<?= $fila['id_paquete']; ?>" data-field="precio_nino"><?php echo $fila['precio_nino']; ?></td>
-                                    <td contenteditable="false" class="editable" data-id="<?= $fila['id_paquete']; ?>" data-field="incluye_tour"><?php echo $fila['incluye_tour']; ?></td>
                                     <td>
                                         <button class="btn btn-primary edit-btn" data-id="<?= $fila['id_paquete']; ?>">Editar</button>
                                         <button class="btn btn-success save-btn" data-id="<?= $fila['id_paquete']; ?>" style="display: none;">Guardar</button>
@@ -134,7 +133,6 @@
                 nombre_paquete: row.find('[data-field="nombre_paquete"]').text(),
                 precio_adulto: row.find('[data-field="precio_adulto"]').text(),
                 precio_nino: row.find('[data-field="precio_nino"]').text(),
-                incluye_tour: row.find('[data-field="incluye_tour"]').text()
             };
 
             $.ajax({
