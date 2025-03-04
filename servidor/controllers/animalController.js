@@ -15,6 +15,28 @@ exports.getAnimales = (req, res) => {
     });
 };
 
+exports.getClasificaciones = (req, res) => {
+    const query = `SELECT id_clasificacion, nombre_clasificacion FROM clasificacion`;
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+};
+
+exports.getEstadosConservacion = (req, res) => {
+    const query = `SELECT id_estado, nombre_estado FROM estado_conservacion`;
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+};
+
 // Obtener un animal por ID con su clasificación
 exports.getAnimalById = (req, res) => {
     const { id } = req.params;
