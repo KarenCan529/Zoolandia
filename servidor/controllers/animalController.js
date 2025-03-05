@@ -1,11 +1,13 @@
 const connection = require('../config/db');
 
+
 // Obtener todos los animales con su clasificación
 exports.getAnimales = (req, res) => {
     const query = `
         SELECT a.*, c.nombre_clasificacion 
         FROM animal a
-        JOIN clasificacion c ON a.id_clasificacion = c.id_clasificacion`;
+        JOIN clasificacion c ON a.id_clasificacion = c.id_clasificacion
+        ORDER BY a.id_animal ASC`; // Aquí ordenamos por id_animal de menor a mayor
     
     connection.query(query, (err, results) => {
         if (err) {
@@ -14,6 +16,7 @@ exports.getAnimales = (req, res) => {
         res.json(results);
     });
 };
+
 
 exports.getClasificaciones = (req, res) => {
     const query = `SELECT id_clasificacion, nombre_clasificacion FROM clasificacion`;
@@ -36,6 +39,7 @@ exports.getEstadosConservacion = (req, res) => {
         res.json(results);
     });
 };
+
 
 // Obtener un animal por ID con su clasificación
 exports.getAnimalById = (req, res) => {
