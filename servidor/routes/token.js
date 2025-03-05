@@ -32,7 +32,7 @@ router.post('/login', (req, res) => {
                 const token = jwt.sign(
                     { id_administrador: admin.id_administrador },
                     process.env.JWT_SECRET,
-                    { expiresIn: '30s' }
+                    { expiresIn: '1h' }
                 );
 
                 res.json({ token });
