@@ -301,6 +301,10 @@
                 } catch (error) {
                     alert("Error al cargar los detalles del animal.");
                 }
+
+
+
+                
             });
         });
     });

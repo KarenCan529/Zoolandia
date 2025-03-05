@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Formulario de animales</title>
+	<title>Interfaz administrativo</title>
 	<link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.min.css ') ?> ">
 	<link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?= base_url('assets/css2/sideBar.css') ?> ">
@@ -153,74 +153,93 @@
 			<a href="<?= base_url('Zoolandia/cerrarSesion') ?>" class="text-dark">Cerrar Sesión</a>
 		</div>
 
+
+
 		<?php
-// Iniciar el acceso a la base de datos con CodeIgniter
-$this->load->database();
 
 // 1. Consulta para boletos vendidos globalmente
-$query_boletos = $this->db->query("SELECT
-    SUM(boletos_adulto) AS total_boletos_adultos,
-    SUM(boletos_nino) AS total_boletos_ninos,
-    SUM(boletos_nino_menor_3) AS total_boletos_ninos_menores_3,
-    SUM(boletos_adulto + boletos_nino + boletos_nino_menor_3) AS total_boletos_vendidos
-FROM boleto");
-$boletos_vendidos = $query_boletos->row();
+$resultado_boletos_global = $this->Reporte_model->getBoletosVendidosGlobal();
 
-// Variables para Boletos Globales
-$adultos_global = $boletos_vendidos->total_boletos_adultos;
-$niños_global = $boletos_vendidos->total_boletos_ninos;
-$bebes_global = $boletos_vendidos->total_boletos_ninos_menores_3;
-$total_boletos_global = $boletos_vendidos->total_boletos_vendidos;
+// Verificar si hay un error
+if (isset($resultado_boletos_global['error'])) {
+    // Mostrar el error y detener la ejecución
+    die("Error: " . $resultado_boletos_global['error']);
+}
+
+// Guardar los datos en variables con los mismos nombres
+$adultos_global = $resultado_boletos_global['total_boletos_adultos'] ?? 0;
+$niños_global = $resultado_boletos_global['total_boletos_ninos'] ?? 0;
+$bebes_global = $resultado_boletos_global['total_boletos_ninos_menores_3'] ?? 0;
+$total_boletos_global = $resultado_boletos_global['total_boletos_vendidos'] ?? 0;
+
 
 // 2. Consulta de ingresos totales
-$query_ingresos = $this->db->get('total_ingresos');
-$total_ingresos = $query_ingresos->row();
+$resultado_ingresos = $this->Reporte_model->getIngresosTotales();
+if (isset($resultado_ingresos['error'])) {
+    die("Error: " . $resultado_ingresos['error']);
+}
+$total_ingresos = $resultado_ingresos['total_ingresos'] ?? 0;
+//se hizo un cambio en el html quitar el number converse a  echo $total_ingresos; 
 
 // 3. Consulta de donaciones realizadas
-$query_donaciones_realizadas = $this->db->get('total_donaciones_realizadas');
-$total_donaciones_realizadas = $query_donaciones_realizadas->row();
+$resultado_donaciones_realizadas = $this->Reporte_model->getDonacionesRealizadas();
+if (isset($resultado_donaciones_realizadas['error'])) {
+    die("Error: " . $resultado_donaciones_realizadas['error']);
+}
+$total_donaciones_realizadas = $resultado_donaciones_realizadas['total_donaciones'] ?? 0;
+
 
 // 4. Consulta del total de dinero en donaciones
-$query_total_donaciones = $this->db->get('total_donaciones');
-$total_donaciones = $query_total_donaciones->row();
+$resultado_total_donaciones = $this->Reporte_model->getTotalDonaciones();
+if (isset($resultado_total_donaciones['error'])) {
+    die("Error: " . $resultado_total_donaciones['error']);
+}
+$total_donaciones = $resultado_total_donaciones['total_donaciones'] ?? 0;
+
 
 // 5. Consulta de recorridos más reservados
-$query_recorridos = $this->db->get('recorridos_mas_reservados');
-$recorridos_reservados = $query_recorridos->result();
+$resultado_recorridos = $this->Reporte_model->getRecorridosMasReservados();
+if (isset($resultado_recorridos['error'])) {
+    die("Error: " . $resultado_recorridos['error']);
+}
+$recorridos_reservados = $resultado_recorridos;
+
 
 // 6. Consulta de paquetes más elegidos
-$query_paquetes = $this->db->get('vista_total_compras_paquete');
-$paquetes_comprados = $query_paquetes->result();
+$resultado_paquetes = $this->Reporte_model->getPaquetesMasElegidos();
+if (isset($resultado_paquetes['error'])) {
+    die("Error: " . $resultado_paquetes['error']);
+}
+$paquetes_comprados = $resultado_paquetes;
+
 
 // 7. Consulta de promedio de donaciones
-$query_promedio_donaciones = $this->db->get('vista_promedio_donaciones');
-$promedio_donaciones = $query_promedio_donaciones->row();
+$resultado_promedio_donaciones = $this->Reporte_model->getPromedioDonaciones();
+if (isset($resultado_promedio_donaciones['error'])) {
+    die("Error: " . $resultado_promedio_donaciones['error']);
+}
+$promedio_donaciones = $resultado_promedio_donaciones['promedio_general_donaciones'] ?? 0;
+
 
 // 8. Consulta de boletos vendidos por fecha (si se recibe la fecha)
 $fecha = $this->input->post('fecha'); // Obtener la fecha desde el formulario
-
 if ($fecha) {
-    $query_boletos_fecha = $this->db->query("
-        SELECT
-            SUM(boletos_adulto) AS total_boletos_adultos,
-            SUM(boletos_nino) AS total_boletos_ninos,
-            SUM(boletos_nino_menor_3) AS total_boletos_ninos_menores_3,
-            SUM(boletos_adulto + boletos_nino + boletos_nino_menor_3) AS total_boletos_vendidos
-        FROM boleto
-        JOIN compra ON boleto.id_compra = Compra.id_compra
-        WHERE DATE(Compra.fecha_compra) = ?
-    ", array($fecha));
-    $boletos_vendidos_fecha = $query_boletos_fecha->row();
+    $resultado_boletos_fecha = $this->Reporte_model->getBoletosVendidosPorFecha($fecha);
+    if (isset($resultado_boletos_fecha['error'])) {
+        die("Error: " . $resultado_boletos_fecha['error']);
+    }
+    $boletos_vendidos_fecha = $resultado_boletos_fecha;
 } else {
     $boletos_vendidos_fecha = null;  // Si no se ha proporcionado fecha, asignar null
 }
-
 // Variables para Boletos por Fecha
-$adultos_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_boletos_adultos : 0;
-$niños_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_boletos_ninos : 0;
-$bebes_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_boletos_ninos_menores_3 : 0;
-$total_boletos_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_boletos_vendidos : 0;
+$adultos_fecha = $boletos_vendidos_fecha['total_boletos_adultos'] ?? 0;
+$niños_fecha = $boletos_vendidos_fecha['total_boletos_ninos'] ?? 0;
+$bebes_fecha = $boletos_vendidos_fecha['total_boletos_ninos_menores_3'] ?? 0;
+$total_boletos_fecha = $boletos_vendidos_fecha['total_boletos_vendidos'] ?? 0;
 ?>
+
+
 
 		<!-- Main Content -->
 		<div class="content" id="content">
@@ -271,7 +290,7 @@ $total_boletos_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_
 							</div>
 							<div class="card-body">
 								<h3>$
-									<?php echo number_format($total_ingresos->total_ingresos, 2); ?>
+									<?php echo $total_ingresos; ?>
 								</h3> <!-- Ingresos -->
 								<p>Ingresos netos</p>
 							</div>
@@ -285,7 +304,7 @@ $total_boletos_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_
 							</div>
 							<div class="card-body">
 								<h3>
-									<?php echo  $total_donaciones_realizadas->total_donaciones; ?>
+									<?php echo  $total_donaciones_realizadas ?>
 								</h3> <!-- Donaciones -->
 								<p>Últimos 12 meses</p>
 							</div>
@@ -299,7 +318,7 @@ $total_boletos_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_
 							</div>
 							<div class="card-body">
 								<h3>$
-									<?php echo number_format($total_donaciones->total_donaciones, 2); ?>
+									<?php echo $total_donaciones; ?>
 								</h3> <!-- Total de donaciones -->
 								<p>Últimos 12 meses</p>
 							</div>
@@ -334,10 +353,10 @@ $total_boletos_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_
 														<?php foreach ($recorridos_reservados as $recorrido) { ?>
 														<tr>
 															<td>
-																<?php echo $recorrido->nombre_ruta; ?>
+																<?php echo $recorrido['nombre_ruta']; ?>
 															</td>
 															<td>
-																<?php echo $recorrido->total_reservas; ?>
+																<?php echo $recorrido['total_reservas']; ?>
 															</td>
 														</tr>
 														<?php } ?>
@@ -365,10 +384,10 @@ $total_boletos_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_
 														<?php foreach ($paquetes_comprados as $paquete) { ?>
 														<tr>
 															<td>
-																<?php echo $paquete->nombre_paquete; ?>
+																<?php echo $paquete['nombre_paquete']; ?>
 															</td>
 															<td>
-																<?php echo $paquete->total_compras; ?>
+																<?php echo $paquete['total_compras']; ?>
 															</td>
 														</tr>
 														<?php } ?>
@@ -394,7 +413,7 @@ $total_boletos_fecha = $boletos_vendidos_fecha ? $boletos_vendidos_fecha->total_
 													<tbody>
 														<tr>
 															<td>
-																<?php echo number_format($promedio_donaciones->promedio_general_donaciones, 2); ?>
+																<?php echo $promedio_donaciones; ?>
 															</td>
 														</tr>
 													</tbody>

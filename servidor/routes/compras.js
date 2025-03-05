@@ -1,32 +1,33 @@
 const express = require('express');
 const router = express.Router();
 const compraController = require('../controllers/compraController');
+const verificarJWT = require('../middlewares/verificarJWT'); 
 
-// Rutas para Reserva
+
+
 router.get('/reservas', compraController.getReservas);
-router.post('/reservas', compraController.createReserva);
-// Rutas para Compra
 router.get('/', compraController.getCompras);
-router.post('/', compraController.createCompra);
-// Rutas para Boleto
 router.get('/boletos', compraController.getBoletos);
-router.post('/boletos', compraController.createBoleto);
-// Nueva ruta para agradecimientos
+router.get('/paquetes', compraController.getPaquetes); 
 router.get('/agradecimientos', compraController.getAgradecimientos);
+router.get('/guias', compraController.getGuias); 
+router.get('/rutas', compraController.getRutas);  
+
+router.use((req, res, next) => {
+    if (req.method === 'GET') {
+        return next();
+    }
+    verificarJWT(req, res, next); 
+});
 
 
-// Rutas para Paquete
-router.get('/paquetes', compraController.getPaquetes);  
+router.post('/reservas', compraController.createReserva);
+router.post('/', compraController.createCompra);
+router.post('/boletos', compraController.createBoleto); 
 router.put('/paquetes/:id_paquete', compraController.updatePaquete);  
-
-// Rutas para Guía
-router.get('/guias', compraController.getGuias);  
 router.post('/guias', compraController.createGuia); 
 router.put('/guias/:id_guia', compraController.updateGuia); 
 router.delete('/guias/:id_guia', compraController.deleteGuia);  
-
-// Rutas para Ruta
-router.get('/rutas', compraController.getRutas);  
 router.put('/rutas/:id_ruta', compraController.updateRuta); 
 
 
