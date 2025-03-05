@@ -4,7 +4,7 @@ require APPPATH . 'libraries/phpmailer/src/SMTP.php';
 require APPPATH . 'libraries/phpmailer/src/Exception.php';
 
 require APPPATH . 'libraries/fpdf/fpdf.php';
-
+//cambiar rutas para zoolandia/cliente
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -42,6 +42,36 @@ if (isset($data['id_donacion'])) {
     echo "Error: " . ($data['message'] ?? 'Error desconocido');
 }
 
+// $this->load->database();
+// $query_last_donacion = "SELECT MAX(id_donacion) AS last_donacion_id FROM donacion";
+// $result_last_donacion = $this->db->query($query_last_donacion);
+// $row_last_donacion = $result_last_donacion->row_array();
+// $id_donacion = $row_last_donacion['last_donacion_id'];
+// $sql ="
+// SELECT 
+//     id_donacion,
+//     nombre_donante,
+//     apellido_paterno_donante,
+//     apellido_materno_donante,
+//     correo_donante,
+//     fecha_donacion,
+//     monto_donacion
+// FROM donacion WHERE id_donacion = $id_donacion;
+// ";
+// $query = $this->db->query($sql);
+// if ($query->num_rows() > 0) {
+//     $row = $query->row_array();
+//     $id_donacion = $row['id_donacion'];
+//     $nombre = $row['nombre_donante'];
+//     $apellido_paterno = $row['apellido_paterno_donante'];
+//     $apellido_materno = $row['apellido_materno_donante'];
+//     $correo = $row['correo_donante'];
+//     $fecha_donacion = $row['fecha_donacion'];
+//     $monto = $row['monto_donacion'];
+// } else {
+//     echo "No se encontraron datos para esta donación.";
+//     exit;
+// }
 
 $mm = 0.264583;
 
@@ -50,7 +80,7 @@ $pdf->AddPage();
 
 $pdf->SetCreator('ZOOLANDIA');
 
-$pdf->Image('C:/xampp/htdocs/Zoolandia/application/models/Conexion/fact_donacion.png', 0, 0, (1545 * $mm), (2000 * $mm));
+$pdf->Image('C:/xampp/htdocs/Zoolandia/cliente/application/models/Conexion/fact_donacion.png', 0, 0, (1545 * $mm), (2000 * $mm));
 
 $pdf->SetFont('Times', '', 20);
 
@@ -73,7 +103,7 @@ setText_c($pdf, "" . $monto, (211*$mm), (629*$mm), (1046*$mm));
 setText_c($pdf, "" . $monto, (197*$mm), (1061*$mm), (1046*$mm));
 setText_c($pdf, "" . $monto, (197*$mm), (1061*$mm), (1154*$mm));
 
-$pdfOutput = 'C:/xampp/htdocs/Zoolandia/assets/archivos_temporales/factura_donacion'.'.pdf';
+$pdfOutput = 'C:/xampp/htdocs/Zoolandia/cliente/assets/archivos_temporales/factura_donacion'.'.pdf';
 $pdf->Output('F', $pdfOutput);
 
 $mail = new PHPMailer(true);

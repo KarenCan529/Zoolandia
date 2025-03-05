@@ -335,13 +335,13 @@
                                 <td>
                                         <button class="btn btn-primary edit-btn" data-id="<?= $fila['id_animal']; ?>">Editar</button>
                                         <button class="btn btn-success save-btn" data-id="<?= $fila['id_animal']; ?>" style="display: none;">Guardar</button>
-                                        <a class="mi-boton-eliminar" href="<?= base_url('interfazAdministrativo/EliminarAnimal/'. $fila['id_animal']) ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este animal')">Eliminar</a>
+                                        <a class="mi-boton-eliminar" href="<?= base_url('interfazAdministrativo/EliminarAnimal/'. $fila['id_animal']) ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este animal?')">Eliminar</a>
                                 </td>
                                 </tr>
                             <?php } ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="4" style="text-align: center;">No hay animales disponibles</td>
+                                <td colspan="4" style="text-align: center;">No hay guías disponibles</td>
                             </tr>
                         <?php } ?>
                     </tbody>
