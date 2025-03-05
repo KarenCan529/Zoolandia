@@ -14,22 +14,23 @@ class Zoolandia extends CI_Controller {
        $this->load->model('Donacion_model');
        $this->load->model('Reporte_model');//cargamos
        $this->load->model('AdministradorModel');
-
+       $this->load->model('AnimalForm');
+       $this->load->model('Animal');
     }
 
 
 
 	public function index()
 	{
-	    /*sirve para cargar una vista*/
+	    /sirve para cargar una vista/
 		$this->load->view('inicio');
 
 
 	}
 
-    public function animales()//APIIIIIIIIIIIIIII-ANIMALS FRONT
+    public function animales()//APIIIIIIIIIIIIIIiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiI-ANIMALS FRONT
     {
-        $this->load->model('Animal'); // Cargamos el modelo
+        
         // Verificamos si la solicitud es AJAX
         if ($this->input->is_ajax_request()) {
             $id = $this->input->post('id');  // Obtenemos el id del animal
@@ -52,6 +53,7 @@ class Zoolandia extends CI_Controller {
             $data['animales'] = $this->Animal->get_animales();
             $this->load->view('paginaAnimales', $data);
         }
+
     }
     
     
@@ -148,10 +150,9 @@ class Zoolandia extends CI_Controller {
     }
  
 
+
     public function mapa(){
         $this->load->view('mapa');
-
-
     }
     public function donaciones(){
         $this->load->view('paginaDonaciones');
@@ -266,14 +267,13 @@ class Zoolandia extends CI_Controller {
     // Obtener los administradores desde el modelo
     $resultado = $this->AdministradorModel->get_administradores();
 
-    // Comprobar si el resultado contiene datos
-    if ($resultado) {
-        // Si hay datos, pasarlos a la vista
+     // Comprobar si el resultado es un array y no tiene errores
+     if (is_array($resultado) && !isset($resultado['error'])) {
         $datos['administradores'] = $resultado;
     } else {
-        // Si no se pudieron obtener datos, mostrar un error
-        $datos['error'] = "No se encontraron administradores";
+        $datos['error'] = $resultado['error'] ?? "No se encontraron administradores";
     }
+
     // Cargar la vista con los datos
     $this->load->view('admin/baseAdministradores', $datos);
     }
@@ -281,53 +281,48 @@ class Zoolandia extends CI_Controller {
 
 
 
-    public function baseBoletos() {
+    public function baseBoletos() {//-----------------------------------api-ADMIN GET_BOLETOS
         if (!$this->session->userdata('logged_in')) {
-   
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
-
-        $this->load->database();
-
-        $query = "SELECT id_boleto, id_compra, boletos_adulto, boletos_nino, boletos_nino_menor_3, boleto_total_adulto, boleto_total_nino, boleto_total_nino_menor_3, boleto_total_general, id_reserva FROM boleto";
-        $resultado = $this->db->query($query);
-
+        $resultado = $this->AnimalForm->get_boletos();
+        
         if ($resultado) {
-            $datos['boletos'] = $resultado->result_array();
+            // Si hay datos, pasarlos a la vista
+            $datos['boletos'] = $resultado;
         } else {
-            $datos['error'] = "Error en la consulta: " . $this->db->error();
+            // Si no se pudieron obtener datos, mostrar un error
+            $datos['boletos'] = "No se encontraron boletos";
         }
-
         // Cargar vista con datos
         $this->load->view('admin/baseBoletos', $datos);
     }
 
-    public function baseComprador() {
+
+    public function baseComprador() {//-----------------------------------api-ADMIN GET_compradores
         if (!$this->session->userdata('logged_in')) {
    
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
-
-        $this->load->database();
-
-        $query = "SELECT id_compra, correo_comprador, nombre_comprador, apellido_paterno_comprador, apellido_materno_comprador, fecha_compra FROM compra ";
-        $resultado = $this->db->query($query);
-
+        $resultado = $this->AnimalForm->get_compradores();
         if ($resultado) {
-            $datos['comprador'] = $resultado->result_array();
+            // Si hay datos, pasarlos a la vista
+            $datos['comprador'] = $resultado;
         } else {
-            $datos['error'] = "Error en la consulta: " . $this->db->error();
+            // Si no se pudieron obtener datos, mostrar un error
+            $datos['comprador'] = "No se encontraron compras";
         }
+        // Cargar vista con datos
 
         // Cargar vista con datos
         $this->load->view('admin/baseComprador', $datos);
     }
 
-    public function baseReservas() {
+    public function baseReservas() {//-----------------------------------api-ADMIN GET_RESERVAS
 
         if (!$this->session->userdata('logged_in')) {
    
@@ -335,105 +330,103 @@ class Zoolandia extends CI_Controller {
             redirect('loginAdmin');
             return;
         }
-
-        $this->load->database();
-
-        $query = "SELECT id_reserva, fecha_reserva, hora_reserva, id_guia, id_ruta, id_paquete, incluye_tour FROM reserva";
-        $resultado = $this->db->query($query);
-
+        $resultado = $this->AnimalForm->get_reservas();
         if ($resultado) {
-            $datos['reserva'] = $resultado->result_array();
+            // Si hay datos, pasarlos a la vista
+            $datos['reserva'] = $resultado;
         } else {
-            $datos['error'] = "Error en la consulta: " . $this->db->error();
+            // Si no se pudieron obtener datos, mostrar un error
+            $datos['reserva'] = "No se encontro reservas";
         }
-
         // Cargar vista con datos
         $this->load->view('admin/BaseReservas', $datos);
     }
 
-    public function basePaquetes() {
-
+    public function basePaquetes() {//-----------------------------------api-ADMIN GET_paquetes
         if (!$this->session->userdata('logged_in')) {
    
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
-
-        $this->load->database();
-
-        $query = "SELECT id_paquete, nombre_paquete, precio_adulto, precio_nino FROM paquete ";
-        $resultado = $this->db->query($query);
-
+        $resultado = $this->AnimalForm->get_paquetes();
         if ($resultado) {
-            $datos['paquete'] = $resultado->result_array();
+            // Si hay datos, pasarlos a la vista
+            $datos['paquete'] = $resultado;
         } else {
-            $datos['error'] = "Error en la consulta: " . $this->db->error();
+            // Si no se pudieron obtener datos, mostrar un error
+            $datos['paquete'] = "No se encontro paquetes";
         }
-
         // Cargar vista con datos
         $this->load->view('admin/BasePaquetes', $datos);
     }
 
-    public function baseGuias() {
-
+    public function baseGuias() {//-----------------------------------api-ADMIN GET_guias
         if (!$this->session->userdata('logged_in')) {
-   
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
-
-        $this->load->database();
-
-        $query = "SELECT id_guia, nombre_guia, disponibilidad_guia FROM guia ";
-        $resultado = $this->db->query($query);
-
+        $resultado = $this->AnimalForm->get_guias();
         if ($resultado) {
-            $datos['guia'] = $resultado->result_array();
+            // Si hay datos, pasarlos a la vista
+            $datos['guia'] = $resultado;
         } else {
-            $datos['error'] = "Error en la consulta: " . $this->db->error();
+            // Si no se pudieron obtener datos, mostrar un error
+            $datos['guia'] = "No se encontro guias";
         }
-
         // Cargar vista con datos
         $this->load->view('admin/BaseGuias', $datos);
     }
 
-    public function baseRutas() {
-
+    public function baseRutas() {//-----------------------------------api-ADMIN GET_rutas
         if (!$this->session->userdata('logged_in')) {
-   
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
-
-        $this->load->database();
-
-        $query = "SELECT id_ruta, nombre_ruta, descripcion_ruta FROM ruta  ";
-        $resultado = $this->db->query($query);
-
+        $resultado = $this->AnimalForm->get_rutas();
         if ($resultado) {
-            $datos['ruta'] = $resultado->result_array();
+            // Si hay datos, pasarlos a la vista
+            $datos['ruta'] = $resultado;
         } else {
-            $datos['error'] = "Error en la consulta: " . $this->db->error();
+            // Si no se pudieron obtener datos, mostrar un error
+            $datos['ruta'] = "No se encontro rutas";
         }
-
         // Cargar vista con datos
         $this->load->view('admin/BaseRutas', $datos);
     }
 
-   
-    public function FormularioAnimales() {
 
-
+    public function baseDonaciones() {//-----------------------------------api-ADMIN GET_donaciones
         if (!$this->session->userdata('logged_in')) {
    
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
-        $this->load->model('AnimalForm');
+        $resultado = $this->AnimalForm->get_donaciones();
+        if ($resultado) {
+            // Si hay datos, pasarlos a la vista
+            $datos['donacion'] = $resultado;
+        } else {
+            // Si no se pudieron obtener datos, mostrar un error
+            $datos['donacion'] = "No se encontro donaciones";
+        }
+        // Cargar vista con datos
+        $this->load->view('admin/BaseDonaciones', $datos);
+    }
+
+
+
+   
+    public function FormularioAnimales() {///funcionando con api-- revisioooooooooooooooooooooooooon
+        if (!$this->session->userdata('logged_in')) {
+   
+            $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
+            redirect('loginAdmin');
+            return;
+        }
         
         if ($this->input->server('REQUEST_METHOD') === 'POST') {
             $imagen = $this->subirImagen();
@@ -497,67 +490,80 @@ class Zoolandia extends CI_Controller {
         return $this->upload->data('file_name'); // Devuelve solo el nombre del archivo
     }
     
-    
 
-
-    public function baseAnimales() {
+    public function baseAnimales() {//------------------------------ya con api ADMIM-GET ANIMALES
         if (!$this->session->userdata('logged_in')) {
    
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
-        $this->load->database();
-    
-        // Consultas para obtener los datos de animales, clasificaciones y estados
-        $queryAnimales = "SELECT id_animal, nombre_animal, nombre_comun_animal, nombre_cientifico_animal, id_clasificacion, id_estado, habitat_animal, descripcion_animal, familia_orden_animal, alimentacion_animal, esperanza_vida_animal, imagen_animal FROM animal";
-        $resultadoAnimales = $this->db->query($queryAnimales);
-    
-        $queryClasificacion = "SELECT id_clasificacion, nombre_clasificacion FROM clasificacion";
-        $resultadoClasificacion = $this->db->query($queryClasificacion);
-    
-        $queryEstado = "SELECT id_estado, nombre_estado FROM estado_conservacion";
-        $resultadoEstado = $this->db->query($queryEstado);
+        $resultadoAnimales = $this->Animal->get_animales();
+        $resultadoClasificacion = $this->Animal->get_clasificaciones();
+        $resultadoEstado = $this->Animal->get_estado_conservaciones();
     
         // Verificar si las consultas tienen resultados
         if ($resultadoAnimales && $resultadoClasificacion && $resultadoEstado) {
-            $datos['animal'] = $resultadoAnimales->result_array();
-            $datos['clasificacion'] = $resultadoClasificacion->result_array();
-            $datos['estado'] = $resultadoEstado->result_array();
+            $datos['animal'] = $resultadoAnimales;
+            $datos['clasificacion'] = $resultadoClasificacion;
+            $datos['estado'] = $resultadoEstado;
         } else {
-            $datos['error'] = "Error en la consulta: " . $this->db->error();
+            $datos['error'] = "Error en la consulta: " ;
         }
-    
         // Cargar vista con todos los datos
         $this->load->view('admin/BaseAnimales', $datos);
     }
 
-    //BAseDonaciones
-
-    public function baseDonaciones() {
-        if (!$this->session->userdata('logged_in')) {
-   
-            $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
-            redirect('loginAdmin');
-            return;
-        }
-        $this->load->database();
-
-        $query = "SELECT id_donacion, nombre_donante, apellido_paterno_donante, apellido_materno_donante, correo_donante, fecha_donacion, monto_donacion FROM donacion";
-        $resultado = $this->db->query($query);
-
-        if ($resultado) {
-            $datos['donacion'] = $resultado->result_array();
-        } else {
-            $datos['error'] = "Error en la consulta: " . $this->db->error();
-        }
-
-        // Cargar vista con datos
-        $this->load->view('admin/BaseDonaciones', $datos);
-    }
+    
 
     //------------------------------------------------------------------------------
     //nuevo
+    public function actualizarAnimal() {//FUNCIONANDO API  ADMIN-PUT ANIMALLLSES
+        $id_animal = $this->input->post('id_animal');
+        if (empty($id_animal)) {
+            echo json_encode(array('status' => 'error', 'message' => 'id_animal is required'));
+            return;
+        }
+        $data = array(
+            'nombre_animal' => $this->input->post('nombre_animal'),
+            'nombre_comun_animal' => $this->input->post('nombre_comun_animal'),
+            'nombre_cientifico_animal' => $this->input->post('nombre_cientifico_animal'),
+            'id_clasificacion' => $this->input->post('id_clasificacion'),
+            'id_estado' => $this->input->post('id_estado'),
+            'habitat_animal' => $this->input->post('habitat_animal'),
+            'descripcion_animal' => $this->input->post('descripcion_animal'),
+            'familia_orden_animal' => $this->input->post('familia_orden_animal'),
+            'alimentacion_animal' => $this->input->post('alimentacion_animal'),
+            'esperanza_vida_animal' => $this->input->post('esperanza_vida_animal'),
+            'imagen_animal' => $this->input->post('imagen_animal')
+        );
+             // Verifica si los datos no están llegando vacíos
+    if (empty(array_filter($data))) {
+        echo "Error: No se proporcionaron datos válidos";
+        return;
+    }
+    // Llamar al modelo para actualizar el administrador a través de la API
+    $resultado = $this->AnimalForm->update_animales($id_animal, $data);
+    if (isset($resultado['error'])) {
+        echo 'Error: ' . $resultado['error'];
+    } else {
+        echo 'Animal actualizado correctamente';
+    }
+    }
+
+    public function EliminarAnimal($id_animal) {///LISTO
+    
+        if ($this->AnimalForm->eliminarAnimal($id_animal)) {
+            $this->session->set_flashdata('msg', 'Animal eliminado correctamente.');
+        } else {
+            $this->session->set_flashdata('msg', 'Error al eliminar el animal.');
+        }
+        redirect(base_url('interfazAdministrativo/baseAnimales'));
+    }
+
+
+
+
     public function actualizarAdministrador() {//apiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii- PUT-ADMIN
         $id_administrador = $this->input->post('id_administrador');
         $data = array(
@@ -580,6 +586,7 @@ class Zoolandia extends CI_Controller {
     } else {
         echo 'Administrador actualizado correctamente';
     }
+    
     }
 
 
@@ -592,42 +599,68 @@ class Zoolandia extends CI_Controller {
         }
         redirect(base_url('interfazAdministrativo/baseAdministradores'));
     }
-    
 
-    public function actualizarPaquete() {
+    public function actualizarPaquete() {//APIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII- ADMIN-PUT-PAQUETE
         $id_administrador = $this->input->post('id_paquete');
         $data = array(
             'nombre_paquete' => $this->input->post('nombre_paquete'),
             'precio_adulto' => $this->input->post('precio_adulto'),
-            'precio_nino' => $this->input->post('precio_nino')
+            'precio_nino' => $this->input->post('precio_nino'),
+            'id_paquete' => $id_administrador
         );
-    
-        $this->db->where('id_paquete', $id_administrador);
-        if($this->db->update('paquete', $data)) {
-            echo 'success';
+        if (empty(array_filter($data))) {
+            echo "Error: No se proporcionaron datos válidos";
+            return;
+        }
+        // Llamar al modelo para actualizar el paquete a través de la API
+        $resultado = $this->AnimalForm->update_paquetes($id_administrador, $data);
+        if (isset($resultado['error'])) {
+            echo 'Error: ' . $resultado['error'];
         } else {
-            echo 'error';
+            echo 'PAQUETE actualizado correctamente';
         }
     }
 
-    public function actualizarGuia() {
+    public function actualizarGuia() {//APIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII- ADMIN-PUT-GUIASSS
         $id_guia = $this->input->post('id_guia');
         $data = array(
             'nombre_guia' => $this->input->post('nombre_guia'),
             'disponibilidad_guia' => $this->input->post('disponibilidad_guia')
         );
     
-        $this->db->where('id_guia', $id_guia);
-        if($this->db->update('guia', $data)) {
-            echo 'success';
+        if (empty(array_filter($data))) {
+            echo "Error: No se proporcionaron datos válidos";
+            return;
+        }
+        // Llamar al modelo para actualizar el administrador a través de la API
+        $resultado = $this->AnimalForm->update_guias($id_guia, $data);
+        if (isset($resultado['error'])) {
+            echo 'Error: ' . $resultado['error'];
         } else {
-            echo 'error';
+            echo 'GUIA actualizado correctamente';
+        }
+    }
+
+    public function actualizarRuta() {//APIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII- ADMIN-PUT-RUTAS  
+        $id_ruta = $this->input->post('id_ruta');
+        $data = array(
+            'nombre_ruta' => $this->input->post('nombre_ruta'),
+            'descripcion_ruta' => $this->input->post('descripcion_ruta')
+        );
+        if (empty(array_filter($data))) {
+            echo "Error: No se proporcionaron datos válidos";
+            return;
+        }
+        // Llamar al modelo para actualizar el administrador a través de la API
+        $resultado = $this->AnimalForm->update_rutas($id_ruta, $data);
+        if (isset($resultado['error'])) {
+            echo 'Error: ' . $resultado['error'];
+        } else {
+            echo 'RUTA actualizado correctamente';
         }
     }
     
-    public function EliminarGuia($id_guia) {
-        $this->load->model('AnimalForm');
-    
+    public function EliminarGuia($id_guia) {//APIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII- ADMIN-DELETE-GUIAS 
         if ($this->AnimalForm->EliminarGuia($id_guia)) {
             $this->session->set_flashdata('msg', 'Guia eliminado correctamente.');
         } else {
@@ -636,97 +669,28 @@ class Zoolandia extends CI_Controller {
         redirect(base_url('interfazAdministrativo/baseGuias'));
     }
 
-    public function FormularioGuia() {
-
+    public function FormularioGuia() {//APIIIIIIIIIIIIIIIIIIIIIII- ADMIN-POST-GUIA
 
         if (!$this->session->userdata('logged_in')) {
-   
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
-        $this->load->model('AnimalForm');
-        
         if ($this->input->server('REQUEST_METHOD') === 'POST') {
-          
             $data = array(
                 'nombre_guia' => $this->input->post('nombre_guia', true),
                 'disponibilidad_guia' => $this->input->post('disponibilidad_guia', true)
             );
-        
-          
             if ($this->AnimalForm->insertarGuia($data)) {
                 $this->session->set_flashdata('success', 'Guia registrado con éxito.');
             } else {
                 $this->session->set_flashdata('error', 'Error al registrar al Guia.');
             }
-    
             redirect('interfazAdministrativo/baseGuias');
         }
-    
         $this->load->view('admin/FormularioGuia');
     }
-
-    public function actualizarRuta() {
-        $id_ruta = $this->input->post('id_ruta');
-        $nombre_ruta = $this->input->post('nombre_ruta');
-        $descripcion_ruta = $this->input->post('descripcion_ruta');
-
-        $this->db->where('id_ruta', $id_ruta);
-        $this->db->update('ruta', [
-            'nombre_ruta' => $nombre_ruta,
-            'descripcion_ruta' => $descripcion_ruta
-        ]);
-
-        echo "Ruta actualizada correctamente";
-    }
-
-    public function actualizarAnimal() {
-        $id_animal = $this->input->post('id_animal');
-        if (empty($id_animal)) {
-            echo json_encode(array('status' => 'error', 'message' => 'id_animal is required'));
-            return;
-        }
-        $data = array(
-            'nombre_animal' => $this->input->post('nombre_animal'),
-            'nombre_comun_animal' => $this->input->post('nombre_comun_animal'),
-            'nombre_cientifico_animal' => $this->input->post('nombre_cientifico_animal'),
-            'id_clasificacion' => $this->input->post('id_clasificacion'),
-            'id_estado' => $this->input->post('id_estado'),
-            'habitat_animal' => $this->input->post('habitat_animal'),
-            'descripcion_animal' => $this->input->post('descripcion_animal'),
-            'familia_orden_animal' => $this->input->post('familia_orden_animal'),
-            'alimentacion_animal' => $this->input->post('alimentacion_animal'),
-            'esperanza_vida_animal' => $this->input->post('esperanza_vida_animal'),
-            'imagen_animal' => $this->input->post('imagen_animal')
-        );
-    
-        $this->db->where('id_animal', $id_animal);
-        
-        if ($this->db->update('animal', $data)) {
-            echo json_encode(array('status' => 'success', 'message' => 'Datos actualizados correctamente'));
-        } else {
-            $error = $this->db->error();
-            echo json_encode(array('status' => 'error', 'message' => $error['message']));
-        }
-    }
-
-    public function EliminarAnimal($id_animal) {
-        $this->load->model('AnimalForm');
-    
-        if ($this->AnimalForm->eliminarAnimal($id_animal)) {
-            $this->session->set_flashdata('msg', 'Animal eliminado correctamente.');
-        } else {
-            $this->session->set_flashdata('msg', 'Error al eliminar el animal.');
-        }
-        redirect(base_url('interfazAdministrativo/baseAnimales'));
-    }
-
    
 }
-
-
-
-
 
 ?>
