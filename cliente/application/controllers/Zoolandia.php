@@ -168,7 +168,6 @@ class Zoolandia extends CI_Controller {
     public function agradecimientoDonaciones(){
         $this->load->view('AgradecimientoDonar');
     }
-
     public function loginAdmin() {
         $this->load->model('Login'); // Asegúrate de cargar el modelo
     
@@ -177,27 +176,33 @@ class Zoolandia extends CI_Controller {
             $password = $this->input->post('Contrasena', TRUE);
     
             if (!empty($correo) && !empty($password)) {
+                // Validamos las credenciales a través de la API
                 $usuario = $this->Login->getLogin($correo, $password);
     
-                if ($usuario) {
-                    // Guardar datos de usuario en la sesión
-                    $this->session->set_userdata('nombre_usuario', $usuario['nombre_administrador']);
-                    $this->session->set_userdata('logged_in', TRUE);  
+                if (isset($usuario['success']) && $usuario['success'] == true) { // Si el login fue exitoso
+                    // Guardar el token y datos de usuario en la sesión de PHP
+                    $this->session->set_userdata('token', $usuario['token']);
+                    $this->session->set_userdata('logged_in', TRUE);
     
-                    $this->session->set_flashdata('mensaje', 'Inicio de sesión exitoso');
-                    redirect('interfazAdministrativo'); 
+                    // Mostrar una alerta y redirigir
+                    echo "<script>
+                            alert('Token generado e inicio de sesión exitoso');
+                            localStorage.setItem('token', '" . $usuario['token'] . "');
+                            window.location.href = 'interfazAdministrativo';
+                          </script>";
+                    exit;
                 } else {
                     $this->session->set_flashdata('error', 'Correo o contraseña incorrectos');
-                    redirect('loginAdmin'); 
+                    redirect('loginAdmin');
                 }
             } else {
                 $this->session->set_flashdata('error', 'Por favor, complete todos los campos');
-                redirect('loginAdmin');  
+                redirect('loginAdmin');
             }
         } else {
             $this->load->view('admin/LoginAdministrativo');  // Muestra la vista de login
         }
-    }    
+    }  
 
     public function cerrarSesion() {
         // Destruir la sesión
