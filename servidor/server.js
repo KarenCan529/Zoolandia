@@ -15,6 +15,7 @@ app.use('/api/donaciones', require('./routes/donaciones'));
 app.use('/api/compras', require('./routes/compras'));
 app.use('/api/reportes', require('./routes/reportes')); // Nueva ruta para reportes
 app.use('/api/admin', require('./routes/admin'));
+app.use('/api/token', require('./routes/token'));
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
