@@ -1,56 +1,41 @@
 <?php
 class Donacion_model extends CI_Model {
 
-    //Cambios aplicados api------------------------------------------------------
     private $api_url = "http://localhost:3000/api/donaciones"; // Ruta de la API
+    private $token; // Token JWT
 
     public function __construct() {
         parent::__construct();
+        $this->token = $this->session->userdata('token'); // Obtener el token de sesión
     }
 
-    // Método para enviar los datos de la donación al servidor
     public function guardar_donacion($datos_donacion) {
-        // Depuración: Verificar los datos que se enviarán
-        //print_r($datos_donacion);
-
-        // Inicializar cURL
         $curl = curl_init($this->api_url);
 
-        // Configurar opciones de cURL
+        $headers = [
+            'Content-Type: application/json',
+            'Accept: application/json',
+            'Authorization: Bearer ' . $this->token // Agregar el token JWT
+        ];
+
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($datos_donacion));
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // Desactivar verificación SSL (solo en local)
 
-        // Ejecutar la solicitud y obtener la respuesta
         $response = curl_exec($curl);
-
-        // Depuración: Verificar la respuesta del servidor
-        //print_r($response);
-
-        // Verificar si hubo un error en la solicitud
-        if ($response === FALSE) {
-            return ['error' => 'No se pudo conectar al servidor'];
-        }
-
-        // Decodificar la respuesta JSON
-        $data = json_decode($response, true);
-
-        // Cerrar la sesión de cURL
+        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
 
-        // Verificar si la respuesta indica éxito
-        if (isset($data['message']) && $data['message'] === 'Donación creada') {
-            return true; // Éxito
+        if ($http_code == 200) {
+            return json_decode($response, true);
         } else {
-            return ['error' => $data['error'] ?? 'Error desconocido'];
+            return ['error' => 'Error en la solicitud: ' . $http_code, 'detalle' => json_decode($response, true)];
         }
     }
 }
 ?>
-
-
-
 
 
 
