@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const reporteController = require('../controllers/reporteController');
+const verificarJWT = require('../middlewares/verificarJWT'); 
 
 // Definir rutas
 router.use((req, res, next) => {
