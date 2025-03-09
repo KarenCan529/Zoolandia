@@ -87,27 +87,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!empty($boletos)) { ?>
-                            <?php foreach ($boletos as $fila) { ?>
-                                <tr>
-                                <th scope="row"><?php echo $fila['id_boleto']; ?></th>
-                                <td><?php echo $fila['id_compra']; ?></td>
-                                <td><?php echo $fila['boletos_adulto']; ?></td>
-                                <td><?php echo $fila['boletos_nino']; ?></td>
-                                <td><?php echo $fila['boletos_nino_menor_3']; ?></td>
-                                <td><?php echo $fila['boleto_total_adulto']; ?></td>
-                                <td><?php echo $fila['boleto_total_nino']; ?></td>
-                                <td><?php echo $fila['boleto_total_nino_menor_3']; ?></td>
-                                <td><?php echo $fila['boleto_total_general']; ?></td>
-                                <td><?php echo $fila['id_reserva']; ?></td>
-                                </tr>
-                            <?php } ?>
-                        <?php } else { ?>
-                            <tr>
-                                <td colspan="6" style="text-align: center;">No hay boletos registrados</td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
+    <?php if (!empty($boletos)) { ?>
+        <?php foreach ($boletos as $fila) { ?>
+            <tr>
+                <th scope="row">
+                    <?php echo isset($fila['id_boleto']) ? $fila['id_boleto'] : 'No disponible'; ?>
+                </th>
+                <td><?php echo isset($fila['id_compra']) ? $fila['id_compra'] : 'No disponible'; ?></td>
+                <td><?php echo isset($fila['boletos_adulto']) ? $fila['boletos_adulto'] : '0'; ?></td>
+                <td><?php echo isset($fila['boletos_nino']) ? $fila['boletos_nino'] : '0'; ?></td>
+                <td><?php echo isset($fila['boletos_nino_menor_3']) ? $fila['boletos_nino_menor_3'] : '0'; ?></td>
+                <td><?php echo isset($fila['boleto_total_adulto']) ? $fila['boleto_total_adulto'] : '0'; ?></td>
+                <td><?php echo isset($fila['boleto_total_nino']) ? $fila['boleto_total_nino'] : '0'; ?></td>
+                <td><?php echo isset($fila['boleto_total_nino_menor_3']) ? $fila['boleto_total_nino_menor_3'] : '0'; ?></td>
+                <td><?php echo isset($fila['boleto_total_general']) ? $fila['boleto_total_general'] : '0'; ?></td>
+                <td><?php echo isset($fila['id_reserva']) ? $fila['id_reserva'] : 'No disponible'; ?></td>
+            </tr>
+        <?php } ?>
+    <?php } else { ?>
+        <tr>
+            <td colspan="10" style="text-align: center;">No hay boletos registrados</td>
+        </tr>
+    <?php } ?>
+</tbody>
                 </table>
             </div>
         </div>
