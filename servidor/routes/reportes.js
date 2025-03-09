@@ -3,6 +3,10 @@ const router = express.Router();
 const reporteController = require('../controllers/reporteController');
 
 // Definir rutas
+router.use((req, res, next) => {
+    verificarJWT(req, res, next); 
+});
+
 router.get('/boletos-vendidos-global', reporteController.getBoletosVendidosGlobal);
 router.get('/ingresos-totales', reporteController.getIngresosTotales);
 router.get('/donaciones-realizadas', reporteController.getDonacionesRealizadas);
