@@ -2,69 +2,58 @@
 class Pago_model extends CI_Model {
 
     private $api_url = "http://localhost:3000/api/compras";
+    private $token;
+
     public function __construct() {
         parent::__construct();
+        $this->token = $this->session->userdata('token'); // Obtener el token JWT desde la sesión
     }
 
-    // Método privado para reutilizar la lógica de cURL
     private function enviarDatosAPI($endpoint, $datos) {
-        $curl = curl_init($this->api_url . $endpoint); // Inicializar cURL con la URL completa
+        $curl = curl_init($this->api_url . $endpoint);
+
+        $headers = [
+            'Content-Type: application/json',
+            'Accept: application/json',
+            'Authorization: Bearer ' . $this->token // Agregar el token JWT
+        ];
+
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($datos));
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // Desactivar verificación SSL (solo en local)
 
-        $response = curl_exec($curl); // Ejecutar la solicitud
-        if ($response === FALSE) {
-            curl_close($curl);
-            return ['error' => 'No se pudo conectar al servidor'];
-        }
-
+        $response = curl_exec($curl);
+        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
-        return json_decode($response, true); // Decodificar la respuesta JSON
+
+        if ($http_code == 200) {
+            return json_decode($response, true);
+        } else {
+            return ['error' => 'Error en la solicitud: ' . $http_code, 'detalle' => json_decode($response, true)];
+        }
     }
 
     public function procesarPago($correo, $nombre, $apellidoPaterno, $apellidoMaterno, $fecha_compra, $fecha, $horario, $paqueteSeleccionado, $rutaGuiada, $ruta, $adultos, $ninos, $bebes) {
-        // Asignar valores a los paquetes
-        $paqueteValor = 0;
-        switch ($paqueteSeleccionado) {
-            case 'Zoomax':
-                $paqueteValor = 1;
-                break;
-            case 'Bestial':
-                $paqueteValor = 2;
-                break;
-            case 'VIP':
-                $paqueteValor = 3;
-                break;
-        }
+        $paqueteValor = match ($paqueteSeleccionado) {
+            'Zoomax' => 1,
+            'Bestial' => 2,
+            'VIP' => 3,
+            default => 0,
+        };
 
-        // Cambiar "Ruta guiada" a un valor numérico (1 o 0)
         $rutaGuiadaBoolean = ($rutaGuiada == 'si') ? 1 : 0;
 
-        // Mapear las rutas numéricas a rutas de texto
-        switch ($ruta) {
-            case 1:
-                $rutaNombre = 'Ruta maya';
-                break;
-            case 2:
-                $rutaNombre = 'Ruta reptil';
-                break;
-            case 3:
-                $rutaNombre = 'Aventura tropical';
-                break;
-            case 4:
-                $rutaNombre = 'Aventura salvaje';
-                break;
-            case 5:
-                $rutaNombre = 'Ruta de reptiles y aves';
-                break;
-            default:
-                $rutaNombre = 'Ruta no seleccionada';
-                break;
-        }
+        $rutas = [
+            1 => 'Ruta maya',
+            2 => 'Ruta reptil',
+            3 => 'Aventura tropical',
+            4 => 'Aventura salvaje',
+            5 => 'Ruta de reptiles y aves'
+        ];
+        $rutaNombre = $rutas[$ruta] ?? 'Ruta no seleccionada';
 
-        // Crear la reserva
         $data_reserva = [
             'fecha_reserva' => $fecha,
             'hora_reserva' => $horario,
@@ -77,7 +66,6 @@ class Pago_model extends CI_Model {
             return ['error' => 'Error al crear la reserva: ' . $response_reserva['error']];
         }
 
-        // Crear la compra
         $data_compra = [
             'correo_comprador' => $correo,
             'nombre_comprador' => $nombre,
@@ -90,20 +78,19 @@ class Pago_model extends CI_Model {
             return ['error' => 'Error al crear la compra: ' . $response_compra['error']];
         }
 
-        // Crear el boleto
         $data_boleto = [
-            'id_compra' => $response_compra['id_compra'], // ID de la compra creada
+            'id_compra' => $response_compra['id_compra'],
             'boletos_adulto' => $adultos,
             'boletos_nino' => $ninos,
             'boletos_nino_menor_3' => $bebes,
-            'id_reserva' => $response_reserva['id_reserva'] // ID de la reserva creada
+            'id_reserva' => $response_reserva['id_reserva']
         ];
         $response_boleto = $this->enviarDatosAPI('/boletos', $data_boleto);
         if (isset($response_boleto['error'])) {
             return ['error' => 'Error al crear el boleto: ' . $response_boleto['error']];
         }
 
-        return true; // Todo ha ido bien
-    
+        return true;
     }
 }
+?>
