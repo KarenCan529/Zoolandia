@@ -22,7 +22,7 @@ class Zoolandia extends CI_Controller {
 
 	public function index()
 	{
-	    //sirve para cargar una vista/
+	    /*sirve para cargar una vista*/
 		$this->load->view('inicio');
 
 
@@ -168,6 +168,7 @@ class Zoolandia extends CI_Controller {
     public function agradecimientoDonaciones(){
         $this->load->view('AgradecimientoDonar');
     }
+
     public function loginAdmin() {
         $this->load->model('Login'); // Asegúrate de cargar el modelo
     
@@ -202,7 +203,9 @@ class Zoolandia extends CI_Controller {
         } else {
             $this->load->view('admin/LoginAdministrativo');  // Muestra la vista de login
         }
-    }  
+    }
+    
+    
 
     public function cerrarSesion() {
         // Destruir la sesión
@@ -287,143 +290,164 @@ class Zoolandia extends CI_Controller {
 
 
     public function baseBoletos() {//-----------------------------------api-ADMIN GET_BOLETOS
+        // Verificar si el usuario está logueado
         if (!$this->session->userdata('logged_in')) {
+            // Si no está logueado, redirigir a la página de login
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
+    
+        // Obtener los boletos desde el modelo
         $resultado = $this->AnimalForm->get_boletos();
         
-        if ($resultado) {
-            // Si hay datos, pasarlos a la vista
+        // Comprobar si el resultado es un array y no tiene errores
+        if (is_array($resultado) && !isset($resultado['error'])) {
             $datos['boletos'] = $resultado;
         } else {
-            // Si no se pudieron obtener datos, mostrar un error
-            $datos['boletos'] = "No se encontraron boletos";
+            // Si no se encontraron boletos, mostrar un mensaje de error
+            $datos['error'] = $resultado['error'] ?? "No se encontraron boletos";
         }
-        // Cargar vista con datos
+    
+        // Cargar la vista con los datos
         $this->load->view('admin/baseBoletos', $datos);
     }
-
-
+    
     public function baseComprador() {//-----------------------------------api-ADMIN GET_compradores
         if (!$this->session->userdata('logged_in')) {
-   
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
+    
+        // Obtener los compradores desde el modelo
         $resultado = $this->AnimalForm->get_compradores();
-        if ($resultado) {
-            // Si hay datos, pasarlos a la vista
+        
+        // Comprobar si el resultado es un array y no tiene errores
+        if (is_array($resultado) && !isset($resultado['error'])) {
             $datos['comprador'] = $resultado;
         } else {
-            // Si no se pudieron obtener datos, mostrar un error
-            $datos['comprador'] = "No se encontraron compras";
+            // Si no se encontraron compradores, mostrar un mensaje de error
+            $datos['error'] = $resultado['error'] ?? "No se encontraron compradores";
         }
-        // Cargar vista con datos
-
-        // Cargar vista con datos
+    
+        // Cargar la vista con los datos
         $this->load->view('admin/baseComprador', $datos);
     }
-
+    
     public function baseReservas() {//-----------------------------------api-ADMIN GET_RESERVAS
-
         if (!$this->session->userdata('logged_in')) {
-   
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
+    
+        // Obtener las reservas desde el modelo
         $resultado = $this->AnimalForm->get_reservas();
-        if ($resultado) {
-            // Si hay datos, pasarlos a la vista
+        
+        // Comprobar si el resultado es un array y no tiene errores
+        if (is_array($resultado) && !isset($resultado['error'])) {
             $datos['reserva'] = $resultado;
         } else {
-            // Si no se pudieron obtener datos, mostrar un error
-            $datos['reserva'] = "No se encontro reservas";
+            // Si no se encontraron reservas, mostrar un mensaje de error
+            $datos['error'] = $resultado['error'] ?? "No se encontraron reservas";
         }
-        // Cargar vista con datos
+    
+        // Cargar la vista con los datos
         $this->load->view('admin/BaseReservas', $datos);
     }
-
+    
     public function basePaquetes() {//-----------------------------------api-ADMIN GET_paquetes
         if (!$this->session->userdata('logged_in')) {
-   
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
+    
+        // Obtener los paquetes desde el modelo
         $resultado = $this->AnimalForm->get_paquetes();
-        if ($resultado) {
-            // Si hay datos, pasarlos a la vista
+        
+        // Comprobar si el resultado es un array y no tiene errores
+        if (is_array($resultado) && !isset($resultado['error'])) {
             $datos['paquete'] = $resultado;
         } else {
-            // Si no se pudieron obtener datos, mostrar un error
-            $datos['paquete'] = "No se encontro paquetes";
+            // Si no se encontraron paquetes, mostrar un mensaje de error
+            $datos['error'] = $resultado['error'] ?? "No se encontraron paquetes";
         }
-        // Cargar vista con datos
+    
+        // Cargar la vista con los datos
         $this->load->view('admin/BasePaquetes', $datos);
     }
-
+    
     public function baseGuias() {//-----------------------------------api-ADMIN GET_guias
         if (!$this->session->userdata('logged_in')) {
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
+    
+        // Obtener las guías desde el modelo
         $resultado = $this->AnimalForm->get_guias();
-        if ($resultado) {
-            // Si hay datos, pasarlos a la vista
+        
+        // Comprobar si el resultado es un array y no tiene errores
+        if (is_array($resultado) && !isset($resultado['error'])) {
             $datos['guia'] = $resultado;
         } else {
-            // Si no se pudieron obtener datos, mostrar un error
-            $datos['guia'] = "No se encontro guias";
+            // Si no se encontraron guías, mostrar un mensaje de error
+            $datos['error'] = $resultado['error'] ?? "No se encontraron guías";
         }
-        // Cargar vista con datos
+    
+        // Cargar la vista con los datos
         $this->load->view('admin/BaseGuias', $datos);
     }
-
+    
     public function baseRutas() {//-----------------------------------api-ADMIN GET_rutas
         if (!$this->session->userdata('logged_in')) {
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
+    
+        // Obtener las rutas desde el modelo
         $resultado = $this->AnimalForm->get_rutas();
-        if ($resultado) {
-            // Si hay datos, pasarlos a la vista
+        
+        // Comprobar si el resultado es un array y no tiene errores
+        if (is_array($resultado) && !isset($resultado['error'])) {
             $datos['ruta'] = $resultado;
         } else {
-            // Si no se pudieron obtener datos, mostrar un error
-            $datos['ruta'] = "No se encontro rutas";
+            // Si no se encontraron rutas, mostrar un mensaje de error
+            $datos['error'] = $resultado['error'] ?? "No se encontraron rutas";
         }
-        // Cargar vista con datos
+    
+        // Cargar la vista con los datos
         $this->load->view('admin/BaseRutas', $datos);
     }
-
-
+    
+    
     public function baseDonaciones() {//-----------------------------------api-ADMIN GET_donaciones
+        // Verificar si el usuario está logueado
         if (!$this->session->userdata('logged_in')) {
-   
+            // Si no está logueado, redirigir a la página de login
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
             redirect('loginAdmin');
             return;
         }
+    
+        // Obtener las donaciones desde el modelo
         $resultado = $this->AnimalForm->get_donaciones();
-        if ($resultado) {
-            // Si hay datos, pasarlos a la vista
+        
+        // Comprobar si el resultado es un array y no tiene errores
+        if (is_array($resultado) && !isset($resultado['error'])) {
             $datos['donacion'] = $resultado;
         } else {
-            // Si no se pudieron obtener datos, mostrar un error
-            $datos['donacion'] = "No se encontro donaciones";
+            // Si no se encontraron donaciones, mostrar un mensaje de error
+            $datos['error'] = $resultado['error'] ?? "No se encontraron donaciones";
         }
-        // Cargar vista con datos
+    
+        // Cargar la vista con los datos
         $this->load->view('admin/BaseDonaciones', $datos);
     }
-
-
-
+    
    
     public function FormularioAnimales() {///funcionando con api-- revisioooooooooooooooooooooooooon
         if (!$this->session->userdata('logged_in')) {
@@ -523,12 +547,15 @@ class Zoolandia extends CI_Controller {
 
     //------------------------------------------------------------------------------
     //nuevo
-    public function actualizarAnimal() {//FUNCIONANDO API  ADMIN-PUT ANIMALLLSES
+    public function actualizarAnimal() {
+        // Obtener el id del animal desde la solicitud
         $id_animal = $this->input->post('id_animal');
         if (empty($id_animal)) {
             echo json_encode(array('status' => 'error', 'message' => 'id_animal is required'));
             return;
         }
+    
+        // Recoger los datos enviados en la solicitud
         $data = array(
             'nombre_animal' => $this->input->post('nombre_animal'),
             'nombre_comun_animal' => $this->input->post('nombre_comun_animal'),
@@ -542,19 +569,25 @@ class Zoolandia extends CI_Controller {
             'esperanza_vida_animal' => $this->input->post('esperanza_vida_animal'),
             'imagen_animal' => $this->input->post('imagen_animal')
         );
-             // Verifica si los datos no están llegando vacíos
-    if (empty(array_filter($data))) {
-        echo "Error: No se proporcionaron datos válidos";
-        return;
+    
+        // Verificar si los datos no están vacíos
+        if (empty(array_filter($data))) {
+            echo json_encode(array('status' => 'error', 'message' => 'No se proporcionaron datos válidos'));
+            return;
+        }
+    
+        // Llamar al modelo para actualizar el animal a través de la API
+        $resultado = $this->AnimalForm->update_animales($id_animal, $data);
+    
+        // Verificar si hubo un error en la respuesta
+        if (isset($resultado['error'])) {
+            echo json_encode(array('status' => 'error', 'message' => $resultado['error']));
+        } else {
+            // Si la actualización fue exitosa, devolver un mensaje de éxito
+            echo json_encode(array('status' => 'success', 'message' => 'Animal actualizado correctamente'));
+        }
     }
-    // Llamar al modelo para actualizar el administrador a través de la API
-    $resultado = $this->AnimalForm->update_animales($id_animal, $data);
-    if (isset($resultado['error'])) {
-        echo 'Error: ' . $resultado['error'];
-    } else {
-        echo 'Animal actualizado correctamente';
-    }
-    }
+    
 
     public function EliminarAnimal($id_animal) {///LISTO
     
@@ -674,7 +707,7 @@ class Zoolandia extends CI_Controller {
         redirect(base_url('interfazAdministrativo/baseGuias'));
     }
 
-    public function FormularioGuia() {//APIIIIIIIIIIIIIIIIIIIIIII- ADMIN-POST-GUIA
+    public function FormularioGuia() {
 
         if (!$this->session->userdata('logged_in')) {
             $this->session->set_flashdata('error', 'Debes iniciar sesión para acceder.');
@@ -695,7 +728,15 @@ class Zoolandia extends CI_Controller {
         }
         $this->load->view('admin/FormularioGuia');
     }
+
+
+    
+
    
 }
+
+
+
+
 
 ?>
