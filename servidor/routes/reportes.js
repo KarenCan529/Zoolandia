@@ -10,7 +10,7 @@ router.use((req, res, next) => {
 
 /**
  * @swagger
- * /api/reportes/boletos-vendidos:
+ * /api/reportes/boletos-vendidos-global:
  *   get:
  *     summary: Obtener la cantidad de boletos vendidos globalmente
  *     tags: [Reportes]
@@ -39,7 +39,7 @@ router.use((req, res, next) => {
  *       500:
  *         description: Error en la base de datos
  */
-router.get('/boletos-vendidos',verificarJWT, reporteController.getBoletosVendidosGlobal);
+router.get('/boletos-vendidos-global',verificarJWT, reporteController.getBoletosVendidosGlobal);
 
 
 /**
