@@ -3,10 +3,6 @@ const router = express.Router();
 const animalController = require('../controllers/animalController');
 const verificarJWT = require('../middlewares/verificarJWT');
 
-router.use((req, res, next) => {
-    verificarJWT(req, res, next); 
-});
-
 /**
  * @swagger
  * /api/animales:
