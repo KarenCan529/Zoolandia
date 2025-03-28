@@ -93,13 +93,25 @@ exports.updateAnimal = (req, res) => {
     });
 };
 
-// Eliminar un animal
+
 exports.deleteAnimal = (req, res) => {
     const { id } = req.params;
-    connection.query('DELETE FROM animal WHERE id_animal = ?', [id], (err) => {
+    
+    connection.query('SELECT * FROM animal WHERE id_animal = ?', [id], (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
-        res.json({ message: 'Animal eliminado' });
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Animal no encontrado' });
+        }
+
+        connection.query('DELETE FROM animal WHERE id_animal = ?', [id], (err) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json({ message: 'Animal eliminado' });
+        });
     });
 };
+
