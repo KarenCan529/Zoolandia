@@ -47,12 +47,16 @@ const swaggerOptions = {
             description: 'Endpoints para gestionar compras',
           },
           {
+            name: 'Reportes',
+            description: 'Endpoints para gestionar reportes',
+          },
+          {
             name: 'Donaciones',
             description: 'Endpoints para gestionar Donaciones',
           },
       ], // Aquí defines el orden
     },
-    apis: ['./routes/*token.js', './routes/*animales.js', './routes/*admin.js','./routes/*compras.js','./routes/*donaciones.js']
+    apis: ['./routes/*token.js', './routes/*animales.js', './routes/*admin.js','./routes/*compras.js','./routes/*reportes.js','./routes/*donaciones.js']
   };
 
 
