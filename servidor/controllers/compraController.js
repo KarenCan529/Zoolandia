@@ -143,8 +143,14 @@ exports.createBoleto = (req, res) => {
 
     connection.query(query, [id_compra, boletos_adulto, boletos_nino, boletos_nino_menor_3, id_reserva], (err, result) => {
         if (err) {
-            return res.status(500).json({ error: err.message });
+            return res.status(500).json({ error: 'Error al crear el boleto', details: err.message });
         }
+
+        // Verificar si se insertó algún registro
+        if (result.affectedRows === 0) {
+            return res.status(400).json({ error: 'Boleto no creado' });
+        }
+
         res.status(201).json({ message: 'Boleto creado', id_boleto: result.insertId });
     });
 };
