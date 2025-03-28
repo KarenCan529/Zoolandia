@@ -4,6 +4,42 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../config/db'); 
 
+/**
+ * @swagger
+ * /api/token/login:
+ *   post:
+ *     summary: Iniciar sesión y obtener un token JWT
+ *     tags: [Autenticación]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               correo_administrador:
+ *                 type: string
+ *                 example: "admin@example.com"
+ *               password_administrador:
+ *                 type: string
+ *                 example: "admin123"
+ *     responses:
+ *       200:
+ *         description: Token JWT obtenido con éxito
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: El token JWT para autenticación
+ *       401:
+ *         description: Credenciales incorrectas
+ *       500:
+ *         description: Error del servidor
+ */
+
 // Ruta de inicio de sesión
 router.post('/login', (req, res) => {
     const { correo_administrador, password_administrador } = req.body;
@@ -19,7 +55,8 @@ router.post('/login', (req, res) => {
                     detalle: err.message 
                 });
             }
-                        if (results.length === 0) return res.status(401).json({ error: 'Credenciales incorrectas' });
+
+            if (results.length === 0) return res.status(401).json({ error: 'Credenciales incorrectas' });
 
             const admin = results[0];
 
