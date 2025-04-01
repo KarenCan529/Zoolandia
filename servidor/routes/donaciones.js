@@ -235,7 +235,7 @@ router.get('/:id',verificarJWT, donacionController.getDonacionById);
  *                   type: string
  *                   example: Error en la creación de la donación
  */
-router.post('/',verificarJWT, donacionController.createDonacion);
+router.post('/', donacionController.createDonacion);
 
 /**
  * @swagger
