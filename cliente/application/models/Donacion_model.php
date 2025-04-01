@@ -2,11 +2,9 @@
 class Donacion_model extends CI_Model {
 
     private $api_url = "http://localhost:3000/api/donaciones"; // Ruta de la API
-    private $token; // Token JWT
 
     public function __construct() {
         parent::__construct();
-        $this->token = $this->session->userdata('token'); // Obtener el token de sesión
     }
 
     public function guardar_donacion($datos_donacion) {
@@ -14,8 +12,7 @@ class Donacion_model extends CI_Model {
 
         $headers = [
             'Content-Type: application/json',
-            'Accept: application/json',
-            'Authorization: Bearer ' . $this->token // Agregar el token JWT
+            'Accept: application/json'
         ];
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -28,15 +25,13 @@ class Donacion_model extends CI_Model {
         $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
 
-        if ($http_code == 200) {
-            return json_decode($response, true);
+        // ✅ Si la API responde con éxito (201 o 200), devolver true
+        if ($http_code == 201 || $http_code == 200) {
+            return true;
         } else {
+            // ❌ Si hay un error, devolverlo
             return ['error' => 'Error en la solicitud: ' . $http_code, 'detalle' => json_decode($response, true)];
         }
     }
 }
 ?>
-
-
-
-
