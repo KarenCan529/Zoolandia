@@ -5,9 +5,7 @@ const verificarJWT = require('../middlewares/verificarJWT');
 
 
 
-router.use((req, res, next) => {
-    verificarJWT(req, res, next); 
-});
+
 
 /**
  * @swagger
@@ -46,7 +44,7 @@ router.use((req, res, next) => {
  *       500:
  *         description: No hay reservas
  */
-router.get('/reservas', verificarJWT,compraController.getReservas);
+router.get('/reservas',compraController.getReservas);
 
 /**
  * @swagger
@@ -80,7 +78,7 @@ router.get('/reservas', verificarJWT,compraController.getReservas);
  *       500:
  *         description: No hay Compras
  */
-router.get('/',verificarJWT, compraController.getCompras);
+router.get('/', compraController.getCompras);
 
 /**
  * @swagger
@@ -131,7 +129,7 @@ router.get('/',verificarJWT, compraController.getCompras);
  *       500:
  *         description: No hay Compras de boletos
  */
-router.get('/boletos',verificarJWT, compraController.getBoletos);
+router.get('/boletos', compraController.getBoletos);
 
 /**
  * @swagger
@@ -166,8 +164,8 @@ router.get('/boletos',verificarJWT, compraController.getBoletos);
  *       500:
  *         description: No hay Paquetes
  */
-router.get('/paquetes',verificarJWT, compraController.getPaquetes); 
-router.get('/agradecimientos',verificarJWT, compraController.getAgradecimientos);
+router.get('/paquetes', compraController.getPaquetes); 
+router.get('/agradecimientos', compraController.getAgradecimientos);
 
 /**
  * @swagger
@@ -196,7 +194,7 @@ router.get('/agradecimientos',verificarJWT, compraController.getAgradecimientos)
  *       500:
  *         description: No hay guias disponibles
  */
-router.get('/guias',verificarJWT, compraController.getGuias); 
+router.get('/guias', compraController.getGuias); 
 
 
 /**
@@ -226,7 +224,7 @@ router.get('/guias',verificarJWT, compraController.getGuias);
  *       500:
  *         description: No hay rutas disponibles
  */
-router.get('/rutas',verificarJWT, compraController.getRutas);  
+router.get('/rutas', compraController.getRutas);  
 
 /**
  * @swagger
@@ -277,7 +275,7 @@ router.get('/rutas',verificarJWT, compraController.getRutas);
  *         description: Error al crear la reserva
  */
 
-router.post('/reservas',verificarJWT, compraController.createReserva);
+router.post('/reservas', compraController.createReserva);
 
 
 
@@ -324,7 +322,7 @@ router.post('/reservas',verificarJWT, compraController.createReserva);
  *       400:
  *         description: Error en los datos de la solicitud
  */
-router.post('/', verificarJWT,compraController.createCompra);
+router.post('/',compraController.createCompra);
 
 /**
  * @swagger
@@ -400,7 +398,7 @@ router.post('/', verificarJWT,compraController.createCompra);
  *                   type: string
  *                   example: "Detalles específicos del error"
  */
-router.post('/boletos',verificarJWT, compraController.createBoleto); 
+router.post('/boletos', compraController.createBoleto); 
 
 /**
  * @swagger
