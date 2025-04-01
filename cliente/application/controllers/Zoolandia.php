@@ -22,11 +22,7 @@ class Zoolandia extends CI_Controller {
 
 	public function index()
 	{
-<<<<<<< HEAD
 	    
-=======
-	    /*sirve para cargar una vista*/
->>>>>>> 5799c9966ccd569d494e7ffa188608ecec8873d6
 		$this->load->view('inicio');
 
 
